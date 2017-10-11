@@ -1,0 +1,25 @@
+h1 {
+    color: blueviolet;
+    font-size: large;
+    margin: 50px;
+    background-color: lightslategrey;
+}
+
+p {
+    color: black;
+}
+
+h2 {
+    background-color: black;
+    color: red;
+}
+
+h3 {
+    color: blue;
+    background-color: red;
+}
+
+h4 {
+    color: red;
+    background-color: blue;
+}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<title>Post # {{ post_id }}</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+<script>
+if (post_id % 2 == 0) {
+    var h3 = document.createElement("h3");
+    h3.textContent = "This is post # {{ post_id }}"
+}
+else {
+    var h4 = document.createElement("h4");
+    h4.textContent = "This is post # {{ post_id }}"
+}
+
+</script>
