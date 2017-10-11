@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Home </title>
+    {% if user %}
+        <h1>Hello {{ user }}!</h1>
+    {% else %}
+        <h1>Hello Guest</h1>
+    {% endif %}
+</head>
+<body>
+    <ul>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/search'>Search</a> </li>
+        <li><a href='/login'>Log In</a></li>
+        <li><a href='/signup'>Sign Up</a></li>
+    </ul>
+</body>
+</html>

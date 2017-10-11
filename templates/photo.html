@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo</title>
+</head>
+<body>
+    <canvas id="photoCanvas" onload="addPhoto()" width="200" height="100" style="border:1px solid #000000;">
+        Your browser cannot display the photo.
+    </canvas>
+
+    <form>
+        Characters left: <input disabled id = "counter" maxlength="3" size="3" value="500">
+        <textarea id="comment" onkeypress="changeCharCounter()" rows="4" cols="50" maxlength="500">
+            Enter comment here.
+        </textarea>
+        <button onclick="submitComment()">Submit Comment</button>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
