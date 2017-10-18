@@ -8,14 +8,19 @@ function addPhoto() {
 function changeCharCounter() {
     var counter = document.getElementById("counter");
     var comment = document.getElementById("comment");
-    var len = comment.length;
+    var len = comment.value.length;
     var maxLen = comment.maxLength;
 
-    counter.value = maxLen - len;
+    if (len > maxLen) {
+        comment.value = comment.value.substring(0, maxLen);
+        len = comment.length;
+    }
+
+    counter.innerHTML = maxLen - len;
 }
 
 function submitComment() {
-    var comment = document.getElementById("comment");
+    var comment = document.getElementById("comment").value;
 
     /* Add comment to db and display it below comment box */
 }

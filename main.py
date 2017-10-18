@@ -11,7 +11,7 @@ app.secret_key = 'super secret string'  # Change this!
 
 # These will need to be changed according to your creditionals
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = '123456'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
 app.config['MYSQL_DATABASE_DB'] = 'photoshare'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
@@ -41,7 +41,23 @@ def profile(name):
 def index(user=None):
     return render_template("user.html", user=user)
 
+@app.route('/search')
+def search():
+    return render_template("search.html")
 
+@app.route('/login')
+def login():
+    return render_template("login.html")
+
+@app.route('/signup')
+def signup():
+    return render_template("signup.html")
+
+@app.route('/photo')
+def photo():
+    return render_template("photo.html")
+
+@app.route('/unauthorized')
 @login_manager.unauthorized_handler
 def unauthorized_handler():
     return render_template('unauth.html')
