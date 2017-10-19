@@ -51,6 +51,26 @@ def login():
 
 @app.route('/signup')
 def signup():
+    try:
+        email = request.form.get('email')
+        password = request.form.get('password')
+    except:
+        print(
+            "couldn't find all tokens")  # this prints to shell, end users will not see this (all print statements go to shell)
+        return flask.redirect(flask.url_for('register'))
+    cursor = conn.cursor()
+    test = isEmailUnique(email)
+    if test:
+        print(cursor.execute("INSERT INTO Users (email, password) VALUES ('{0}', '{1}')".format(email, password)))
+        conn.commit()
+        # log user in
+        user = User()
+        user.id = email
+        flask_login.login_user(user)
+        return render_template('hello.html', name=email, message='Account Created!')
+    else:
+        print("couldn't find all tokens")
+        return flask.redirect(flask.url_for('register'))
     return render_template("signup.html")
 
 @app.route('/photo')
@@ -61,6 +81,27 @@ def photo():
 @login_manager.unauthorized_handler
 def unauthorized_handler():
     return render_template('unauth.html')
+
+def getUsersPhotos(uid):
+    cursor = conn.cursor()
+    cursor.execute("SELECT imgdata, picture_id, caption FROM Pictures WHERE user_id = '{0}'".format(uid))
+    return cursor.fetchall()  # NOTE list of tuples, [(imgdata, pid), ...]
+
+
+def getUserIdFromEmail(email):
+    cursor = conn.cursor()
+    cursor.execute("SELECT user_id  FROM Users WHERE email = '{0}'".format(email))
+    return cursor.fetchone()[0]
+
+
+def isEmailUnique(email):
+    # use this to check if a email has already been registered
+    cursor = conn.cursor()
+    if cursor.execute("SELECT email  FROM Users WHERE email = '{0}'".format(email)):
+        # this means there are greater than zero entries with that email
+        return False
+    else:
+        return True
 
 
 if __name__ == '__main__':
