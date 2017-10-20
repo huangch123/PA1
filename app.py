@@ -20,7 +20,7 @@ import os, base64
 
 mysql = MySQL()
 app = Flask(__name__)
-app.secret_key = 'super secret string'  # Change this!
+app.secret_key = 'even more secret super secret string'  # Change this!
 
 # These will need to be changed according to your creditionals
 app.config['MYSQL_DATABASE_USER'] = 'root'
@@ -116,7 +116,7 @@ def login():
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
-    return render_template('hello.html', message='Logged out')
+    return render_template('homepage.html', message='Logged out')
 
 
 @login_manager.unauthorized_handler
@@ -152,7 +152,7 @@ def register_user():
         user = User()
         user.id = email
         flask_login.login_user(user)
-        return render_template('hello.html', name=email, message='Account Created!')
+        return render_template('homepage.html', name=email, message='Account Created!')
     else:
         print("couldn't find all tokens")
         return flask.redirect(flask.url_for('register'))
@@ -186,7 +186,7 @@ def isEmailUnique(email):
 @app.route('/profile')
 @flask_login.login_required
 def protected():
-    return render_template('hello.html', name=flask_login.current_user.id, message="Here's your profile")
+    return render_template('homepage.html', name=flask_login.current_user.id, message="Here's your profile")
 
 
 # begin photo uploading code
@@ -214,7 +214,7 @@ def upload_file():
                        (photo_data, uid, caption))
         #cursor.execute("INSERT INTO Pictures (imgdata, user_id, caption) VALUES (?, ?, ?)", (photo_data, uid, caption))
         conn.commit()
-        return render_template('hello.html', name=flask_login.current_user.id, message='Photo uploaded!',
+        return render_template('homepage.html', name=flask_login.current_user.id, message='Photo uploaded!',
                                photos=getUsersPhotos(uid))
     # The method is GET so we return a  HTML form to upload the a photo.
     else:
@@ -224,10 +224,10 @@ def upload_file():
 # end photo uploading code
 
 
-# default page
-@app.route("/", methods=['GET'])
-def hello():
-    return render_template('hello.html', message='Welecome to Photoshare')
+# default homepage
+@app.route('/', methods=['GET'])
+def homepage():
+    return render_template("homepage.html")
 
 
 if __name__ == "__main__":
