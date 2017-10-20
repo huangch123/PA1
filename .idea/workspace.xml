@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="948ce331-3d40-4a4e-affd-eb7c1b522ac8" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/search.html" afterPath="$PROJECT_DIR$/templates/search.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,13 +15,24 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/PA1$main.coverage" NAME="main Coverage Results" MODIFIED="1508522149845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand />
+    <select />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="72" column="54" lean-forward="true" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="54" />
+            <state relative-caret-position="-62">
+              <caret line="72" column="54" lean-forward="false" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="54" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
                 <marker date="1508523034000" expanded="true" signature="712:735" ph="SELECT email... Users" />
@@ -31,6 +41,55 @@
                 <marker date="1508523034000" expanded="true" signature="2637:2683" ph="SELECT user_... Users" />
                 <marker date="1508523034000" expanded="true" signature="2873:2917" ph="SELECT email... Users" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="schema.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schema.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-640">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1508525277000" expanded="true" signature="72:336" ph="CREATE TABLE... USER" />
+                <marker date="1508525277000" expanded="true" signature="339:559" ph="CREATE TABLE... FRIENDSHIP" />
+                <marker date="1508525277000" expanded="true" signature="562:775" ph="CREATE TABLE... ALBUM" />
+                <marker date="1508525277000" expanded="true" signature="778:983" ph="CREATE TABLE... PHOTO" />
+                <marker date="1508525277000" expanded="true" signature="986:1062" ph="CREATE TABLE... TAG" />
+                <marker date="1508525277000" expanded="true" signature="1065:1302" ph="CREATE TABLE... ASSOCIATE" />
+                <marker date="1508525277000" expanded="true" signature="1305:1606" ph="CREATE TABLE... COMMENT" />
+                <marker date="1508525277000" expanded="true" signature="1609:1848" ph="CREATE TABLE... FAVORITE" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2704">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1508364449000" expanded="true" signature="1346:1369" ph="SELECT email... Users" />
+                <marker date="1508364449000" expanded="true" signature="1466:1489" ph="SELECT email... Users" />
+                <marker date="1508364449000" expanded="true" signature="2045:2091" ph="SELECT passw... Users" />
+                <marker date="1508364449000" expanded="true" signature="2963:3009" ph="SELECT passw... Users" />
+                <marker date="1508364449000" expanded="true" signature="4445:4502" ph="INSERT INTO Users... " />
+                <marker date="1508364449000" expanded="true" signature="4925:4996" ph="SELECT imgda... Pictures" />
+                <marker date="1508364449000" expanded="true" signature="5166:5212" ph="SELECT user_... Users" />
+                <marker date="1508364449000" expanded="true" signature="5402:5446" ph="SELECT email... Users" />
+                <marker date="1508364449000" expanded="true" signature="6492:6570" ph="INSERT INTO Pictures... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PhotoShare.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PhotoShare.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -49,7 +108,7 @@
         <entry file="file://$PROJECT_DIR$/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="42" lean-forward="true" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+              <caret line="8" column="42" lean-forward="false" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -59,7 +118,7 @@
         <entry file="file://$PROJECT_DIR$/templates/signup.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+              <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -69,7 +128,7 @@
         <entry file="file://$PROJECT_DIR$/templates/search.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+              <caret line="9" column="7" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -604,7 +663,7 @@
     <entry file="file://$PROJECT_DIR$/templates/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="42" lean-forward="true" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+          <caret line="8" column="42" lean-forward="false" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -612,7 +671,7 @@
     <entry file="file://$PROJECT_DIR$/templates/search.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+          <caret line="9" column="7" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
           <folding />
         </state>
       </provider>
@@ -620,15 +679,40 @@
     <entry file="file://$PROJECT_DIR$/templates/signup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-640">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1508525277000" expanded="true" signature="72:336" ph="CREATE TABLE... USER" />
+            <marker date="1508525277000" expanded="true" signature="339:559" ph="CREATE TABLE... FRIENDSHIP" />
+            <marker date="1508525277000" expanded="true" signature="562:775" ph="CREATE TABLE... ALBUM" />
+            <marker date="1508525277000" expanded="true" signature="778:983" ph="CREATE TABLE... PHOTO" />
+            <marker date="1508525277000" expanded="true" signature="986:1062" ph="CREATE TABLE... TAG" />
+            <marker date="1508525277000" expanded="true" signature="1065:1302" ph="CREATE TABLE... ASSOCIATE" />
+            <marker date="1508525277000" expanded="true" signature="1305:1606" ph="CREATE TABLE... COMMENT" />
+            <marker date="1508525277000" expanded="true" signature="1609:1848" ph="CREATE TABLE... FAVORITE" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PhotoShare.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="72" column="54" lean-forward="true" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="54" />
+        <state relative-caret-position="-62">
+          <caret line="72" column="54" lean-forward="false" selection-start-line="72" selection-start-column="54" selection-end-line="72" selection-end-column="54" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
             <marker date="1508523034000" expanded="true" signature="712:735" ph="SELECT email... Users" />
@@ -636,6 +720,24 @@
             <marker date="1508523034000" expanded="true" signature="2396:2467" ph="SELECT imgda... Pictures" />
             <marker date="1508523034000" expanded="true" signature="2637:2683" ph="SELECT user_... Users" />
             <marker date="1508523034000" expanded="true" signature="2873:2917" ph="SELECT email... Users" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2704">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1508364449000" expanded="true" signature="1346:1369" ph="SELECT email... Users" />
+            <marker date="1508364449000" expanded="true" signature="1466:1489" ph="SELECT email... Users" />
+            <marker date="1508364449000" expanded="true" signature="2045:2091" ph="SELECT passw... Users" />
+            <marker date="1508364449000" expanded="true" signature="2963:3009" ph="SELECT passw... Users" />
+            <marker date="1508364449000" expanded="true" signature="4445:4502" ph="INSERT INTO Users... " />
+            <marker date="1508364449000" expanded="true" signature="4925:4996" ph="SELECT imgda... Pictures" />
+            <marker date="1508364449000" expanded="true" signature="5166:5212" ph="SELECT user_... Users" />
+            <marker date="1508364449000" expanded="true" signature="5402:5446" ph="SELECT email... Users" />
+            <marker date="1508364449000" expanded="true" signature="6492:6570" ph="INSERT INTO Pictures... " />
           </folding>
         </state>
       </provider>
