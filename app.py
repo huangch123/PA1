@@ -229,6 +229,11 @@ def upload_file():
 def homepage():
     return render_template("homepage.html")
 
+# shows specific photo
+@app.route('/photo', methods=['Get'])
+def photo():
+    return render_template("photo.html")
+
 
 if __name__ == "__main__":
     # this is invoked when in the shell  you run

@@ -12,6 +12,28 @@
 
     <br>
 
+    <button class="accordion">Tags</button>
+    <div class="panel">
+        {% if tags %}
+            <p>{{ tags }}</p>
+        {% else %}
+            <p>None</p>
+        {% endif %}
+    </div>
+
+    <br>
+
+    <button class="accordion">Liked By</button>
+    <div class="panel">
+        {% if names %}
+            <p>{{ names }}</p>
+        {% else %}
+            <p>None</p>
+        {% endif %}
+    </div>
+
+    <br>
+
     <form autocomplete="off">
         Characters left: <label id="counter">500</label><br>
 
