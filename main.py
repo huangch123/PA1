@@ -57,7 +57,7 @@ def signup():
     except:
         print(
             "couldn't find all tokens")  # this prints to shell, end users will not see this (all print statements go to shell)
-        return flask.redirect(flask.url_for('register'))
+        return flask.redirect(flask.url_for('signup'))
     cursor = conn.cursor()
     test = isEmailUnique(email)
     if test:
@@ -67,10 +67,10 @@ def signup():
         user = User()
         user.id = email
         flask_login.login_user(user)
-        return render_template('hello.html', name=email, message='Account Created!')
+        return render_template('homepage.html', name=email, message='Account Created!')
     else:
         print("couldn't find all tokens")
-        return flask.redirect(flask.url_for('register'))
+        return flask.redirect(flask.url_for('signup'))
     return render_template("signup.html")
 
 @app.route('/photo')
