@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="948ce331-3d40-4a4e-affd-eb7c1b522ac8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/hello.html" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/PhotoShare.py" afterPath="$PROJECT_DIR$/delete/PhotoShare.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/delete/main.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/templates/signup.html" afterPath="$PROJECT_DIR$/delete/signup.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/templates/unauthorized.html" afterPath="$PROJECT_DIR$/delete/unauthorized.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/homepage.html" afterPath="$PROJECT_DIR$/templates/homepage.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +16,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/PA1$main.coverage" NAME="main Coverage Results" MODIFIED="1508522149845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PA1$main.coverage" NAME="main Coverage Results" MODIFIED="1508527386993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/PA1$app.coverage" NAME="app Coverage Results" MODIFIED="1508527435963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -30,7 +33,7 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="PhotoShare.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PhotoShare.py">
+        <entry file="file://$PROJECT_DIR$/delete/PhotoShare.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
               <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
@@ -39,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/delete/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-595">
-              <caret line="30" column="43" lean-forward="true" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+            <state relative-caret-position="125">
+              <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
                 <marker date="1508523034000" expanded="true" signature="712:735" ph="SELECT email... Users" />
@@ -59,20 +62,30 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1400">
-              <caret line="118" column="36" lean-forward="false" selection-start-line="118" selection-start-column="36" selection-end-line="118" selection-end-column="36" />
+            <state relative-caret-position="287">
+              <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
               <folding>
                 <element signature="e#600#612#0" expanded="true" />
-                <marker date="1508527225000" expanded="true" signature="1387:1410" ph="SELECT email... Users" />
-                <marker date="1508527225000" expanded="true" signature="1507:1530" ph="SELECT email... Users" />
-                <marker date="1508527225000" expanded="true" signature="2087:2133" ph="SELECT passw... Users" />
-                <marker date="1508527225000" expanded="true" signature="2991:3035" ph="SELECT passw... Users" />
-                <marker date="1508527225000" expanded="true" signature="4708:4760" ph="INSERT INTO Users... " />
-                <marker date="1508527225000" expanded="true" signature="5182:5253" ph="SELECT imgda... Pictures" />
-                <marker date="1508527225000" expanded="true" signature="5411:5457" ph="SELECT user_... Users" />
-                <marker date="1508527225000" expanded="true" signature="5633:5677" ph="SELECT email... Users" />
-                <marker date="1508527225000" expanded="true" signature="6829:6897" ph="INSERT INTO Pictures... " />
+                <marker date="1508527433000" expanded="true" signature="1390:1413" ph="SELECT email... Users" />
+                <marker date="1508527433000" expanded="true" signature="1510:1533" ph="SELECT email... Users" />
+                <marker date="1508527433000" expanded="true" signature="2090:2136" ph="SELECT passw... Users" />
+                <marker date="1508527433000" expanded="true" signature="2994:3038" ph="SELECT passw... Users" />
+                <marker date="1508527433000" expanded="true" signature="4711:4763" ph="INSERT INTO Users... " />
+                <marker date="1508527433000" expanded="true" signature="5185:5256" ph="SELECT imgda... Pictures" />
+                <marker date="1508527433000" expanded="true" signature="5414:5460" ph="SELECT user_... Users" />
+                <marker date="1508527433000" expanded="true" signature="5636:5680" ph="SELECT email... Users" />
+                <marker date="1508527433000" expanded="true" signature="6832:6900" ph="INSERT INTO Pictures... " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signup.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/delete/signup.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -153,9 +166,9 @@
         <option value="$PROJECT_DIR$/templates/search.html" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/PhotoShare.py" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/templates/homepage.html" />
         <option value="$PROJECT_DIR$/templates/hello.html" />
+        <option value="$PROJECT_DIR$/app.py" />
       </list>
     </option>
   </component>
@@ -197,6 +210,11 @@
             <path>
               <item name="PA1" type="b2602c69:ProjectViewProjectNode" />
               <item name="PA1" type="462c0819:PsiDirectoryNode" />
+              <item name="delete" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PA1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PA1" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -227,6 +245,9 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/delete" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$" />
@@ -244,7 +265,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.app">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="PA1" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -258,14 +297,19 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="PA1" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/delete/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Python.main" />
+      <item index="1" class="java.lang.String" itemvalue="Python.app" />
+    </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python.main" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.app" />
+        <item index="1" class="java.lang.String" itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -320,7 +364,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/delete/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
@@ -370,7 +414,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/signup.html">
+    <entry file="file://$PROJECT_DIR$/delete/signup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
@@ -378,7 +422,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/delete/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -428,7 +472,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/signup.html">
+    <entry file="file://$PROJECT_DIR$/delete/signup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
@@ -452,14 +496,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/unauthorized.html">
+    <entry file="file://$PROJECT_DIR$/delete/unauthorized.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="52" lean-forward="false" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/delete/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -508,7 +553,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/signup.html">
+    <entry file="file://$PROJECT_DIR$/delete/signup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
@@ -532,14 +577,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/unauthorized.html">
+    <entry file="file://$PROJECT_DIR$/delete/unauthorized.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="52" lean-forward="true" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/delete/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -563,10 +609,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/shopping.html" />
-    <entry file="file://$PROJECT_DIR$/templates/unauthorized.html">
+    <entry file="file://$PROJECT_DIR$/delete/unauthorized.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="52" lean-forward="false" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -636,14 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/signup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/schema.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-640">
@@ -658,14 +697,6 @@
             <marker date="1508525277000" expanded="true" signature="1305:1606" ph="CREATE TABLE... COMMENT" />
             <marker date="1508525277000" expanded="true" signature="1609:1848" ph="CREATE TABLE... FAVORITE" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -709,26 +740,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1400">
-          <caret line="118" column="36" lean-forward="false" selection-start-line="118" selection-start-column="36" selection-end-line="118" selection-end-column="36" />
-          <folding>
-            <element signature="e#600#612#0" expanded="true" />
-            <marker date="1508527225000" expanded="true" signature="1387:1410" ph="SELECT email... Users" />
-            <marker date="1508527225000" expanded="true" signature="1507:1530" ph="SELECT email... Users" />
-            <marker date="1508527225000" expanded="true" signature="2087:2133" ph="SELECT passw... Users" />
-            <marker date="1508527225000" expanded="true" signature="2991:3035" ph="SELECT passw... Users" />
-            <marker date="1508527225000" expanded="true" signature="4708:4760" ph="INSERT INTO Users... " />
-            <marker date="1508527225000" expanded="true" signature="5182:5253" ph="SELECT imgda... Pictures" />
-            <marker date="1508527225000" expanded="true" signature="5411:5457" ph="SELECT user_... Users" />
-            <marker date="1508527225000" expanded="true" signature="5633:5677" ph="SELECT email... Users" />
-            <marker date="1508527225000" expanded="true" signature="6829:6897" ph="INSERT INTO Pictures... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PhotoShare.py">
+    <entry file="file://$PROJECT_DIR$/delete/PhotoShare.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
@@ -736,10 +748,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/delete/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-595">
-          <caret line="30" column="43" lean-forward="true" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
+        <state relative-caret-position="125">
+          <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
             <marker date="1508523034000" expanded="true" signature="712:735" ph="SELECT email... Users" />
@@ -748,6 +760,41 @@
             <marker date="1508523034000" expanded="true" signature="2637:2683" ph="SELECT user_... Users" />
             <marker date="1508523034000" expanded="true" signature="2873:2917" ph="SELECT email... Users" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="29" column="19" lean-forward="true" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding>
+            <element signature="e#600#612#0" expanded="true" />
+            <marker date="1508527433000" expanded="true" signature="1390:1413" ph="SELECT email... Users" />
+            <marker date="1508527433000" expanded="true" signature="1510:1533" ph="SELECT email... Users" />
+            <marker date="1508527433000" expanded="true" signature="2090:2136" ph="SELECT passw... Users" />
+            <marker date="1508527433000" expanded="true" signature="2994:3038" ph="SELECT passw... Users" />
+            <marker date="1508527433000" expanded="true" signature="4711:4763" ph="INSERT INTO Users... " />
+            <marker date="1508527433000" expanded="true" signature="5185:5256" ph="SELECT imgda... Pictures" />
+            <marker date="1508527433000" expanded="true" signature="5414:5460" ph="SELECT user_... Users" />
+            <marker date="1508527433000" expanded="true" signature="5636:5680" ph="SELECT email... Users" />
+            <marker date="1508527433000" expanded="true" signature="6832:6900" ph="INSERT INTO Pictures... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/delete/signup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="7" lean-forward="true" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
