@@ -11,9 +11,13 @@
         </div>
         <div id="content">
             <form method="post" action="{{ url_for('register_user') }}">
-                <label for="email">Enter your email:</label>
+                <label for="fname">First Name:</label>
+                <input type="text" name="fname" /><br />
+                <label for="lname">Last Name:</label>
+                <input type="text" name="lname" /><br />
+                <label for="email">Email:</label>
                 <input type="email" name="email" /><br />
-                <label for="password">Enter password:</label>
+                <label for="password">Password:</label>
                 <input type="password" name="password" /><br />
                 <input type="submit" />
             </form>
