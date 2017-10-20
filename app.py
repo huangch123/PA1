@@ -35,13 +35,13 @@ login_manager.init_app(app)
 
 conn = mysql.connect()
 cursor = conn.cursor()
-cursor.execute("SELECT email FROM Users")
+cursor.execute("SELECT email FROM User")
 users = cursor.fetchall()
 
 
 def getUserList():
     cursor = conn.cursor()
-    cursor.execute("SELECT email FROM Users")
+    cursor.execute("SELECT email FROM User")
     return cursor.fetchall()
 
 
@@ -69,7 +69,7 @@ def request_loader(request):
     user.id = email
     cursor = mysql.connect().cursor()
 
-    cursor.execute("SELECT password FROM Users WHERE email = email")
+    cursor.execute("SELECT password FROM User WHERE email = email")
     data = cursor.fetchall()
     pwd = str(data[0][0])
     user.is_authenticated = request.form['password'] == pwd
@@ -99,7 +99,7 @@ def login():
     email = flask.request.form['email']
     cursor = conn.cursor()
     # check if email is registered
-    if cursor.execute("SELECT password FROM Users WHERE email=email"):
+    if cursor.execute("SELECT password FROM User WHERE email=email"):
         data = cursor.fetchall()
         pwd = str(data[0][0])
         if flask.request.form['password'] == pwd:
@@ -146,7 +146,7 @@ def register_user():
 
         #cursor.execute("INSERT INTO Pictures (imgdata, user_id, caption) VALUES (%s, %s, %s)",
         #               (photo_data, uid, caption))
-        print(cursor.execute("INSERT INTO Users (email, password) VALUES (%s , %s)", (email, password)))
+        print(cursor.execute("INSERT INTO User (email, password) VALUES (%s , %s)", (email, password)))
         conn.commit()
         # log user in
         user = User()
@@ -167,14 +167,14 @@ def getUsersPhotos(uid):
 
 def getUserIdFromEmail(email):
     cursor = conn.cursor()
-    cursor.execute("SELECT user_id  FROM Users WHERE email = email")
+    cursor.execute("SELECT user_id  FROM User WHERE email = email")
     return cursor.fetchone()[0]
 
 
 def isEmailUnique(email):
     # use this to check if a email has already been registered
     cursor = conn.cursor()
-    if cursor.execute("SELECT email  FROM Users WHERE email = email"):
+    if cursor.execute("SELECT email  FROM User WHERE email = email"):
         # this means there are greater than zero entries with that email
         return False
     else:
