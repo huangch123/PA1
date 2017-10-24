@@ -69,7 +69,9 @@ def request_loader(request):
     user.id = email
     cursor = mysql.connect().cursor()
 
-    cursor.execute("SELECT password FROM User WHERE email = email")
+    query = "SELECT password FROM User WHERE email = '%s'"
+    cursor.execute(query, (email,))
+
     data = cursor.fetchall()
     pwd = str(data[0][0])
     user.is_authenticated = request.form['password'] == pwd
@@ -99,7 +101,8 @@ def login():
     email = flask.request.form['email']
     cursor = conn.cursor()
     # check if email is registered
-    if cursor.execute("SELECT password FROM User WHERE email=email"):
+    query = "SELECT password FROM User WHERE email = '%s'"
+    if cursor.execute(query, (email,)):
         data = cursor.fetchall()
         pwd = str(data[0][0])
         if flask.request.form['password'] == pwd:
@@ -135,6 +138,12 @@ def register_user():
     try:
         email = request.form.get('email')
         password = request.form.get('password')
+        password = request.form.get('password')
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        dob = request.form.get('dob')
+        hometown = request.form.get('hometown')
+        gender = request.form.get('gender')
     except:
         print(
             "couldn't find all tokens")  # this prints to shell, end users will not see this (all print statements go to shell)
@@ -161,20 +170,25 @@ def register_user():
 def getUsersPhotos(uid):
     cursor = conn.cursor()
 
-    cursor.execute("SELECT imgdata, picture_id, caption FROM Pictures WHERE user_id = 'uid'")
+    query = "SELECT imgdata, picture_id, caption FROM Pictures WHERE user_id = '%s'"
+    cursor.execute(query, (uid,))
     return cursor.fetchall()  # NOTE list of tuples, [(imgdata, pid), ...]
 
 
 def getUserIdFromEmail(email):
     cursor = conn.cursor()
-    cursor.execute("SELECT user_id  FROM User WHERE email = email")
+
+    query = "SELECT user_id FROM User WHERE email = '%s'"
+    cursor.execute(query, (email,))
     return cursor.fetchone()[0]
 
 
 def isEmailUnique(email):
     # use this to check if a email has already been registered
     cursor = conn.cursor()
-    if cursor.execute("SELECT email  FROM User WHERE email = email"):
+
+    query = "SELECT email FROM User WHERE email = '%s'"
+    if cursor.execute(query, (email,)):
         # this means there are greater than zero entries with that email
         return False
     else:
