@@ -1,28 +1,31 @@
-<!-- author ben lawson balawson@bu.edu -->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Create an account!</title>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
 </head>
-{%if not supress%}
-<h1> Email already in use! Use another one or <a href="/login">login</a></h1>
-{% endif %}
-    <body>
-        <div class="title">
+<body>
+    {%if not supress%}
+        <h1> This email already in use. Please use a different email or <a href="/login">login</a></h1>
+    {% endif %}
+
+    <div class="title">
             <h1>Enter your information below</h1>
         </div>
         <div id="content">
             <form method="post" autocomplete="off" action="{{ url_for('register_user') }}">
                 <label for="fname">First Name:</label>
-                <input type="text" name="fname" /><br />
+                <input type="text" name="fname" required="true"/><br/>
                 <label for="lname">Last Name:</label>
-                <input type="text" name="lname" /><br />
+                <input type="text" name="lname" required="true"/><br/>
                 <label for="email">Email:</label>
-                <input type="email" name="email" /><br />
+                <input type="email" name="email" required="true"/><br/>
                 <label for="password">Password:</label>
-                <input type="password" name="password" /><br />
+                <input type="password" name="password" required="true"/><br/>
                 <label for="dob">Date of birth:</label>
-                <input type="date" name="dob" /><br />
+                <input type="date" name="dob" required="true"/><br/>
                 <label for="hometown">Hometown:</label>
-                <input type="text" name="hometown" placeholder="Optional" /><br />
+                <input type="text" name="hometown" placeholder="Optional" /><br/>
                 <label for="gender">Gender:</label>
                 <select name="gender">
                     <option selected disabled hidden>Optional</option>
@@ -30,9 +33,15 @@
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                     <option value="Prefer not to disclose">Prefer not to disclose</option>
-                </select>
+                </select><br/><br/>
                 <input type="submit" />
             </form>
          </div>
-    </body>
-<a href='/'>Home</a>
+
+    <p>If you already have an account, please <a href='/login'>login</a></p>
+
+    <a href='/'>Home</a>
+
+</body>
+</html>
+

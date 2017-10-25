@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }}'s Albums</title>
+</head>
+<body>
+    {% if albums %}
+        <h2>Here are your albums</h2>
+        <ul>
+            {% for album in albums %}
+                <li><a href = '/albums?album_id={{photo[2]}}'>caption: {{album[1]}} album id: {{album[2]}}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

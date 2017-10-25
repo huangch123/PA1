@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ album }}</title>
+</head>
+<body>
+    <h2>Here are your photos</h2>
+    {% if photos %}
+        <ul>
+            {% for photo in photos %}
+                <li><a href = '/album?photo_id={{photo[2]}}'>caption: {{photo[1]}} photo id: {{photo[2]}}</a></li>
+                <li><img src='data:image/png;base64, {{photo[0]}}'/></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>None</p>
+    {% endif %}
+</body>
+</html>

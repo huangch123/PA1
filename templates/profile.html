@@ -1,9 +1,22 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
 
-<title> Welcome {{ name }} </title>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-<h1 style="color:blue;"> Hello There, {{ name }} </h1>
-<hr>
-<br/>
-<h2> Hi {{ name }} how are you? </h2>
-<p> This is CS660 </p>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <p>{{ name }}</p>
+    <p>{{ dob }}</p>
+    <p>{{ hometown }}</p>
+    <p>{{ gender }}</p>
+
+    <h3>Albums</h3>
+    {% if albums %}
+        <p>{{ albums }}</p>
+    {% else %}
+        <p>None</p>
+    {% endif %}
+</body>
+</html>
