@@ -25,12 +25,45 @@ function submitComment() {
     /* Add comment to db and display it below comment box */
 }
 
-function show(myBtn, id) {
-    btn = document.getElementById(myBtn);
+function likePhoto(myBtn) {
+    var btn = document.getElementById(myBtn);
 
-    if (btn.value = "Show Tags") {
+    var btnText = btn.innerHTML;
 
+    if (btnText == "Like") {
+        btn.innerHTML = "Unlike";
+    }
+    else {
+        btn.innerHTML = "Like";
+    }
+}
+
+
+/* Show/Hide buttons change text */
+function showDiv(myBtn, id) {
+    var btn = document.getElementById(myBtn);
+
+    var btnText = btn.innerHTML;
+
+    var indOfSpace = btnText.indexOf(" ");
+    var firstWord = "";
+    var theRest = "";
+
+    if (indOfSpace == -1) {
+        firstWord = btnText;
+    }
+    else {
+        firstWord = btnText.substr(0, indOfSpace);
+        theRest = btnText.substr(indOfSpace);
     }
 
-    document.getElementById(id).style.display = "block";
+    if (firstWord == "Show") {
+        firstWord = "Hide";
+        document.getElementById(id).style.display = "block";
+    }
+    else {
+        firstWord = "Show";
+        document.getElementById(id).style.display = "none";
+    }
+    btn.innerHTML = firstWord + theRest;
 }

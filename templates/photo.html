@@ -12,25 +12,35 @@
 
     <br>
 
-    <button onclick="show(photoTags)">Show Tags</button>
-    <div id="photoTags" style="display:none;">
-        {% if tags %}
-            <p>{{ tags }}</p>
-        {% else %}
-            <p>None</p>
-        {% endif %}
+    <div>
+        <p>Likes: {{ likesCount }}</p>
+        <button id="btnLikePhoto" onclick="likePhoto(this.id)">Like</button>
     </div>
 
     <br>
 
-    <button onclick="show(this, photoLikes)">Show Likes</button>
-    <div id="photoLikes" style="display:none;">
-        {% if names %}
-            <p>{{ names }}</p>
-        {% else %}
-            <p>None</p>
-        {% endif %}
-        <p>test</p>
+    <div id="divTags">
+        <button id="btnTags" onclick="showDiv(this.id, 'photoTags')">Show Tags</button>
+        <div id="photoTags" style="display:none;">
+            {% if tags %}
+                <p>{{ tags }}</p>
+            {% else %}
+                <p>None</p>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <br>
+    <div id="divLikes">
+        <button id="btnLikes" onclick="showDiv(this.id, 'photoLikes')">Show Likes</button>
+        <div id="photoLikes" style="display:none;">
+            {% if names %}
+                <p>{{ names }}</p>
+            {% else %}
+                <p>None</p>
+            {% endif %}
+        </div>
     </div>
 
     <br>
