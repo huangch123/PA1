@@ -248,6 +248,10 @@ def homepage():
 def photo():
     return render_template("photo.html")
 
+@app.route('/friends')
+def search_friends():
+    return render_template('friends.html')
+
 
 if __name__ == "__main__":
     # this is invoked when in the shell  you run

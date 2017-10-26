@@ -67,3 +67,15 @@ function showDiv(myBtn, id) {
     }
     btn.innerHTML = firstWord + theRest;
 }
+
+function validateFSearch(form, fname, lname, email) {
+    searchForm = document.getElementsByName(form);
+
+    if (searchForm.fname.value == '' && searchForm.lname.value == '' && searchForm.email.value == '') {
+                alert('You have to enter at least one phone number.');
+                return false;
+            }
+            else {
+                myForm.submit();
+            }
+}
