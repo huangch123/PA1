@@ -24,3 +24,13 @@ function submitComment() {
 
     /* Add comment to db and display it below comment box */
 }
+
+function show(myBtn, id) {
+    btn = document.getElementById(myBtn);
+
+    if (btn.value = "Show Tags") {
+
+    }
+
+    document.getElementById(id).style.display = "block";
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Photo</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
 </head>
 <body>
     <canvas id="photoCanvas" onload="addPhoto()" width="200" height="100" style="border:1px solid #000000;">
@@ -12,8 +12,8 @@
 
     <br>
 
-    <button class="accordion">Tags</button>
-    <div class="panel">
+    <button onclick="show(photoTags)">Show Tags</button>
+    <div id="photoTags" style="display:none;">
         {% if tags %}
             <p>{{ tags }}</p>
         {% else %}
@@ -23,18 +23,19 @@
 
     <br>
 
-    <button class="accordion">Liked By</button>
-    <div class="panel">
+    <button onclick="show(this, photoLikes)">Show Likes</button>
+    <div id="photoLikes" style="display:none;">
         {% if names %}
             <p>{{ names }}</p>
         {% else %}
             <p>None</p>
         {% endif %}
+        <p>test</p>
     </div>
 
     <br>
 
-    <form autocomplete="off">
+    <form>
         Characters left: <label id="counter">500</label><br>
 
         <textarea id="comment" style="resize:none" onkeyup="changeCharCounter()" rows="5"
@@ -42,6 +43,17 @@
         <br>
         <button id="btnSubmitComment" type="button" onclick="submitComment()">Submit Comment</button>
     </form>
+
+    {% if comments %}
+        <ul>
+            {% for comment in photos %}
+                <li><a id="commenter"href = '/album?photo_id={{photo[2]}}'><b>{{comments[0]}}</b></a></li>
+                <li>{{comments[1]}}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>None</p>
+    {% endif %}
 
     <script src="static/script.js"></script>
 </body>

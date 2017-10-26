@@ -5,13 +5,16 @@
     <title>{{ name }}'s Albums</title>
 </head>
 <body>
+    <h2>Here are your albums</h2>
     {% if albums %}
-        <h2>Here are your albums</h2>
+
         <ul>
             {% for album in albums %}
                 <li><a href = '/albums?album_id={{photo[2]}}'>caption: {{album[1]}} album id: {{album[2]}}</a></li>
             {% endfor %}
         </ul>
+    {% else %}
+        <p>None</p>
     {% endif %}
 </body>
 </html>

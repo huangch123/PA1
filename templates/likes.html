@@ -2,28 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ album }}</title>
-
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 5px;
-            text-align: left;
-        }
-    </style>
+    <title>Likes</title>
 </head>
 <body>
-    <table style="width:100%">
-        <caption>Photos</caption>
-        <tr>
-            <td>Month</td>
-            <td>Savings</td>
-        </tr>
-    </table>
-
+    h2>Here are the photos you have liked</h2>
     {% if photos %}
         <ul>
             {% for photo in photos %}
