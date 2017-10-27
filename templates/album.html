@@ -3,19 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ album }}</title>
-
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 5px;
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
+    <ul class="nav">
+      <li><a href="/">Photoshare</a></li>
+      <li><a href="/search">Search</a></li>
+      <li><a href="/login">Log In</a></li>
+      <li><a href="/register">Register</a></li>
+    </ul>
     <table style="width:100%">
         <caption>Photos</caption>
         <tr>

@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Log In</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
+    <ul class="nav">
+      <li><a href="/">Photoshare</a></li>
+      <li><a href="/search">Search</a></li>
+      <li><a href="/login">Log In</a></li>
+      <li><a href="/register">Register</a></li>
+    </ul>
     <form>
         E-mail: <input type="email" name="email"><br>
         Password: <input type="password" name="pwd"><br>
+        <input type="submit" value="Log In">
     </form>
+
+    <div>
+        If you don't have an account, please <a href="/register">register</a>.
+    </div>
+
+    <a href='/'>Home</a>
 </body>
 </html>

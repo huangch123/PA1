@@ -1,4 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photoshare</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+    <ul class="nav">
+      <li><a href="/">Photoshare</a></li>
+      <li><a href="/search">Search</a></li>
+      <li><a href="/login">Log In</a></li>
+      <li><a href="/register">Register</a></li>
+    </ul>
+
 {% if message %}
     <h4>{{message}}!</h4>
 {% endif %}
@@ -14,7 +28,7 @@
     <ul>
     {% for photo in photos %}
 
-        <li>{{photo[2]}}<br>
+        <li>{{ photo[2] }}<br>
         <img src='data:image/png;base64, {{photo[0]}}'/></li>
     {% endfor %}
     </ul>
@@ -35,10 +49,13 @@
 <ul>
     <li><a href='/'>Home</a></li>
     <li><a href='/search'>Search</a> </li>
-    <li><a href='/register'>Sign Up</a></li>
+    <li><a href='/register'>Register</a></li>
     <li><a href='/photo'>Photo</a></li>
     <li><a href='/unauth'>Unauthorized</a></li>
     <li><a href='/profile'>Profile</a></li>
-    <li><a href='/friends'>Search for Friends</a></li>
+    <li><a href='/search_friends'>Search for Friends</a></li>
+    <li><a href='/login'>login</a></li>
 </ul>
+</body>
+</html>
 

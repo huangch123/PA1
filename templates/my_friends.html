@@ -5,6 +5,18 @@
     <title>My Friends</title>
 </head>
 <body>
+    {% if friends %}
+        <ul>
+            {% for friend in friends %}
+                <li>{{ fname }} {{ lname }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>None</p>
+    {% endif %}
 
+    <form action="/search_friends">
+        <input type="submit" value="Search for friends">
+    </form>
 </body>
 </html>

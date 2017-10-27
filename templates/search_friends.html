@@ -2,8 +2,15 @@
 <html>
 <head>
     <title>Search for Friends</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
+    <ul class="nav">
+      <li><a href="/">Photoshare</a></li>
+      <li><a href="/search">Search</a></li>
+      <li><a href="/login">Log In</a></li>
+      <li><a href="/register">Register</a></li>
+    </ul>
     <div id="friendSearch">
         <form action="/action_page.php">
             First name: <input type="text" name="fname"><br>
@@ -25,6 +32,10 @@
     {% else %}
         <p>None</p>
     {% endif %}
+
+    <form action="/my_friends">
+        <input type="submit" value="Search for friends">
+    </form>
 
     <script src="static/script.js"></script>
 </body>

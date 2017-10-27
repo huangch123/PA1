@@ -89,14 +89,16 @@ def new_page_function():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if flask.request.method == 'GET':
-        return '''
-			   <form action='login' method='POST'>
-				<input type='text' name='email' id='email' placeholder='email'></input>
-				<input type='password' name='password' id='password' placeholder='password'></input>
-				<input type='submit' name='submit'></input>
-			   </form></br>
-		   <a href='/'>Home</a>
-			   '''
+        return render_template('login.html')
+        # return '''
+			#    <form action='login' method='POST'>
+			# 	<input type='text' name='email' id='email' placeholder='email'></input>
+			# 	<input type='password' name='password' id='password' placeholder='password'></input>
+			# 	<input type='submit' name='submit'></input>
+			#    </form></br>
+		 #   <a href='/'>Home</a>
+			#    '''
+
     # The request method is POST (page is recieving data)
     email = flask.request.form['email']
     cursor = conn.cursor()
@@ -248,9 +250,17 @@ def homepage():
 def photo():
     return render_template("photo.html")
 
-@app.route('/friends')
+@app.route('/search_friends')
 def search_friends():
-    return render_template('friends.html')
+    return render_template('search_friends.html')
+
+@app.route('/my_friends')
+def my_friends():
+    return render_template('my_friends.html')
+
+@app.route('/search')
+def search():
+    return render_template('search.html')
 
 
 if __name__ == "__main__":

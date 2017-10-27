@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Account</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
-    {%if not supress%}
+    <ul class="nav">
+      <li><a href="/">Photoshare</a></li>
+      <li><a href="/search">Search</a></li>
+      <li><a href="/login">Log In</a></li>
+      <li><a href="/register">Register</a></li>
+    </ul>
+    {% if not supress %}
         <h1> This email already in use. Please use a different email or <a href="/login">login</a></h1>
     {% endif %}
 

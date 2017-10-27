@@ -1,29 +1,37 @@
-h1 {
-    color: blueviolet;
-    font-size: large;
-    margin: 50px;
-    background-color: lightslategrey;
-}
-
-p {
-    color: black;
-}
-
-h2 {
-    background-color: black;
-    color: red;
-}
-
-h3 {
-    color: blue;
-    background-color: red;
-}
-
-h4 {
-    color: red;
-    background-color: blue;
-}
-
 #commenter {
     color: black;
+}
+
+ul.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.nav li {
+    display: inline;
+    float: left;
+}
+
+ul.nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.nav li a:hover {
+    background-color: #111;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
 }

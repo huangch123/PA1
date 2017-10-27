@@ -1,7 +1,16 @@
 <!DOCTYPE html>
-<title>Search</title>
 <html>
+<head>
+	<title>Search</title>
+	<link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
 <body>
+	<ul class="nav">
+	  <li><a href="/">Photoshare</a></li>
+	  <li><a href="/search">Search</a></li>
+	  <li><a href="/login">Log In</a></li>
+	  <li><a href="/register">Register</a></li>
+	</ul>
 	<form action="/results/" method = "POST">
    	  	<p>Query <input type = "text" name = "Query" /></p>
   	   	<p><input type="submit" name="Search" /></p>

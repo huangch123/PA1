@@ -3,8 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ name }}'s Albums</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
+    <ul class="nav">
+      <li><a href="/">Photoshare</a></li>
+      <li><a href="/search">Search</a></li>
+      <li><a href="/login">Log In</a></li>
+      <li><a href="/register">Register</a></li>
+    </ul>
     <h2>Here are your albums</h2>
     {% if albums %}
 
