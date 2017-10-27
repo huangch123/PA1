@@ -110,6 +110,7 @@ def login():
         if flask.request.form['password'] == pwd:
             user = User()
             user.id = email
+
             flask_login.login_user(user)  # okay login in user
             return flask.redirect(flask.url_for('protected'))  # protected is a function defined in this file
 
@@ -201,7 +202,14 @@ def isEmailUnique(email):
 @app.route('/profile')
 @flask_login.login_required
 def protected():
-    return render_template('homepage.html', name=flask_login.current_user.id, message="Here's your profile")
+    query = "SELECT fname, lname FROM User WHERE email = %s"
+    cursor.execute(query, (flask_login.current_user.id))
+    nameData = cursor.fetchall()
+    fname = str(nameData[0][0])
+    lname = str(nameData[0][1])
+    userName = fname + " " + lname
+
+    return render_template('homepage.html', name= userName, message="Here's your profile")
 
 
 # begin photo uploading code
