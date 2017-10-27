@@ -140,7 +140,6 @@ def register_user():
     try:
         email = request.form.get('email')
         password = request.form.get('password')
-        password = request.form.get('password')
         fname = request.form.get('fname')
         lname = request.form.get('lname')
         dob = request.form.get('dob')
