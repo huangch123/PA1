@@ -69,7 +69,7 @@ def request_loader(request):
     user.id = email
     cursor = mysql.connect().cursor()
 
-    query = "SELECT password FROM User WHERE email = '%s'"
+    query = "SELECT password FROM User WHERE email = %s"
     cursor.execute(query, (email,))
 
     data = cursor.fetchall()
@@ -103,7 +103,7 @@ def login():
     email = flask.request.form['email']
     cursor = conn.cursor()
     # check if email is registered
-    query = "SELECT password FROM User WHERE email = '%s'"
+    query = "SELECT password FROM User WHERE email = %s"
     if cursor.execute(query, (email,)):
         data = cursor.fetchall()
         pwd = str(data[0][0])
@@ -172,7 +172,7 @@ def register_user():
 def getUsersPhotos(uid):
     cursor = conn.cursor()
 
-    query = "SELECT imgdata, picture_id, caption FROM Pictures WHERE user_id = '%s'"
+    query = "SELECT imgdata, picture_id, caption FROM Pictures WHERE user_id = %s"
     cursor.execute(query, (uid,))
     return cursor.fetchall()  # NOTE list of tuples, [(imgdata, pid), ...]
 
@@ -180,7 +180,7 @@ def getUsersPhotos(uid):
 def getUserIdFromEmail(email):
     cursor = conn.cursor()
 
-    query = "SELECT user_id FROM User WHERE email = '%s'"
+    query = "SELECT user_id FROM User WHERE email = %s"
     cursor.execute(query, (email,))
     return cursor.fetchone()[0]
 
@@ -189,7 +189,7 @@ def isEmailUnique(email):
     # use this to check if a email has already been registered
     cursor = conn.cursor()
 
-    query = "SELECT email FROM User WHERE email = '%s'"
+    query = "SELECT email FROM User WHERE email = %s"
     if cursor.execute(query, (email,)):
         # this means there are greater than zero entries with that email
         return False
