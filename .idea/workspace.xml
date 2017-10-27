@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="948ce331-3d40-4a4e-affd-eb7c1b522ac8" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/templates/post.html" afterPath="$PROJECT_DIR$/delete/post.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/style.css" afterPath="$PROJECT_DIR$/static/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/album.html" afterPath="$PROJECT_DIR$/templates/album.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/albums.html" afterPath="$PROJECT_DIR$/templates/albums.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/comments.html" afterPath="$PROJECT_DIR$/templates/comments.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/homepage.html" afterPath="$PROJECT_DIR$/templates/homepage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/likes.html" afterPath="$PROJECT_DIR$/templates/likes.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/login.html" afterPath="$PROJECT_DIR$/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/my_friends.html" afterPath="$PROJECT_DIR$/templates/my_friends.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/photo.html" afterPath="$PROJECT_DIR$/templates/photo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/profile.html" afterPath="$PROJECT_DIR$/templates/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/register.html" afterPath="$PROJECT_DIR$/templates/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/search.html" afterPath="$PROJECT_DIR$/templates/search.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/search_friends.html" afterPath="$PROJECT_DIR$/templates/search_friends.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/unauth.html" afterPath="$PROJECT_DIR$/templates/unauth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/upload.html" afterPath="$PROJECT_DIR$/templates/upload.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/upload_alternative.html" afterPath="$PROJECT_DIR$/templates/upload_alternative.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,10 +28,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2052">
+            <state relative-caret-position="2634">
               <caret line="262" column="34" lean-forward="false" selection-start-line="262" selection-start-column="34" selection-end-line="262" selection-end-column="34" />
               <folding>
                 <element signature="e#600#612#0" expanded="true" />
@@ -68,21 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/style.css">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="homepage.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/homepage.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="256">
+              <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -118,7 +91,6 @@
         <option value="$PROJECT_DIR$/templates/albums.html" />
         <option value="$PROJECT_DIR$/templates/comments.html" />
         <option value="$PROJECT_DIR$/templates/likes.html" />
-        <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/templates/my_friends.html" />
         <option value="$PROJECT_DIR$/templates/photo.html" />
         <option value="$PROJECT_DIR$/templates/profile.html" />
@@ -129,6 +101,7 @@
         <option value="$PROJECT_DIR$/templates/unauth.html" />
         <option value="$PROJECT_DIR$/templates/upload.html" />
         <option value="$PROJECT_DIR$/templates/upload_alternative.html" />
+        <option value="$PROJECT_DIR$/templates/login.html" />
       </list>
     </option>
   </component>
@@ -590,27 +563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2052">
-          <caret line="262" column="34" lean-forward="false" selection-start-line="262" selection-start-column="34" selection-end-line="262" selection-end-column="34" />
-          <folding>
-            <element signature="e#600#612#0" expanded="true" />
-            <marker date="1509131458000" expanded="true" signature="1390:1412" ph="SELECT email... Users" />
-            <marker date="1509131458000" expanded="true" signature="1509:1531" ph="SELECT email... Users" />
-            <marker date="1509131458000" expanded="true" signature="2081:2121" ph="SELECT passw... User" />
-            <marker date="1509131458000" expanded="true" signature="2081:2125" ph="SELECT passw... User" />
-            <marker date="1509131458000" expanded="true" signature="3071:3111" ph="SELECT passw... User" />
-            <marker date="1509131458000" expanded="true" signature="3071:3115" ph="SELECT passw... User" />
-            <marker date="1509131458000" expanded="true" signature="5088:5139" ph="INSERT INTO Users... " />
-            <marker date="1509131458000" expanded="true" signature="5554:5624" ph="SELECT imgda... Pictures" />
-            <marker date="1509131458000" expanded="true" signature="5809:5852" ph="SELECT user_... User" />
-            <marker date="1509131458000" expanded="true" signature="6054:6095" ph="SELECT email... User" />
-            <marker date="1509131458000" expanded="true" signature="7285:7353" ph="INSERT INTO Pictures... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/album.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -643,26 +595,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/my_friends.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -744,9 +680,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/homepage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="255">
+          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="20" column="37" lean-forward="false" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2634">
+          <caret line="262" column="34" lean-forward="false" selection-start-line="262" selection-start-column="34" selection-end-line="262" selection-end-column="34" />
+          <folding>
+            <element signature="e#600#612#0" expanded="true" />
+            <marker date="1509131458000" expanded="true" signature="1390:1412" ph="SELECT email... Users" />
+            <marker date="1509131458000" expanded="true" signature="1509:1531" ph="SELECT email... Users" />
+            <marker date="1509131458000" expanded="true" signature="2081:2121" ph="SELECT passw... User" />
+            <marker date="1509131458000" expanded="true" signature="2081:2125" ph="SELECT passw... User" />
+            <marker date="1509131458000" expanded="true" signature="3071:3111" ph="SELECT passw... User" />
+            <marker date="1509131458000" expanded="true" signature="3071:3115" ph="SELECT passw... User" />
+            <marker date="1509131458000" expanded="true" signature="5088:5139" ph="INSERT INTO Users... " />
+            <marker date="1509131458000" expanded="true" signature="5554:5624" ph="SELECT imgda... Pictures" />
+            <marker date="1509131458000" expanded="true" signature="5809:5852" ph="SELECT user_... User" />
+            <marker date="1509131458000" expanded="true" signature="6054:6095" ph="SELECT email... User" />
+            <marker date="1509131458000" expanded="true" signature="7285:7353" ph="INSERT INTO Pictures... " />
+          </folding>
         </state>
       </provider>
     </entry>
