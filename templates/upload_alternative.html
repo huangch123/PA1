@@ -1,11 +1,28 @@
-<html>
-   <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photoshare</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+    <ul class="nav">
+        <li class="navL"><a href="/">Photoshare</a></li>
+        <li class="navL"><a href="/search">Search</a></li>
 
-      <form action = "http://localhost:5000/uploader" method = "POST"
+        {% if name %}
+            <li class="navR"><a href="/profile">{{ name }}</a></li>
+        {% else %}
+            <li class="navR"><a href="/login">Log In</a></li>
+            <li class="navR"><a href="/register">Register</a></li>
+        {% endif %}
+    </ul>
+
+    <form action = "http://localhost:5000/uploader" method = "POST"
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          <input type = "submit"/>
-      </form>
+    </form>
 
-   </body>
+</body>
 </html>

@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Likes</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
+    <ul class="nav">
+        <li class="navL"><a href="/">Photoshare</a></li>
+        <li class="navL"><a href="/search">Search</a></li>
+
+        {% if name %}
+            <li class="navR"><a href="/profile">{{ name }}</a></li>
+        {% else %}
+            <li class="navR"><a href="/login">Log In</a></li>
+            <li class="navR"><a href="/register">Register</a></li>
+        {% endif %}
+    </ul>
+
     h2>Here are the photos you have liked</h2>
     {% if photos %}
         <ul>

@@ -12,6 +12,13 @@ ul.nav {
 
 ul.nav li {
     display: inline;
+}
+
+ul.nav li.navR {
+    float: right;
+}
+
+ul.nav li.navL {
     float: left;
 }
 
