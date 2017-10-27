@@ -143,23 +143,25 @@ def register_user():
         password = request.form.get('password')
         fname = request.form.get('fname')
         lname = request.form.get('lname')
+        gender = request.form.get('gender')
         dob = request.form.get('dob')
         hometown = request.form.get('hometown')
-        gender = request.form.get('gender')
     except:
-        print(
-            "couldn't find all tokens")  # this prints to shell, end users will not see this (all print statements go to shell)
+        print("couldn't find all tokens")  # this prints to shell, end users will not see this (all print statements go to shell)
         return flask.redirect(flask.url_for('register'))
+
     cursor = conn.cursor()
     test = isEmailUnique(email)
     if test:
-        #print(cursor.execute("INSERT INTO Users (email, password) VALUES ('email', 'password')"))
-
-        #cursor.execute("INSERT INTO Pictures (imgdata, user_id, caption) VALUES (%s, %s, %s)",
-        #               (photo_data, uid, caption))
-        print(cursor.execute("INSERT INTO User (email, password) VALUES (%s , %s)", (email, password)))
+        query = "INSERT INTO USER (EMAIL, PASSWORD, FNAME, LNAME, DOB) VALUES (%s, %s, %s, %s, %s)"
+        cursor.execute(query, (email, password, fname, lname, dob))
+        if gender:
+            query = "UPDATE USER SET GENDER = %s WHERE EMAIL = %s"
+            cursor.execute(query, (gender, email))
+        if hometown:
+            query = "UPDATE USER SET HOMETOWN = %s WHERE EMAIL = %s"
+            cursor.execute(query, (hometown, email))
         conn.commit()
-        # log user in
         user = User()
         user.id = email
         flask_login.login_user(user)
