@@ -133,7 +133,7 @@ def unauthorized_handler():
 # you can specify specific methods (GET/POST) in function header instead of inside the functions as seen earlier
 @app.route("/register", methods=['GET'])
 def register():
-    return render_template('register.html', supress='True')
+    return render_template('register.html', suppress='True')
 
 
 @app.route("/register", methods=['POST'])
