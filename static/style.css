@@ -2,36 +2,72 @@
     color: black;
 }
 
-ul.nav {
+.nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: cornflowerblue;
+    font-weight: bold;
 }
 
-ul.nav li {
-    display: inline;
+#home-btn {
+    background-color: dodgerblue;
+    text-transform: uppercase
 }
 
-ul.nav li.navR {
+.nav li {
+    display: inline-block;
+}
+
+.nav li.navR {
     float: right;
 }
 
-ul.nav li.navL {
+.nav li.navL {
     float: left;
 }
 
-ul.nav li a {
-    display: block;
+.nav li a {
+    display: inline-block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
-ul.nav li a:hover {
-    background-color: #111;
+.nav li a:hover {
+    background-color: lightskyblue;
+}
+
+#dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+#dropdown:hover .dropdown-content {
+    background-color: cornflowerblue;
+    display: block;
 }
 
 table, th, td {
