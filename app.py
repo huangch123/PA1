@@ -10,7 +10,7 @@
 ###################################################
 
 import flask
-from flask import Flask, Response, request, render_template, redirect, url_for
+from flask import Flask, Response, request, render_template, redirect, url_for, send_from_directory
 from flaskext.mysql import MySQL
 import flask.ext.login as flask_login
 
@@ -265,10 +265,14 @@ def albums():
 def album():
     return render_template("album.html")
 
+@app.route('/upload/<path:filename>')
+def get_photo(filename):
+    return send_from_directory("upload/", filename, as_attachment=True)
+
 # shows specific photo
 @app.route('/photo', methods=['Get'])
 def photo():
-    return render_template("photo.html")
+    return render_template("photo.html", filename="0.png")
 
 @app.route('/search_friends', methods=['GET', 'POST'])
 def search_friends():

@@ -27,9 +27,7 @@
         {% endif %}
     </ul>
 
-    <canvas id="photoCanvas" onload="addPhoto()" width="200" height="100" style="border:1px solid #000000;">
-        Your browser cannot display the photo.
-    </canvas>
+    <img id="photo" src="{{url_for('get_photo', filename=filename)}}" alt="Can not display photo">
 
     <br>
 
