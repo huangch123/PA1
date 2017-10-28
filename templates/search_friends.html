@@ -6,7 +6,7 @@
 </head>
 <body>
     <ul class="nav">
-        <li class="navL" id="home-btn"><a href="/">Photoshare</a></li>
+        <li class="navL" id="home-btn"><a href="/">Photo Share</a></li>
         <li class="navL"><a href="/search">Search</a></li>
 
         {% if current_user.is_authenticated %}
@@ -27,11 +27,11 @@
     </ul>
 
     <div id="friendSearch">
-        <form method="POST" action="/search_friends">
+        <form method="post" action="/search_friends">
             First name: <input type="text" name="fname"><br>
             Last name: <input type="text" name="lname"><br>
             Email: <input type="email" name="email"><br>
-            <input type="submit" value="Search for Friends">
+            <input type="submit" value="Search">
         </form>
     </div>
 
@@ -40,7 +40,11 @@
     {% if users %}
         <ul>
             {% for user in users %}
-                <li>{{ user[1] }} {{ user[2] }}  <button class="addFriend" type="button" onclick="addFriend()">Add Friend</button></li>
+                <li>{{ user[1] }} {{ user[2] }}
+                    {% if user[3] == '0' %}
+                        <button class="addFriend" type="button" onclick="addFriend()">Add Friend</button>
+                    {% endif %}
+                </li>
             {% endfor %}
         </ul>
     {% else %}
@@ -48,7 +52,7 @@
     {% endif %}
 
     <form action="/my_friends">
-        <input type="submit" value="My Friends">
+        <input type="submit" value="My friends">
     </form>
 
     <script src="static/script.js"></script>
