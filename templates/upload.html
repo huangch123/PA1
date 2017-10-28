@@ -10,9 +10,9 @@
         <li class="navL" id="home-btn"><a href="/">Photoshare</a></li>
         <li class="navL"><a href="/search">Search</a></li>
 
-        {% if name %}
+        {% if current_user.is_authenticated %}
             <li class="navR" id="dropdown">
-                <a href="/profile">{{ name }}</a>
+                <a href="/profile">{{ current_user.name }}</a>
                 <div class="dropdown-content">
                     <a href="/profile">Profile</a>
                     <a href="/albums">Albums</a>

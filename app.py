@@ -44,6 +44,15 @@ def getUserList():
     cursor.execute("SELECT email FROM User")
     return cursor.fetchall()
 
+def get_name(email):
+    query = "SELECT fname, lname FROM User WHERE email = %s"
+    if cursor.execute(query, (email,)):
+        nameData = cursor.fetchall()
+        fname = str(nameData[0][0])
+        lname = str(nameData[0][1])
+        return fname + " " + lname
+    else:
+        return
 
 class User(flask_login.UserMixin):
     pass
@@ -56,6 +65,7 @@ def user_loader(email):
         return
     user = User()
     user.id = email
+    user.name = get_name(email)
     return user
 
 
@@ -204,14 +214,7 @@ def isEmailUnique(email):
 @app.route('/profile')
 @flask_login.login_required
 def protected():
-    query = "SELECT fname, lname FROM User WHERE email = %s"
-    cursor.execute(query, (flask_login.current_user.id))
-    nameData = cursor.fetchall()
-    fname = str(nameData[0][0])
-    lname = str(nameData[0][1])
-    userName = fname + " " + lname
-
-    return render_template('homepage.html', name= userName, message="Here's your profile")
+    return render_template('homepage.html', message="Here's your profile")
 
 
 # begin photo uploading code
