@@ -297,6 +297,16 @@ def photo():
 
 @app.route('/search_friends', methods=['GET', 'POST'])
 def search_friends():
+    cursor = conn.cursor()
+    user_to_add = request.form.get('user_id')
+    if user_to_add:
+        uid1 = getUserIdFromEmail(flask_login.current_user.id)
+        uid2 = getUserIdFromEmail(user_to_add)
+        query = "INSERT INTO FRIENDSHIP VALUES (%s, %s)"
+        cursor.execute(query, (uid1, uid2))
+        cursor.execute(query, (uid2, uid1))
+        conn.commit()
+
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     email = request.form.get('email')
@@ -315,7 +325,6 @@ def search_friends():
         if email:
             query += " AND EMAIL = %s"
             tuple += (email,)
-        cursor = conn.cursor()
         cursor.execute(query, tuple)
         data = cursor.fetchall()
 
