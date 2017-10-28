@@ -27,11 +27,11 @@
     </ul>
 
     <div id="friendSearch">
-        <form action="/action_page.php">
+        <form method="POST" action="/search_friends" >
             First name: <input type="text" name="fname"><br>
             Last name: <input type="text" name="lname"><br>
             Email: <input type="email" name="email"><br>
-            <input type="submit">
+            <input type="submit" value="Search for Friends">
         </form>
     </div>
 
@@ -49,7 +49,7 @@
     {% endif %}
 
     <form action="/my_friends">
-        <input type="submit" value="Search for friends">
+        <input type="submit" value="My Friends">
     </form>
 
     <script src="static/script.js"></script>

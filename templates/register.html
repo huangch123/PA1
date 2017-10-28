@@ -35,7 +35,7 @@
             <h1>Enter your information below</h1>
         </div>
         <div id="content">
-            <form method="post" action="{{ url_for('register_user') }}">
+            <form method="POST" action="{{ url_for('register_user') }}">
                 <label for="email">Email:</label>
                 <input type="email" name="email" required="true"/>
                 {% if suppress %}
