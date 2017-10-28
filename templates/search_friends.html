@@ -4,7 +4,7 @@
     <title>Search for Friends</title>
     <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
-<body>
+<body onload="setSearchFriendInputs({{ search_info }})">
     <ul class="nav">
         <li class="navL" id="home-btn"><a href="/">Photo Share</a></li>
         <li class="navL"><a href="/search">Search</a></li>
@@ -28,9 +28,9 @@
 
     <div id="friendSearch">
         <form method="POST" action="/search_friends">
-            First name: <input type="text" name="fname" value="{{ search_info[0] }}"><br>
-            Last name: <input type="text" name="lname" value="{{ search_info[1] }}"><br>
-            Email: <input type="email" name="email" value="{{ search_info[2] }}"><br>
+            First name: <input type="text" id="sfFName" name="fname" value=""><br>
+            Last name: <input type="text" id="sfLName" name="lname" value=""><br>
+            Email: <input type="email" id="sfEmail" name="email" value=""><br>
             <input type="submit" value="Search">
         </form>
     </div>
@@ -58,14 +58,6 @@
         <input type="submit" value="My friends">
     </form>
 
-{#    <script src="static/script.js"></script>#}
-    <script>
-        function addFriend(id) {
-            alert(0);
-            document.getElementById(id).style.visibility = 'hidden';
-            document.getElementById("invFriend").value = id;
-            document.getElementById('addFriendBtns').submit();
-        }
-    </script>
+    <script src="static/script.js"></script>
 </body>
 </html>

@@ -66,3 +66,15 @@ function addFriend(id) {
     document.getElementById("invFriend").value = id;
     document.getElementById('addFriendBtns').submit();
 }
+
+function setSearchFriendInputs(info) {
+    if (info[0] != "None") {
+        document.getElementById("sfFName").value = info[0];
+    }
+    if (info[1] != "None") {
+        document.getElementById("sfLName").value = info[1];
+    }
+    if (info[2] != "None") {
+        document.getElementById("sfEmail").value = info[2];
+    }
+}

@@ -200,7 +200,7 @@ def getUsersPhotos(uid):
 def getUserIdFromEmail(email):
     cursor = conn.cursor()
 
-    query = "SELECT user_id FROM User WHERE email = %s"
+    query = "SELECT UID FROM User WHERE email = %s"
     cursor.execute(query, (email,))
     return cursor.fetchone()[0]
 
@@ -310,7 +310,7 @@ def search_friends():
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     email = request.form.get('email')
-
+    inputs = [fname, lname, email]
     users = []
     if fname or lname or email:
         query = "SELECT EMAIL, FNAME, LNAME FROM USER"
@@ -340,7 +340,7 @@ def search_friends():
             users.append(user)
         print(users)
 
-    return render_template('search_friends.html', users=users)
+    return render_template('search_friends.html', users=users, search_info=inputs)
 
 @app.route('/my_friends', methods=['GET'])
 def my_friends():
