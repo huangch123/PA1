@@ -1,3 +1,7 @@
+* {
+  margin: 0;
+}
+
 #commenter {
     color: black;
 }
@@ -8,12 +12,14 @@
     padding: 0;
     overflow: hidden;
     background-color: cornflowerblue;
-    font-weight: bold;
+    font-size: 1.1em;
+    font-family: Georgia, Times, "Times New Roman", serif;
 }
 
 #home-btn {
     background-color: dodgerblue;
-    text-transform: uppercase
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .nav li {
@@ -48,7 +54,7 @@
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 10px;
+    min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
