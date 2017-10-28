@@ -51,14 +51,21 @@
         {% else %}
             <p>None</p>
         {% endif %}
+        <input class="invisible" id="invFriend" type="text" name="user_id" value="">
     </form>
 
     <form action="/my_friends">
         <input type="submit" value="My friends">
     </form>
 
-    <label class="invisible" id="invFriend" name="user_id" value=""></label>
-
-    <script src="static/script.js"></script>
+{#    <script src="static/script.js"></script>#}
+    <script>
+        function addFriend(id) {
+            alert(0);
+            document.getElementById(id).style.visibility = 'hidden';
+            document.getElementById("invFriend").value = id;
+            document.getElementById('addFriendBtns').submit();
+        }
+    </script>
 </body>
 </html>
