@@ -42,7 +42,7 @@
             {% for user in users %}
                 <li>{{ user[1] }} {{ user[2] }}
                     {% if user[3] == '0' %}
-                        <button class="addFriend" type="button" onclick="addFriend()">Add Friend</button>
+                        <button class="addFriend" id="{{ user[0] }}" type="button" onclick="addFriend(this.id)">Add Friend</button>
                     {% endif %}
                 </li>
             {% endfor %}
@@ -54,6 +54,8 @@
     <form action="/my_friends">
         <input type="submit" value="My friends">
     </form>
+
+    <label class="invisible" id="invFriend" name="user_id" value=""></label>
 
     <script src="static/script.js"></script>
 </body>

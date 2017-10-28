@@ -61,6 +61,7 @@ function showDiv(myBtn, id) {
     btn.innerHTML = firstWord + theRest;
 }
 
-function addFriend() {
-
+function addFriend(id) {
+    document.getElementById(id).style.visibility = 'hidden';
+    document.getElementById("invFriend").value = id;
 }
