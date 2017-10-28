@@ -38,7 +38,7 @@
             <form method="post" action="{{ url_for('register_user') }}">
                 <label for="email">Email:</label>
                 <input type="email" name="email" required="true"/>
-                {% if not suppress %}
+                {% if suppress %}
                     <label id="invalid-email">Email already in use</label>
                 {% endif %}<br/>
                 <label for="password">Password:</label>
