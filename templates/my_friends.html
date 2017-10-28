@@ -30,7 +30,7 @@
     {% if friends %}
         <ul>
             {% for friend in friends %}
-                <li>{{ fname }} {{ lname }}</li>
+                <li>{{ friend[0] }} {{ friend[1] }}</li>
             {% endfor %}
         </ul>
     {% else %}
