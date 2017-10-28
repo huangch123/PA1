@@ -259,13 +259,55 @@ def homepage():
 def photo():
     return render_template("photo.html")
 
-@app.route('/search_friends')
+@app.route('/search_friends', methods=['GET', 'POST'])
 def search_friends():
-    return render_template('search_friends.html')
+    fname = request.form.get('fname')
+    lname = request.form.get('lname')
+    email = request.form.get('email')
 
-@app.route('/my_friends')
+    users = []
+    if fname or lname or email:
+        query = "SELECT EMAIL, FNAME, LNAME FROM USER"
+        tuple = ()
+        query += " WHERE 1 = 1"
+        if fname:
+            query += " AND FNAME = %s"
+            tuple += (fname,)
+        if lname:
+            query += " AND LNAME = %s"
+            tuple += (lname,)
+        if email:
+            query += " AND EMAIL = %s"
+            tuple += (email,)
+        cursor = conn.cursor()
+        cursor.execute(query, tuple)
+        data = cursor.fetchall()
+
+        for i in range(len(data)):
+            user = []
+            user.append(str(data[i][0]))
+            user.append(str(data[i][1]))
+            user.append(str(data[i][2]))
+            users.append(user)
+        print(users)
+
+    return render_template('search_friends.html', users=users)
+
+@app.route('/my_friends', methods=['GET'])
 def my_friends():
-    return render_template('my_friends.html')
+    uid = getUserIdFromEmail(flask_login.current_user.id)
+    cursor = conn.cursor()
+    query = "SELECT U.FNAME, U.LNAME FROM FRIENDSHIP F, USER U WHERE F.UID1 = %s AND F.UID2 = U.UID"
+    cursor.execute(query, uid)
+    data = cursor.fetchall()
+    friends = []
+    for i in range(len(data)):
+        friend = []
+        friend.append(str(data[i][0]))
+        friend.append(str(data[i][1]))
+        friends.append(friend)
+    print(friends)
+    return render_template('my_friends.html', friends=friends)
 
 @app.route('/search')
 def search():
