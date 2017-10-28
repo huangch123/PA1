@@ -27,7 +27,7 @@
     </ul>
 
     <div id="friendSearch">
-        <form method="POST" action="/search_friends" >
+        <form method="POST" action="/search_friends">
             First name: <input type="text" name="fname"><br>
             Last name: <input type="text" name="lname"><br>
             Email: <input type="email" name="email"><br>
@@ -40,7 +40,7 @@
     {% if users %}
         <ul>
             {% for user in users %}
-                <li>{{ friend[0] }} {{ friend[1] }}</li>
+                <li>{{ user[1] }} {{ user[2] }}</li>
                 <li><button id="addFriend" type="button" onclick="addFriend()">Add Friend</button></li>
             {% endfor %}
         </ul>
