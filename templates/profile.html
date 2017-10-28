@@ -27,10 +27,16 @@
         {% endif %}
     </ul>
 
-    <p>{{ name }}</p>
-    <p>{{ dob }}</p>
-    <p>{{ hometown }}</p>
-    <p>{{ gender }}</p>
+    <div class="info">
+        <p>{{ current_user.name }}</p>
+        {% if current_user.dob != 'None' %}
+        <p>DOB: {{ current_user.dob }}</p>
+        {% endif %}
+        {% if current_user.hometown != 'None' %}
+        <p>Hometown: {{ current_user.hometown }}</p>
+        {% endif %}
+        <p>Gender: {{ current_user.gender }}</p>
+    </div>
 
     <ul>
         <li><a href='/'>Home</a></li>

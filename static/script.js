@@ -1,10 +1,3 @@
-function addPhoto() {
-    var c = document.getElementById("photoCanvas");
-    var ctxt = c.getContext("2d");
-    ctxt.font = "30px Arial";
-    ctxt.fillText("Photo goes here",10,50);
-}
-
 function changeCharCounter() {
     var counter = document.getElementById("counter");
     var comment = document.getElementById("comment");
@@ -68,14 +61,6 @@ function showDiv(myBtn, id) {
     btn.innerHTML = firstWord + theRest;
 }
 
-function validateFSearch(form, fname, lname, email) {
-    searchForm = document.getElementsByName(form);
+function addFriend() {
 
-    if (searchForm.fname.value == '' && searchForm.lname.value == '' && searchForm.email.value == '') {
-                alert('You have to enter at least one phone number.');
-                return false;
-            }
-            else {
-                myForm.submit();
-            }
 }

@@ -44,13 +44,18 @@ def getUserList():
     cursor.execute("SELECT email FROM User")
     return cursor.fetchall()
 
-def get_name(email):
-    query = "SELECT fname, lname FROM User WHERE email = %s"
+def get_info(email):
+    query = "SELECT fname, lname, dob, hometown, gender FROM User WHERE email = %s"
     if cursor.execute(query, (email,)):
         nameData = cursor.fetchall()
         fname = str(nameData[0][0])
         lname = str(nameData[0][1])
-        return fname + " " + lname
+        username = fname + " " + lname
+        dob = str(nameData[0][2])
+        hometown = str(nameData[0][3])
+        gender = str(nameData[0][4])
+        info = (username, dob, hometown, gender)
+        return info
     else:
         return
 
@@ -65,7 +70,10 @@ def user_loader(email):
         return
     user = User()
     user.id = email
-    user.name = get_name(email)
+    user.name = get_info(email)[0]
+    user.dob = get_info(email)[1]
+    user.hometown = get_info(email)[2]
+    user.gender = get_info(email)[3]
     return user
 
 
@@ -218,7 +226,7 @@ def checkFriendship(email1, email2):
 @app.route('/profile')
 @flask_login.login_required
 def protected():
-    return render_template('homepage.html', message="Here's your profile")
+    return render_template('profile.html', message="Here's your profile")
 
 
 # begin photo uploading code
@@ -268,7 +276,7 @@ def homepage():
         info = [str(data[i][0]), str(data[i][1]), str(data[i][2])]
         top_infos.append(info)
 
-    return render_template('homepage.html', top_info=top_infos)
+    return render_template('homepage.html') #, top_info=top_infos)
 
 @app.route('/albums', methods=['Get'])
 def albums():
@@ -316,7 +324,7 @@ def search_friends():
             user.append(str(data[i][0]))
             user.append(str(data[i][1]))
             user.append(str(data[i][2]))
-            if checkFriendship(flask_login.current_user.id, str(data[i][0])):
+            if checkFriendship(flask_login.current_user.id, str(data[i][0])) or flask_login.current_user.id == str(data[i][0]):
                 user.append('1')
             else:
                 user.append('0')
