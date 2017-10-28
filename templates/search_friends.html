@@ -40,7 +40,7 @@
     {% if users %}
         <ul>
             {% for user in users %}
-                <li>{{ fname }} {{ lname }}</li>
+                <li>{{ friend[0] }} {{ friend[1] }}</li>
                 <li><button id="addFriend" type="button" onclick="addFriend()">Add Friend</button></li>
             {% endfor %}
         </ul>
