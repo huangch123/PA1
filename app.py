@@ -208,6 +208,10 @@ def isEmailUnique(email):
     else:
         return True
 
+def checkFriendship(email1, email2):
+    cursor = conn.cursor()
+    query = "SELECT * FROM USER U1 , USER U2, FRIENDSHIP F WHERE F.UID1 = U1.UID AND F.UID2 = U2.UID AND U1.EMAIL = %s AND U2.EMAIL = %s"
+    return cursor.execute(query, (email1, email2)) == 1
 
 # end login code
 
@@ -255,7 +259,16 @@ def upload_file():
 # default homepage
 @app.route('/', methods=['GET'])
 def homepage():
-    return render_template("homepage.html")
+    cursor = conn.cursor()
+    query = "SELECT U.UID, U.EMAIL, U.FNAME, U.LNAME, TMP1.photoCnt + TMP2.commentCnt AS TOTAL FROM USER U, ( SELECT A.UID , COUNT(*) AS photoCnt FROM PHOTO P, ALBUM A WHERE P.AID = A.AID GROUP BY A.UID ) AS TMP1, ( SELECT C.UID, COUNT(*) AS commentCnt FROM COMMENT C GROUP BY C.UID ) AS TMP2 WHERE U.UID = TMP1.UID AND TMP1.UID = TMP2.UID GROUP BY U.UID ORDER BY TOTAL DESC LIMIT 10"
+    cursor.execute(query)
+    data = cursor.fetchall()
+    top_infos = []
+    for i in range(len(data)):
+        info = [str(data[i][0]), str(data[i][1]), str(data[i][2])]
+        top_infos.append(info)
+
+    return render_template('homepage.html', top_info=top_infos)
 
 @app.route('/albums', methods=['Get'])
 def albums():
@@ -303,6 +316,10 @@ def search_friends():
             user.append(str(data[i][0]))
             user.append(str(data[i][1]))
             user.append(str(data[i][2]))
+            if checkFriendship(flask_login.current_user.id, str(data[i][0])):
+                user.append('1')
+            else:
+                user.append('0')
             users.append(user)
         print(users)
 
