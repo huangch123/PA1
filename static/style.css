@@ -70,6 +70,11 @@
     display: block;
 }
 
+#invalid-email {
+    color: red;
+    display: inline;
+}
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
