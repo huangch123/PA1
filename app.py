@@ -204,17 +204,14 @@ def isEmailUnique(email):
 @app.route('/profile')
 @flask_login.login_required
 def protected():
-    return render_template('homepage.html', name= get_current_username(), message="Here's your profile")
-
-
-def get_current_username():
     query = "SELECT fname, lname FROM User WHERE email = %s"
     cursor.execute(query, (flask_login.current_user.id))
     nameData = cursor.fetchall()
     fname = str(nameData[0][0])
     lname = str(nameData[0][1])
     userName = fname + " " + lname
-    return userName
+
+    return render_template('homepage.html', name= userName, message="Here's your profile")
 
 
 # begin photo uploading code
@@ -256,6 +253,14 @@ def upload_file():
 @app.route('/', methods=['GET'])
 def homepage():
     return render_template("homepage.html")
+
+@app.route('/albums', methods=['Get'])
+def albums():
+    return render_template("albums.html")
+
+@app.route('/album', methods=['Get'])
+def album():
+    return render_template("album.html")
 
 # shows specific photo
 @app.route('/photo', methods=['Get'])
