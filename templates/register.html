@@ -7,10 +7,24 @@
 </head>
 <body>
     <ul class="nav">
-      <li><a href="/">Photo Share</a></li>
-      <li><a href="/search">Search</a></li>
-      <li><a href="/login">Log In</a></li>
-      <li><a href="/register">Register</a></li>
+        <li class="navL" id="home-btn"><a href="/">Photoshare</a></li>
+        <li class="navL"><a href="/search">Search</a></li>
+
+        {% if name %}
+            <li class="navR" id="dropdown">
+                <a href="/profile">{{ name }}</a>
+                <div class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/albums">Albums</a>
+                    <a href="/profile">Photos</a>
+                    <a href="/logout">Log Out</a>
+                </div>
+            </li>
+            <li class="navR"><a href="/upload">Upload</a></li>
+        {% else %}
+            <li class="navR"><a href="/login">Log In</a></li>
+            <li class="navR"><a href="/register">Register</a></li>
+        {% endif %}
     </ul>
     {% if not suppress %}
         <h1> This email already in use. Please use a different email or <a href="/login">login</a>. </h1>

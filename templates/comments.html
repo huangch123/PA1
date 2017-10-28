@@ -7,11 +7,20 @@
 </head>
 <body>
     <ul class="nav">
-        <li class="navL"><a href="/">Photoshare</a></li>
+        <li class="navL" id="home-btn"><a href="/">Photoshare</a></li>
         <li class="navL"><a href="/search">Search</a></li>
 
         {% if name %}
-            <li class="navR"><a href="/profile">{{ name }}</a></li>
+            <li class="navR" id="dropdown">
+                <a href="/profile">{{ name }}</a>
+                <div class="dropdown-content">
+                    <a href="/profile">Profile</a>
+                    <a href="/albums">Albums</a>
+                    <a href="/profile">Photos</a>
+                    <a href="/logout">Log Out</a>
+                </div>
+            </li>
+            <li class="navR"><a href="/upload">Upload</a></li>
         {% else %}
             <li class="navR"><a href="/login">Log In</a></li>
             <li class="navR"><a href="/register">Register</a></li>
