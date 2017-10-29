@@ -26,18 +26,17 @@
         {% endif %}
     </ul>
 
-    <div id="friendSearch">
-        <form method="POST" action="/search_friends">
+    <form id="search_form" method="POST" action="/search_friends">
+        <div id="friendSearch">
+
             First name: <input type="text" id="sfFName" name="fname" value=""><br>
             Last name: <input type="text" id="sfLName" name="lname" value=""><br>
             Email: <input type="email" id="sfEmail" name="email" value=""><br>
             <input type="submit" value="Search">
-        </form>
-    </div>
+        </div>
 
     <br>
 
-    <form id="addFriendBtns" method="POST" action="/search_friends">
         {% if users %}
             <ul>
                 {% for user in users %}

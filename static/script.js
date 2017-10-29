@@ -64,7 +64,7 @@ function showDiv(myBtn, id) {
 function addFriend(id) {
     document.getElementById(id).style.visibility = 'hidden';
     document.getElementById("invFriend").value = id;
-    document.getElementById('addFriendBtns').submit();
+    document.getElementById('search_form').submit();
 }
 
 function setSearchFriendInputs(info) {
