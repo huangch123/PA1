@@ -40,14 +40,25 @@
     </div>
 
     <div id="topUsers">
-        {% if top_users %}
-            <ul class="contributors">
-                <li><div class="topUser">Top Contributors:</div> <div class="points">Points:></div></li>
+        <ul class="contributors">
+            <li><span class="topUser">Top Contributors:</span><span class="points">Points:</span></li>
+            {% if top_users %}
                 {% for user in top_users %}
                     <li><div class="topUser">{{ user[0] }}</div> <div class="points">{{ user[1] }}></div></li>
                 {% endfor %}
-            </ul>
-        {% endif %}
+            {% endif %}
+        </ul>
+    </div>
+
+    <div id="popularTags">
+        <ul class="topTags">
+            <li><span>Most Popular Tags:</span></li>
+            {% if top_tags %}
+                {% for tag in top_users %}
+                    <li><a href="/search" name="topTag" value="{{ tag }}">{{ tag }}</a></li>
+                {% endfor %}
+            {% endif %}
+        </ul>
     </div>
 
     <ul>

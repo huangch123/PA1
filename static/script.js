@@ -91,3 +91,18 @@ function showAlbumCreate(myBtn) {
         document.getElementById("albumCreate").style.display = "block";
     }
 }
+
+function validateSelection() {
+    var all = document.getElementById("rbAll");
+    var my = document.getElementById("cbMy");
+    var friends = document.getElementById("cbFriends");
+
+    if (all.checked == true) {
+        all.checked = false
+        my.checked = false;
+        friends.checked = false;
+    }
+    else {
+        all.checked = false;
+    }
+}

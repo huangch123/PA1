@@ -27,8 +27,40 @@
     </ul>
 
 	<form action="/results/" method = "POST">
-   	  	<p>Query <input type = "text" name = "Query" /></p>
-  	   	<p><input type="submit" name="Search" /></p>
+        <div>
+            <p>Search for Photos:</p>
+            <p>Tags: <input type="text" name="searchTags"/></p>
+            <span class="radioBtn">
+                <label class="container">
+                    <input id="rbAll" type="radio" checked="checked" name="radioAll" onclick="validateSelection()">
+                    All
+                </label>
+            </span>
+            <span class="checkBoxes">
+                <label class="container">
+                    <input id="cbMy" type="checkbox" name="checkMy" onclick="validateSelection()">
+                    My Photos
+                </label>
+                <label class="container">
+                    <input id="cbFriends" type="checkbox" name="checkFriends" onclick="validateSelection()">
+                    Friends' Photos
+                </label>
+            </span>
+            <p><input type="submit" name="Search" value="Search"/></p>
+        </div>
+
+        <div id="popularTags">
+            <ul class="topTags">
+                <li><span>Most Popular Tags:</span></li>
+                {% if top_tags %}
+                    {% for tag in top_users %}
+                        <li><a href="/search" name="topTag" value="{{ tag }}">{{ tag }}</a></li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
 	</form>
+
+    <script src="static/script.js"></script>
 </body>
 </html>
