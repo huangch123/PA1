@@ -283,7 +283,19 @@ def homepage():
 
 @app.route('/albums', methods=['Get'])
 def albums():
-    return render_template("albums.html")
+    if request.method == 'GET':
+        query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
+        cursor.execute(query, getUserIdFromEmail(flask_login.current_user.id))
+        albums = cursor.fetchall()
+        return render_template("albums.html", albums=albums)
+    else:
+        new_album = request.form.get('albumName')
+        cursor.execute("INSERT INTO ALBUM (NAME, UID) VALUES (%s, %s)", (new_album, getUserIdFromEmail(flask_login.current_user.id)))
+        conn.commit()
+        query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
+        cursor.execute(query, getUserIdFromEmail(flask_login.current_user.id))
+        albums = cursor.fetchall()
+        return render_template("albums.html", albums=albums)
 
 @app.route('/album', methods=['Get'])
 def album():
