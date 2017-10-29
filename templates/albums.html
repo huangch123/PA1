@@ -30,10 +30,10 @@
     <form method="post" action="/albums">
         {% if current_user.is_authenticated %}
             <div id="divAlbumCreate">
-                <button id="btnOpenAlbumCreate" onclick="showAlbumCreate(this.id)">Create New Album</button>
+                <button id="btnOpenAlbumCreate" type="button" onclick="showAlbumCreate(this.id)">Create New Album</button>
 
                 <div id="albumCreate" style="display:none;">
-                    <input type="text" name="albumName" required="true">
+                    <input type="text" name="albumName" placeholder="Album name" required="true">
                     <input type="submit" value="Create"/>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                <p>None</p>
+                <p>You currently do not have any albums. How about creating a new one.</p>
             {% endif %}
         {% else %}
             <h2>Please <a href="/login">log in</a></h2>

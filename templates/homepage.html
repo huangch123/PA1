@@ -27,39 +27,41 @@
         {% endif %}
     </ul>
 
-{% if photos %}
-    <h2>Here's your photos</h2>
+    <div id="topPhotos">
+        {% if photos %}
+            <h2>Check out these top photos</h2>
+            <ul>
+            {% for photo in photos %}
+                <li>{{ photo[2] }}<br>
+                <img src='data:image/png;base64, {{photo[0]}}'/></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <div id="topUsers">
+        {% if top_users %}
+            <ul class="contributors">
+                <li><div class="topUser">Top Contributors:</div> <div class="points">Points:></div></li>
+                {% for user in top_users %}
+                    <li><div class="topUser">{{ user[0] }}</div> <div class="points">{{ user[1] }}></div></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
     <ul>
-    {% for photo in photos %}
-
-        <li>{{ photo[2] }}<br>
-        <img src='data:image/png;base64, {{photo[0]}}'/></li>
-    {% endfor %}
+        <li><a href='/upload'>Upload a photo</a> </li>
+        <li><a href='/logout'>Logout</a></li>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/search'>Search</a> </li>
+        <li><a href='/register'>Register</a></li>
+        <li><a href='/photo'>Photo</a></li>
+        <li><a href='/unauth'>Unauthorized</a></li>
+        <li><a href='/profile'>Profile</a></li>
+        <li><a href='/search_friends'>Search for Friends</a></li>
+        <li><a href='/login'>login</a></li>
     </ul>
-{% endif %}
-
-{% if message is none %}
-    <p>You should <a href='/login'>login!</a></p>
-{% else %}
-    <p> Go to <a href='/profile'>profile?</a></p>
-{% endif %}
-
-<ul>
-    <li><a href='/upload'>Upload a photo</a> </li>
-    <li><a href='/logout'>Logout</a></li>
-    <li><a href='/'>Home</a></li>
-</ul>
-
-<ul>
-    <li><a href='/'>Home</a></li>
-    <li><a href='/search'>Search</a> </li>
-    <li><a href='/register'>Register</a></li>
-    <li><a href='/photo'>Photo</a></li>
-    <li><a href='/unauth'>Unauthorized</a></li>
-    <li><a href='/profile'>Profile</a></li>
-    <li><a href='/search_friends'>Search for Friends</a></li>
-    <li><a href='/login'>login</a></li>
-</ul>
 </body>
 </html>
 

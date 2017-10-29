@@ -92,16 +92,50 @@
     display: none;
 }
 
+ul.contributors li {
+    display: block;
+    height: 25px;
+}
+
+ul.contributors li topUser {
+    float: left;
+}
+
+ul.contributors li points {
+    float: right;
+}
+
+#divAlbumCreate {
+    margin: 10px 20px;
+    float: right;
+}
+
+#btnOpenAlbumCreate {
+    position: relative;
+    padding: 10px 40px;
+    background-color: lightskyblue;
+    color: black;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 25px;
+}
+
+#albumCreate {
+    margin: 10px 0px 0px 0px;
+    width: 215px;
+    height: 60px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+    border-radius: 5px;
+}
+
+#albumCreate input {
+    margin: 5px 5px 5px 5px;
+    font-size: 0.8em;
+}
+
 #error {
     padding: 70px 0;
     text-align: center;
-}
-
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;
 }

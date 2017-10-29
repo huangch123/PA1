@@ -81,6 +81,13 @@ function setSearchFriendInputs(info) {
 
 function showAlbumCreate(myBtn) {
     var btn = document.getElementById(myBtn);
-    btn.style.display = "none";
-    document.getElementById("albumCreate").style.display = "block";
+    // btn.style.display = "none";
+    var displayStyle = document.getElementById("albumCreate").style.display
+
+    if (displayStyle == "block") {
+        document.getElementById("albumCreate").style.display = "none";
+    }
+    else {
+        document.getElementById("albumCreate").style.display = "block";
+    }
 }
