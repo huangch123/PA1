@@ -116,7 +116,7 @@ function confirmAlbumDelete() {
 
 function addTag() {
     var tags = document.getElementById("tagSelect");
-    var tag = tags.options[e.selectedIndex].text;
+    var tag = tags.options[tags.selectedIndex].text;
 
     var tagText = document.getElementById("tag");
     if (tagText.slice(-1) != " ") {
