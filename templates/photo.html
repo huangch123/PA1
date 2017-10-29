@@ -27,7 +27,7 @@
         {% endif %}
     </ul>
 
-    <img id="photo" src="{{url_for('get_photo', filename=filename)}}" alt="Can not display photo">
+    <img id="photo" src="{{url_for('get_photo', filename=filename)}}" alt="Can not display photo" onclick="window.open(this.src)">
 
     <br>
 

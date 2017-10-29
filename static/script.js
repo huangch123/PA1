@@ -124,3 +124,10 @@ function addTag() {
     }
     tagText.value += tag;
 }
+
+function showPhoto() {
+    var id = document.getElementById("photo").alt;
+
+    document.getElementById("invAlbum").value = id;
+    document.getElementById("albumPhotos").submit();
+}

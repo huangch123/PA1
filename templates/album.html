@@ -36,7 +36,11 @@
             {% if photos %}
                 <ul>
                     {% for photo in photos %}
-                        <!--add stuff here-->
+                        <img id="photo"
+                             name="photo"
+                             src="{{url_for('get_photo', filename=photo[1])}}"
+                             alt="{{ photo[0] }}"
+                             onclick="showPhoto()">
                     {% endfor %}
                 </ul>
             {% else %}
