@@ -365,6 +365,9 @@ def my_friends():
 def search():
     return render_template('search.html')
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('page_not_found.html')
 
 if __name__ == "__main__":
     # this is invoked when in the shell  you run

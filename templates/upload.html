@@ -34,10 +34,16 @@
             </div>
             <form method="POST" enctype="multipart/form-data" action="/upload">
                 <label for="photo">Select photo:</label>
-                <input type="file" name="photo" required='true' /><br />
+                <input type="file" name="photo" required="true"/><br/>
                 <label for="caption">Please caption:</label>
-                <input type="text" name="caption" required='true' /><br />
-                <input type="submit" value="Upload" />
+                <input type="text" name="caption" required="true"/><br/>
+                <label for="album">Album to save to:</label>
+                <select name="album" required="true">
+                    {% for album in albums %}
+                        <option value="{{ album }}">{{ album }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Upload"/>
             </form>
         {% else %}
             <h1>Please <a href="/albums">create an album</a></h1>
