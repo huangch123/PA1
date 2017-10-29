@@ -109,6 +109,17 @@ function validateSelection() {
 
 function confirmAlbumDelete() {
     if (confirm("Are you sure you want to delete this album?")) {
-        albumPhotos.submit();
+        document.getElementById("albumPhotos").submit();
     }
+}
+
+function addTag() {
+    var tags = document.getElementById("tagSelect");
+    var tag = tags.options[e.selectedIndex].text;
+
+    var tagText = document.getElementById("tag");
+    if (tagText.slice(-1) != " ") {
+        tag.text.value += " ";
+    }
+    tagText.value += tag;
 }
