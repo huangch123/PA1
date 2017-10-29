@@ -27,19 +27,19 @@
         {% endif %}
     </ul>
 
-    {% if suppress == 'False' %}
-        <h1> This email already in use. Please use a different email or <a href="/login">login</a>. </h1>
-    {% endif %}
+    <!--{% if suppress == 'False' %}-->
+        <!--<h1> This email already in use. Please use a different email or <a href="/login">login</a>. </h1>-->
+    <!--{% endif %}-->
 
     <div class="title">
             <h1>Enter your information below</h1>
         </div>
         <div id="content">
-            <form method="POST" action="{{ url_for('register_user') }}">
+            <form method="POST" action="/register">
                 <label for="email">Email:</label>
                 <input type="email" name="email" required="true"/>
-                {% if suppress == 'False' %}
-                    <label id="invalid-email">Email already in use</label>
+                {% if not suppress %}
+                    <label id="invalid-email">This email is already in use</label>
                 {% endif %}<br/>
                 <label for="password">Password:</label>
                 <input type="password" name="password" required="true"/><br/>

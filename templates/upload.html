@@ -43,7 +43,7 @@
                         <option value="{{ album }}">{{ album }}</option>
                     {% endfor %}
                 </select>
-                <label for="album">Or: <a href="/albums">create a new album</a></label>
+                <label for="album">Or: <a href="/albums">create a new album</a></label><br/>
                 <label for="tag">Please tag (One word with a space between each tag):</label>
                 {% if tags %}
                     <select id="tagSelect" name="tagSelect" required="true">
@@ -62,5 +62,7 @@
     {% else %}
         <h1>Please login</h1>
     {% endif %}
+
+    <script src="static/script.js"></script>
 </body>
 </html>

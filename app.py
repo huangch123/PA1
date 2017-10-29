@@ -92,8 +92,11 @@ def request_loader(request):
 
     data = cursor.fetchall()
     pwd = str(data[0][0])
-    user.is_authenticated = request.form['password'] == pwd
-    return user
+    # user.is_authenticated = request.form['password'] == pwd
+    if request.form['password'] == pwd:
+        return user
+    else:
+        return None
 
 
 '''
@@ -147,45 +150,45 @@ def unauthorized_handler():
 
 
 # you can specify specific methods (GET/POST) in function header instead of inside the functions as seen earlier
-@app.route("/register", methods=['GET'])
+@app.route("/register", methods=['GET', 'POST'])
 def register():
-    return render_template('register.html', suppress='True')
-
-
-@app.route("/register", methods=['POST'])
-def register_user():
-    try:
-        email = request.form.get('email')
-        password = request.form.get('password')
-        fname = request.form.get('fname')
-        lname = request.form.get('lname')
-        gender = request.form.get('gender')
-        dob = request.form.get('dob')
-        hometown = request.form.get('hometown')
-    except:
-        print("couldn't find all tokens(1)")  # this prints to shell, end users will not see this (all print statements go to shell)
-        return flask.redirect(flask.url_for('register', suppress='False'))
-
-    cursor = conn.cursor()
-    test = isEmailUnique(email)
-    if test:
-        query = "INSERT INTO USER (EMAIL, PASSWORD, FNAME, LNAME, DOB) VALUES (%s, %s, %s, %s, %s)"
-        cursor.execute(query, (email, password, fname, lname, dob))
-        if gender:
-            query = "UPDATE USER SET GENDER = %s WHERE EMAIL = %s"
-            cursor.execute(query, (gender, email))
-        if hometown:
-            query = "UPDATE USER SET HOMETOWN = %s WHERE EMAIL = %s"
-            cursor.execute(query, (hometown, email))
-        conn.commit()
-        user = User()
-        user.id = email
-        flask_login.login_user(user)
-        # return render_template('homepage.html', name=email, message='Account Created!')
-        return flask.redirect(flask.url_for('protected'))
+    if flask.request.method == 'GET':
+        return render_template('register.html', suppress='True')
     else:
-        print("couldn't find all tokens(2)")
-        return flask.redirect(flask.url_for('register', suppress='False'))
+        try:
+            email = request.form.get('email')
+            password = request.form.get('password')
+            fname = request.form.get('fname')
+            lname = request.form.get('lname')
+            gender = request.form.get('gender')
+            dob = request.form.get('dob')
+            hometown = request.form.get('hometown')
+        except:
+            print("couldn't find all tokens(1)")  # this prints to shell, end users will not see this (all print statements go to shell)
+            # return flask.redirect(flask.url_for('register', suppress='False'))
+            return render_template('register.html')
+
+        cursor = conn.cursor()
+        test = isEmailUnique(email)
+        if test:
+            query = "INSERT INTO USER (EMAIL, PASSWORD, FNAME, LNAME, DOB) VALUES (%s, %s, %s, %s, %s)"
+            cursor.execute(query, (email, password, fname, lname, dob))
+            if gender:
+                query = "UPDATE USER SET GENDER = %s WHERE EMAIL = %s"
+                cursor.execute(query, (gender, email))
+            if hometown:
+                query = "UPDATE USER SET HOMETOWN = %s WHERE EMAIL = %s"
+                cursor.execute(query, (hometown, email))
+            conn.commit()
+            user = User()
+            user.id = email
+            flask_login.login_user(user)
+            # return render_template('homepage.html', name=email, message='Account Created!')
+            return flask.redirect(flask.url_for('protected'))
+        else:
+            print("couldn't find all tokens(2)")
+            # return flask.redirect(flask.url_for('register', suppress='False'))
+            return render_template('register.html')
 
 
 def getUsersPhotos(uid):
