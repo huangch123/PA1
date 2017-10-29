@@ -78,3 +78,9 @@ function setSearchFriendInputs(info) {
         document.getElementById("sfEmail").value = info[2];
     }
 }
+
+function showAlbumCreate(myBtn) {
+    var btn = document.getElementById(myBtn);
+    btn.style.display = "none";
+    document.getElementById("albumCreate").style.display = "block";
+}

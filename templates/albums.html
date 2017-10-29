@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ name }}'s Albums</title>
+    <title>Albums</title>
     <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
@@ -27,16 +27,31 @@
         {% endif %}
     </ul>
 
-    <h2>Here are your albums</h2>
-    {% if albums %}
+    <form method="post" action="/albums">
+        {% if current_user.is_authenticated %}
+            <div id="divAlbumCreate">
+                <button id="btnOpenAlbumCreate" onclick="showAlbumCreate(this.id)">Create New Album</button>
 
-        <ul>
-            {% for album in albums %}
-                <li><a href = '/albums?album_id={{photo[2]}}'>caption: {{album[1]}} album id: {{album[2]}}</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>None</p>
-    {% endif %}
+                <div id="albumCreate" style="display:none;">
+                    <input type="text" name="albumName" required="true">
+                    <input type="submit" value="Create"/>
+                </div>
+            </div>
+            <h2>Here are your albums</h2>
+            {% if albums %}
+                <ul>
+                    {% for album in albums %}
+                        <li><a href = '/albums?album_id={{photo[2]}}'>caption: {{album[1]}} album id: {{album[2]}}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>None</p>
+            {% endif %}
+        {% else %}
+            <h2>Please <a href="/login">log in</a></h2>
+        {% endif %}
+    </form>
+
+    <script src="static/script.js"></script>
 </body>
 </html>

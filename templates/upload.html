@@ -27,15 +27,23 @@
         {% endif %}
     </ul>
 
-    <div class="title">
-        <h1>Upload a photo to your album</h1>
-    </div>
-    <form method="POST" enctype="multipart/form-data" action="/upload">
-        <label for="photo">Select photo:</label>
-        <input type="file" name="photo" required='true' /><br />
-        <label for="caption">Please caption:</label>
-        <input type="text" name="caption" required='true' /><br />
-        <input type="submit" value="Upload" />
-    </form>
+    {% if current_user.is_authenticated %}
+        {% if albums %}
+            <div class="title">
+                <h1>Upload a photo to your album</h1>
+            </div>
+            <form method="POST" enctype="multipart/form-data" action="/upload">
+                <label for="photo">Select photo:</label>
+                <input type="file" name="photo" required='true' /><br />
+                <label for="caption">Please caption:</label>
+                <input type="text" name="caption" required='true' /><br />
+                <input type="submit" value="Upload" />
+            </form>
+        {% else %}
+            <h1>Please <a href="/albums">create an album</a></h1>
+        {% endif %}
+    {% else %}
+        <h1>Please login</h1>
+    {% endif %}
 </body>
 </html>
