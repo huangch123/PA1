@@ -192,9 +192,9 @@ def register_user():
 def getUsersPhotos(uid):
     cursor = conn.cursor()
 
-    query = "SELECT imgdata, picture_id, caption FROM Pictures WHERE user_id = %s"
-    cursor.execute(query, (uid,))
-    return cursor.fetchall()  # NOTE list of tuples, [(imgdata, pid), ...]
+    query = "SELECT P.PID, P.CAPTION, P.DATA FROM PHOTO P, ALBUM A WHERE P.AID = A.AID AND A.UID = %s"
+    cursor.execute(query, uid)
+    return cursor.fetchall()  # NOTE list of tuples, [(pid, caption, data), ...]
 
 
 def getUserIdFromEmail(email):
@@ -244,15 +244,18 @@ def upload_file():
     if request.method == 'POST':
         uid = getUserIdFromEmail(flask_login.current_user.id)
         imgfile = request.files['photo']
+        ext = '.' + str(imgfile.filename).rsplit('.', 1)[1]
         caption = request.form.get('caption')
-        print(caption)
-        photo_data = base64.standard_b64encode(imgfile.read())
         cursor = conn.cursor()
-        #cursor.execute(
-        #    "INSERT INTO Pictures (imgdata, user_id, caption) VALUES ('photo_data', 'uid', 'caption')")
-        cursor.execute("INSERT INTO Pictures (imgdata, user_id, caption) VALUES (%s, %s, %s)",
-                       (photo_data, uid, caption))
-        #cursor.execute("INSERT INTO Pictures (imgdata, user_id, caption) VALUES (?, ?, ?)", (photo_data, uid, caption))
+        cursor.execute("SELECT MAX(PID) FROM PHOTO")
+        data = cursor.fetchone()
+        if not data:
+            file_name = '1' + ext
+        else:
+            file_name = str(int(data[0]) + 1) + ext
+        if imgfile.filename != '':
+            imgfile.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
+        cursor.execute("INSERT INTO PHOTO (CAPTION, DATA, AID) VALUES (%s, %s, %s)", (caption, file_name, 1))
         conn.commit()
         return render_template('homepage.html', name=flask_login.current_user.id, message='Photo uploaded!',
                                photos=getUsersPhotos(uid))
