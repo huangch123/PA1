@@ -299,16 +299,24 @@ def albums():
         albums = cursor.fetchall()
         return render_template("albums.html", albums=albums)
 
-@app.route('/album', methods=['Get'])
+@app.route('/album', methods=['GET', 'POST'])
 def album():
-    return render_template("album.html")
+    if request.method == 'GET':
+
+        return render_template("album.html", photos=photos)
+    else:
+        id = request.form.get('photo_id')
+
+        photo=(pid, filename, uid, likes, likedby, tags, comments)
+
+        return render_template('photo.html', photo=photo)
 
 @app.route('/upload/<path:filename>')
 def get_photo(filename):
     return send_from_directory("upload/", filename, as_attachment=True)
 
 # shows specific photo
-@app.route('/photo', methods=['Get'])
+@app.route('/photo', methods=['GET', 'POST'])
 def photo():
     return render_template("photo.html", filename="0.png")
 

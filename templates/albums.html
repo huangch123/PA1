@@ -27,12 +27,12 @@
         {% endif %}
     </ul>
 
-    <form method="post" action="/albums">
+    <form name="albums" method="post" action="/albums">
         {% if current_user.is_authenticated %}
             <div id="divAlbumCreate">
                 <button id="btnOpenAlbumCreate" type="button" onclick="showAlbumCreate(this.id)">Create New Album</button>
 
-                <div id="albumCreate" style="display:none;">
+                <div id="albumCreate">
                     <input type="text" name="albumName" placeholder="Album name" required="true">
                     <input type="submit" value="Create"/>
                 </div>
@@ -41,7 +41,7 @@
             {% if albums %}
                 <ul>
                     {% for album in albums %}
-                        <li><a href = '/albums?album_id={{photo[2]}}'>caption: {{album[1]}} album id: {{album[2]}}</a></li>
+                        <li><label id="{{ album[0] }}" onclick="showAlbum(this.id)">{{ album[1] }}</label></li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -50,8 +50,8 @@
         {% else %}
             <h2>Please <a href="/login">log in</a></h2>
         {% endif %}
+        <input class="invisible" id="invAlbums" type="text" name="album_id" value="" disabled="true" style="display: none;">
     </form>
-
     <script src="static/script.js"></script>
 </body>
 </html>

@@ -125,9 +125,16 @@ function addTag() {
     tagText.value += tag;
 }
 
-function showPhoto() {
-    var id = document.getElementById("photo").alt;
+function showPhoto(id) {
+    // var photo_id = document.getElementById(id).alt;
 
     document.getElementById("invAlbum").value = id;
     document.getElementById("albumPhotos").submit();
+}
+
+function showAlbum(id) {
+    // var id = document.getElementById(id).alt;
+
+    document.getElementById("invAlbums").value = id;
+    document.getElementById("albums").submit();
 }
