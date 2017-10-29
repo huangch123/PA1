@@ -106,3 +106,9 @@ function validateSelection() {
         all.checked = false;
     }
 }
+
+function confirmAlbumDelete() {
+    if (confirm("Are you sure you want to delete this album?")) {
+        albumPhotos.submit();
+    }
+}

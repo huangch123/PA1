@@ -27,7 +27,27 @@
         {% endif %}
     </ul>
 
-    <table style="width:100%">
+    <form id="albumPhotos" method="post" action="/albums">
+        {% if current_user.is_authenticated %}
+            <div id="divAlbumDelete">
+                <button id="btnAlbumDelete" type="button" onclick="confirmAlbumDelete()">Delete This Album</button>
+            </div>
+            <h2>Here are your photos</h2>
+            {% if photos %}
+                <ul>
+                    {% for photo in photos %}
+                        <!--add stuff here-->
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>You currently do not have any albums. How about creating a new one.</p>
+            {% endif %}
+        {% else %}
+            <h2>Please <a href="/login">log in</a></h2>
+        {% endif %}
+    </form>
+
+    <table>
         <caption>Photos</caption>
         <tr>
             <td>Month</td>
@@ -35,15 +55,5 @@
         </tr>
     </table>
 
-    {% if photos %}
-        <ul>
-            {% for photo in photos %}
-                <li><a href = '/album?photo_id={{photo[2]}}'>caption: {{photo[1]}} photo id: {{photo[2]}}</a></li>
-                <li><img src='data:image/png;base64, {{photo[0]}}'/></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>None</p>
-    {% endif %}
 </body>
 </html>

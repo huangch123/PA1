@@ -133,9 +133,7 @@ def login():
             return flask.redirect(flask.url_for('protected'))  # protected is a function defined in this file
 
     # information did not match
-    return "<a href='/login'>Try again</a>\
-			</br><a href='/register'>or make an account</a>"
-
+    return render_template('/login.html', message='Incorrect email or password')
 
 @app.route('/logout')
 def logout():
@@ -165,8 +163,8 @@ def register_user():
         dob = request.form.get('dob')
         hometown = request.form.get('hometown')
     except:
-        print("couldn't find all tokens")  # this prints to shell, end users will not see this (all print statements go to shell)
-        return flask.redirect(flask.url_for('register'))
+        print("couldn't find all tokens(1)")  # this prints to shell, end users will not see this (all print statements go to shell)
+        return flask.redirect(flask.url_for('register', suppress='False'))
 
     cursor = conn.cursor()
     test = isEmailUnique(email)
@@ -183,10 +181,11 @@ def register_user():
         user = User()
         user.id = email
         flask_login.login_user(user)
-        return render_template('homepage.html', name=email, message='Account Created!')
+        # return render_template('homepage.html', name=email, message='Account Created!')
+        return flask.redirect(flask.url_for('protected'))
     else:
-        print("couldn't find all tokens")
-        return flask.redirect(flask.url_for('register'))
+        print("couldn't find all tokens(2)")
+        return flask.redirect(flask.url_for('register', suppress='False'))
 
 
 def getUsersPhotos(uid):

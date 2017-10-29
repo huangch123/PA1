@@ -36,6 +36,11 @@
                 <label for="photo">Select photo:</label>
                 <input type="file" name="photo" required="true"/><br/>
                 <label for="caption">Please caption:</label>
+                <select name="tag" required="true">
+                    {% for tag in tags %}
+                        <option value="{{ tag }}">{{ tag }}</option>
+                    {% endfor %}
+                </select>
                 <input type="text" name="caption" required="true"/><br/>
                 <label for="album">Album to save to:</label>
                 <select name="album" required="true">

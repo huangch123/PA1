@@ -26,12 +26,19 @@
             <li class="navR"><a href="/register">Register</a></li>
         {% endif %}
     </ul>
+    {% if message %}
+        {{ message }} <br>
+    {% endif %}
 
-    <form action="login" method="POST">
-        E-mail: <input type="email" name="email"><br>
-        Password: <input type="password" name="password"><br>
-        <input type="submit" value="Log In">
-    </form>
+    {% if current_user.is_authenticated %}
+        <h1>You are already logged in</h1>
+    {% else %}
+        <form action="login" method="POST">
+            E-mail: <input type="email" name="email"><br>
+            Password: <input type="password" name="password"><br>
+            <input type="submit" value="Log In">
+        </form>
+    {% endif %}
 
     <div>
         If you don't have an account, please <a href="/register">register</a>.
