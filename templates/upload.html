@@ -40,7 +40,7 @@
                 <label for="album">Album to save to:</label>
                 <select name="album" required="true">
                     {% for album in albums %}
-                        <option value="{{ album }}">{{ album }}</option>
+                        <option value="{{ album[0] }}">{{ album[1] }}</option>
                     {% endfor %}
                 </select>
                 <label for="album">Or: <a href="/albums">create a new album</a></label><br/>
@@ -48,7 +48,7 @@
                 {% if tags %}
                     <select id="tagSelect" name="tagSelect" required="true">
                         {% for tag in tags %}
-                            <option value="{{ tag }}">{{ tag }}</option>
+                            <option value="{{ tag[0] }}">{{ tag[0] }}</option>
                         {% endfor %}
                     </select>
                     <input type="button" onclick="addTag()" value="Add"><br/>
