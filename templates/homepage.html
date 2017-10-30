@@ -51,9 +51,9 @@
 
     <div id="topPhotos">
         <h2>Check out these top photos</h2>
-        {% if photos %}
+        {% if top_photos %}
             <table>
-                {% for photo_batch in photos|batch(3) %}
+                {% for photo_batch in top_photos|batch(3) %}
                     <tr>
                         {% for photo in photo_batch %}
                             <td>
@@ -70,7 +70,7 @@
                 {% endfor %}
             </table>
         {% else %}
-            <p>There are currently no top photos.</p>
+            <p>There are currently no top photos. How about uploading some?</p>
         {% endif %}
     </div>
 
