@@ -15,7 +15,7 @@ function changeCharCounter() {
 function submitComment() {
     var comment = document.getElementById("comment").value;
 
-    /* Add comment to db and display it below comment box */
+
 }
 
 function likePhoto(myBtn) {
@@ -29,6 +29,7 @@ function likePhoto(myBtn) {
     else {
         btn.innerHTML = "Like";
     }
+    document.getElementById('like_form').submit();
 }
 
 

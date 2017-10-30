@@ -418,6 +418,16 @@ def my_friends():
 def search():
     return render_template('search.html')
 
+@app.route('/album', methods=['GET'])
+def delete_photo(photo_id, album_id):
+    # delete photo from database
+    return render_template('album.html/album_id')
+
+@app.route('/albums', methods=['Get'])
+def delete_album():
+    # delete album from database
+    return render_template('albums.html')
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('page_not_found.html')

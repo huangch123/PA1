@@ -35,12 +35,13 @@
                     <tr>
                         {% for photo in photo_batch %}
                             <td>
-                                <img id="{{ photo[0] }}"
-                                 class="tablePhoto"
-                                 name="photo"
-                                 src="{{url_for('get_photo', filename=photo[1])}}"
-                                 alt="{{ photo[0] }}"
-                                 onclick="{{url_for('photo', photo_id=photo[0])}}">
+                                <a href="/photo/{{ photo[0] }}">
+                                    <img id="{{ photo[0] }}"
+                                     class="tablePhoto"
+                                     name="photo"
+                                     src="{{ url_for('get_photo', filename=photo[1]) }}"
+                                     alt="{{ photo[0] }}">
+                                </a>
                             </td>
                         {% endfor %}
                     </tr>
