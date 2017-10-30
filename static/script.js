@@ -12,27 +12,6 @@ function changeCharCounter() {
     counter.innerHTML = maxLen - len;
 }
 
-function submitComment() {
-    var comment = document.getElementById("comment").value;
-
-
-}
-
-function likePhoto(myBtn) {
-    var btn = document.getElementById(myBtn);
-
-    var btnText = btn.innerHTML;
-
-    if (btnText == "Like") {
-        btn.innerHTML = "Unlike";
-    }
-    else {
-        btn.innerHTML = "Like";
-    }
-    document.getElementById('like_form').submit();
-}
-
-
 /* Show/Hide buttons change text */
 function showDiv(myBtn, id) {
     var btn = document.getElementById(myBtn);
@@ -64,7 +43,6 @@ function showDiv(myBtn, id) {
 
 function addFriend(id) {
     document.getElementById(id).style.visibility = 'hidden';
-    document.getElementById("invFriend").value = id;
     document.getElementById('search_form').submit();
 }
 
@@ -129,18 +107,4 @@ function addTag() {
         tag.text.value += " ";
     }
     tagText.value += tag;
-}
-
-function showPhoto(id) {
-    // var photo_id = document.getElementById(id).alt;
-
-    document.getElementById("invAlbum").value = id;
-    document.getElementById("albumPhotos").submit();
-}
-
-function showAlbum(id) {
-    // var id = document.getElementById(id).alt;
-
-    document.getElementById("invAlbums").value = id;
-    document.getElementById("albums").submit();
 }
