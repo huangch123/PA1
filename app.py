@@ -261,9 +261,16 @@ def upload_file():
         conn.commit()
         return render_template('homepage.html', name=flask_login.current_user.id, message='Photo uploaded!',
                                photos=getUsersPhotos(uid))
-    # The method is GET so we return a  HTML form to upload the a photo.
+    # method is GET so we return a  HTML form to upload the a photo
     else:
-        return render_template('upload.html')
+        query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
+        cursor.execute(query, getUserIdFromEmail(flask_login.current_user.id))
+        albums = cursor.fetchall()
+
+        query = "SELECT HASHTAG FROM TAG"
+        cursor.execute(query)
+        tags = cursor.fetchall()
+        return render_template('upload.html', albums=albums, tags=tags)
 
 
 # end photo uploading code
