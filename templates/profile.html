@@ -27,23 +27,28 @@
         {% endif %}
     </ul>
 
-    <div class="info">
-        <p>{{ current_user.name }}</p>
-        {% if current_user.dob != 'None' %}
-        <p>DOB: {{ current_user.dob }}</p>
-        {% endif %}
-        {% if current_user.hometown != 'None' %}
-        <p>Hometown: {{ current_user.hometown }}</p>
-        {% endif %}
-        <p>Gender: {{ current_user.gender }}</p>
-    </div>
+    {% if current_user.is_authenticated %}
+        <div class="info">
+            <p>{{ current_user.name }}</p>
+            {% if current_user.dob != 'None' %}
+            <p>DOB: {{ current_user.dob }}</p>
+            {% endif %}
+            {% if current_user.hometown != 'None' %}
+            <p>Hometown: {{ current_user.hometown }}</p>
+            {% endif %}
+            <p>Gender: {{ current_user.gender }}</p>
+        </div>
 
-    <ul>
-        <li><a href='/'>Home</a></li>
-        <li><a href='/albums'>Albums</a></li>
-        <li><a href='/search_friends'>Search for Friends</a></li>
-        <li><a href='/my_friends'>My Friends</a></li>
-        <li><a href='/comments'>Comments</a></li>
-    </ul>
+        <ul>
+            <li><a href='/'>Home</a></li>
+            <li><a href='/albums'>Albums</a></li>
+            <li><a href='/search_friends'>Search for Friends</a></li>
+            <li><a href='/my_friends'>My Friends</a></li>
+            <li><a href='/comments'>Comments</a></li>
+        </ul>
+
+    {% else %}
+        <h2>Please <a href="/login">login</a> or <a href="/register">register</a></h2>
+    {% endif %}
 </body>
 </html>

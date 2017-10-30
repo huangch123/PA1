@@ -26,36 +26,41 @@
         {% endif %}
     </ul>
 
-    <form id="search_form" method="POST" action="/search_friends">
-        <div id="friendSearch">
+    {% if current_user.is_authenticated %}
+        <h2>Search for Friends:</h2>
+        <form id="search_form" method="POST" action="/search_friends">
+            <div id="friendSearch">
+                First name: <input type="text" id="sfFName" name="fname" value=""><br/>
+                Last name: <input type="text" id="sfLName" name="lname" value=""><br/>
+                Email: <input type="email" id="sfEmail" name="email" value=""><br/>
+                Text: <input type="text" id="sfText" name="text" value=""><br/>
+                <input type="submit" value="Search">
+            </div>
 
-            First name: <input type="text" id="sfFName" name="fname" value=""><br>
-            Last name: <input type="text" id="sfLName" name="lname" value=""><br>
-            Email: <input type="email" id="sfEmail" name="email" value=""><br>
-            <input type="submit" value="Search">
-        </div>
+        <br>
 
-    <br>
+            {% if users %}
+                <ul>
+                    {% for user in users %}
+                        <li>{{ user[1] }} {{ user[2] }}
+                            {% if user[3] == '0' %}
+                                <input class="addFriend" id="{{ user[0] }}" type="submit" onclick="addFriend(this.id)" value="Add Friend">
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>None</p>
+            {% endif %}
+            <input class="invisible" id="invFriend" type="text" name="user_id" value="" disabled="true" style="display: none;">
+        </form>
 
-        {% if users %}
-            <ul>
-                {% for user in users %}
-                    <li>{{ user[1] }} {{ user[2] }}
-                        {% if user[3] == '0' %}
-                            <input class="addFriend" id="{{ user[0] }}" type="submit" onclick="addFriend(this.id)" value="Add Friend">
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>None</p>
-        {% endif %}
-        <input class="invisible" id="invFriend" type="text" name="user_id" value="" disabled="true" style="display: none;">
-    </form>
-
-    <form action="/my_friends">
-        <input type="submit" value="My friends">
-    </form>
+        <form action="/my_friends">
+            <input type="submit" value="My friends">
+        </form>
+    {% else %}
+        <h2>Please <a href="/login">login</a> or <a href="/register">register</a></h2>
+    {% endif %}
 
     <script src="static/script.js"></script>
 </body>

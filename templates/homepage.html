@@ -48,7 +48,7 @@
                 {% endfor %}
             </table>
         {% else %}
-            <p>There are currently no top photos. How about uploading some.</p>
+            <p>There are currently no top photos.</p>
         {% endif %}
     </div>
 
@@ -67,7 +67,7 @@
         <ul class="topTags">
             <li><span>Most Popular Tags:</span></li>
             {% if top_tags %}
-                {% for tag in top_users %}
+                {% for tag in top_tags %}
                     <li><a href="/search" name="topTag" value="{{ tag }}">{{ tag }}</a></li>
                 {% endfor %}
             {% endif %}

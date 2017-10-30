@@ -27,18 +27,31 @@
         {% endif %}
     </ul>
 
-    {% if friends %}
-        <ul>
-            {% for friend in friends %}
-                <li>{{ friend[0] }} {{ friend[1] }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>You currently have no friends. How about <a href="/search_friends>">searching</a> for some.</p>
-    {% endif %}
+    {% if current_user.is_authenticated %}
+        <h2>My Friends:</h2><br/>
+        {% if friends %}
+            <ul>
+                {% for friend in friends %}
+                    <li>{{ friend[0] }} {{ friend[1] }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>You currently have no friends. How about <a href="/search_friends>">searching</a> for some.</p>
+        {% endif %}
 
-    <form action="/search_friends">
-        <input type="submit" value="Search for friends">
-    </form>
+        <div id="divAlbumCreate">
+                    <button id="btnOpenAlbumCreate" type="button" onclick="showAlbumCreate(this.id)">Create New Album</button>
+
+                    <div id="albumCreate">
+                        <input type="text" name="albumName" placeholder="Album name" required="true">
+                        <input type="submit" value="Create"/>
+                    </div>
+                </div>
+        <form action="/search_friends">
+            <input type="submit" value="Search for friends">
+        </form>
+    {% else %}
+        <h2>Please <a href="/login">login</a> or <a href="/register">register</a></h2>
+    {% endif %}
 </body>
 </html>
