@@ -28,7 +28,7 @@
     </ul>
 
     {% if photo %}
-        <img id="photo" src="{{ url_for('get_photo', filename=photo[1]) }}" alt="Can not display photo" onclick="window.open(this.src)">
+        <img id="photo" src="{{ url_for('get_photo', filename=photo[2]) }}" alt="Can not display photo" onclick="window.open(this.src)">
 
         <br/>
 
@@ -41,12 +41,12 @@
         <br/>
 
         <form id="like_form" method="POST" action="/photo/{{ photo[0] }}">
-            <p>Likes: {{ likesCount }}</p>
+            <p>Likes: {{ likes|length }}</p>
             {% if current_user.name != photoOwner %}
-                {% if liked != 'True' %}
+                {% if not liked %}
                     <button id="btnLikePhoto" name="photoBtn" type="submit" value="like">Like</button>
                 {% else %}
-                    <button id="btnUnLikePhoto" name="photoBtn" type="submit" value="unlike">Like</button>
+                    <button id="btnUnLikePhoto" name="photoBtn" type="submit" value="unlike">Unlike</button>
                 {% endif %}
             {% endif %}
         </form>
@@ -58,7 +58,7 @@
             <div id="photoTags" style="display:none;">
                 {% if tags %}
                     {% for tag in tags %}
-                        <span><a href="/search/{{ tag }}">{{ tag }}</a></span>
+                        <span><a href="/search/{{ tag[0] }}">{{ tag[0] }}</a></span>
                     {% endfor %}
                 {% else %}
                     <p>None</p>
@@ -71,8 +71,10 @@
         <div id="divLikes">
             <button id="btnLikes" onclick="showDiv(this.id, 'photoLikes')">Show Likes</button>
             <div id="photoLikes" style="display:none;">
-                {% if names %}
-                    <p>{{ names }}</p>
+                {% if likes %}
+                    {% for like in likes %}
+                        {{ like[0] }} {{ like[1] }}<br>
+                {% endfor %}
                 {% else %}
                     <p>None</p>
                 {% endif %}
@@ -85,7 +87,7 @@
             <form method="POST" action="/photo/{{ photo[0] }}">
                 Characters left: <label id="counter">500</label><br/>
 
-                <textarea id="comment" style="resize:none" onkeyup="changeCharCounter()" rows="5"
+                <textarea id="comment" name="commentText" style="resize:none" onkeyup="changeCharCounter()" rows="5"
                           cols="100" maxlength="500" placeholder="Enter comment here..."></textarea>
                 <br/>
                 <button id="btnSubmitComment" name="photoBtn" type="submit" value="comment">Submit Comment</button>
@@ -94,9 +96,11 @@
 
         {% if comments %}
             <ul>
-                {% for comment in photos %}
-                    <li><b>{{comments[0]}}</b></li>
-                    <li>{{comments[1]}}</li>
+                {% for comment in comments %}
+                    <li>
+                        {{comment[1]}}<br>
+                        <b>{{ comment[2] }} {{ comment[3] }}</b> {{ comment[0] }}
+                    </li>
                 {% endfor %}
             </ul>
         {% else %}
@@ -106,6 +110,34 @@
         <h1>No photo to display</h1>
     {% endif %}
 
-    <script src="static/script.js"></script>
+    <script>
+        function showDiv(myBtn, id) {
+            var btn = document.getElementById(myBtn);
+
+            var btnText = btn.innerHTML;
+
+            var indOfSpace = btnText.indexOf(" ");
+            var firstWord = "";
+            var theRest = "";
+
+            if (indOfSpace == -1) {
+                firstWord = btnText;
+            }
+            else {
+                firstWord = btnText.substr(0, indOfSpace);
+                theRest = btnText.substr(indOfSpace);
+            }
+
+            if (firstWord == "Show") {
+                firstWord = "Hide";
+                document.getElementById(id).style.display = "block";
+            }
+            else {
+                firstWord = "Show";
+                document.getElementById(id).style.display = "none";
+            }
+            btn.innerHTML = firstWord + theRest;
+        }
+    </script>
 </body>
 </html>
