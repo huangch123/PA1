@@ -287,16 +287,32 @@ def upload_file():
 # default homepage
 @app.route('/', methods=['GET'])
 def homepage():
-    cursor = conn.cursor()
-    query = "SELECT U.UID, U.EMAIL, U.FNAME, U.LNAME, TMP1.photoCnt + TMP2.commentCnt AS TOTAL FROM USER U, ( SELECT A.UID , COUNT(*) AS photoCnt FROM PHOTO P, ALBUM A WHERE P.AID = A.AID GROUP BY A.UID ) AS TMP1, ( SELECT C.UID, COUNT(*) AS commentCnt FROM COMMENT C GROUP BY C.UID ) AS TMP2 WHERE U.UID = TMP1.UID AND TMP1.UID = TMP2.UID GROUP BY U.UID ORDER BY TOTAL DESC LIMIT 10"
+    query = "SELECT U.FNAME, U.LNAME, TMP1.photoCnt + TMP2.commentCnt AS TOTAL FROM USER U, ( SELECT A.UID , COUNT(*) AS photoCnt FROM PHOTO P, ALBUM A WHERE P.AID = A.AID GROUP BY A.UID ) AS TMP1, ( SELECT C.UID, COUNT(*) AS commentCnt FROM COMMENT C GROUP BY C.UID ) AS TMP2 WHERE U.UID = TMP1.UID AND TMP1.UID = TMP2.UID GROUP BY U.UID ORDER BY TOTAL DESC LIMIT 10"
     cursor.execute(query)
     data = cursor.fetchall()
-    top_infos = []
+    top_users = []
     for i in range(len(data)):
         info = [str(data[i][0]), str(data[i][1]), str(data[i][2])]
-        top_infos.append(info)
+        top_users.append(info)
+    print(top_users)
 
-    return render_template('homepage.html') #, top_info=top_infos)
+    query = "SELECT HASHTAG, COUNT(PID) FROM ASSOCIATE GROUP BY HASHTAG ORDER BY COUNT(PID) DESC LIMIT 10"
+    cursor.execute(query)
+    data = cursor.fetchall()
+    top_tags = []
+    for i in range(len(data)):
+        top_tags.append(str(data[i][0]))
+    print(top_tags)
+
+    query = "SELECT P.PID, P.DATA FROM PHOTO P, FAVORITE F WHERE P.PID = F.PID GROUP BY P.PID ORDER BY COUNT(F.UID) DESC LIMIT 20"
+    cursor.execute(query)
+    data = cursor.fetchall()
+    top_photos = []
+    for i in range(len(data)):
+        top_photos.append([str(data[i][0]), str(data[i][1])])
+    print(top_photos)
+
+    return render_template('homepage.html', top_users=top_users, top_tags=top_tags, top_photos=top_photos)
 
 @app.route('/albums', methods=['Get', 'POST'])
 def albums():
