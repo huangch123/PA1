@@ -45,7 +45,9 @@
             <button id="btnTags" onclick="showDiv(this.id, 'photoTags')">Show Tags</button>
             <div id="photoTags" style="display:none;">
                 {% if tags %}
-                    <p>{{ tags }}</p>
+                    {% for tag in tags %}
+                        <span><a href="/search/{{ tag }}">{{ tag }}</a></span>
+                    {% endfor %}
                 {% else %}
                     <p>None</p>
                 {% endif %}
