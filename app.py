@@ -424,7 +424,7 @@ def delete_photo(photo_id, album_id):
     return render_template('album.html/album_id')
 
 @app.route('/albums', methods=['Get'])
-def delete_album():
+def delete_album(album_id):
     # delete album from database
     return render_template('albums.html')
 

@@ -32,7 +32,7 @@
 
         <br/>
 
-        <form method="POST" action="{{ url_for('delete_photo', photo_id=photo[0]), album_id=album }}">
+        <form id="delete_photo_form" method="POST" action="{{ url_for('delete_photo', photo_id=photo[0]), album_id=album }}">
             <button id="btnDeletePhoto" name="photoBtn" type="button" onclick="confirmPhotoDelete()" value="delete">Delete Photo</button>
         </form>
 
