@@ -82,7 +82,7 @@
         <br/>
 
         {% if current_user.name != photoOwner %}
-            <form method="POST" action="/photo/{{ photo[0]) }}">
+            <form method="POST" action="/photo/{{ photo[0] }}">
                 Characters left: <label id="counter">500</label><br/>
 
                 <textarea id="comment" style="resize:none" onkeyup="changeCharCounter()" rows="5"
