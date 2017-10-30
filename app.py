@@ -246,21 +246,30 @@ def upload_file():
     if request.method == 'POST':
         uid = getUserIdFromEmail(flask_login.current_user.id)
         imgfile = request.files['photo']
-        ext = '.' + str(imgfile.filename).rsplit('.', 1)[1]
+        album_id = request.form.get('album')
+        tags = request.form.get('tag')
         caption = request.form.get('caption')
-        cursor = conn.cursor()
+        ext = '.' + str(imgfile.filename).rsplit('.', 1)[1]
+
+        tags = str(tags).split(' ')
+        for tag in tags:
+            cursor.execute("SELECT HASHTAG FROM TAG WHERE HASHTAG = %s", tag)
+            if not cursor.fetchall():
+                cursor.execute("INSERT INTO TAG VALUES (%s)", tag)
+                conn.commit()
         cursor.execute("SELECT MAX(PID) FROM PHOTO")
         data = cursor.fetchone()
-        if not data:
-            file_name = '1' + ext
-        else:
+        if data[0]:
             file_name = str(int(data[0]) + 1) + ext
-        if imgfile.filename != '':
+        else:
+            file_name = '1' + ext
+        if imgfile and imgfile.filename != '':
             imgfile.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
-        cursor.execute("INSERT INTO PHOTO (CAPTION, DATA, AID) VALUES (%s, %s, %s)", (caption, file_name, 1))
+        cursor.execute("INSERT INTO PHOTO (CAPTION, DATA, AID) VALUES (%s, %s, %s)", (caption, file_name, album_id))
+        for tag in tags:
+            cursor.execute("INSERT INTO ASSOCIATE VALUES ( ( SELECT MAX(PID) FROM PHOTO ), %s)", tag)
         conn.commit()
-        return render_template('homepage.html', name=flask_login.current_user.id, message='Photo uploaded!',
-                               photos=getUsersPhotos(uid))
+        return render_template('homepage.html', name=flask_login.current_user.id, message='Photo uploaded!', photos=getUsersPhotos(uid))
     # method is GET so we return a  HTML form to upload the a photo
     else:
         query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
@@ -271,7 +280,6 @@ def upload_file():
         cursor.execute(query)
         tags = cursor.fetchall()
         return render_template('upload.html', albums=albums, tags=tags)
-
 
 # end photo uploading code
 
