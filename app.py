@@ -340,16 +340,59 @@ def album(album_id):
 def get_photo(filename):
     return send_from_directory("upload/", filename, as_attachment=True)
 
+def get_photo_info(photo_id):
+    uid = getUserIdFromEmail(flask_login.current_user.id)
+
+    query = "SELECT PID, CAPTION, DATA FROM PHOTO WHERE PID = %s"
+    cursor.execute(query, photo_id)
+    photo = cursor.fetchone()
+
+    query = "SELECT HASHTAG FROM ASSOCIATE WHERE PID = %s"
+    cursor.execute(query, photo_id)
+    tags = cursor.fetchall()
+
+    query = "SELECT C.CONTENT, C.DOC, U.FNAME, U.LNAME FROM COMMENT C, USER U WHERE C.UID = U.UID AND C.PID = %s"
+    cursor.execute(query, photo_id)
+    comments = cursor.fetchall()
+
+    query = "SELECT U.FNAME, U.LNAME FROM FAVORITE F, USER U WHERE F.UID = U.UID AND PID = %s"
+    cursor.execute(query, photo_id)
+    likes = cursor.fetchall()
+
+    query = "SELECT * FROM FAVORITE WHERE PID = %s AND UID = %s"
+    cursor.execute(query, (photo_id, uid))
+    if cursor.fetchone():
+        liked = True
+    else:
+        liked = False
+
+    print(photo, tags, comments, likes)
+    return render_template('photo.html', photo=photo, tags=tags, comments=comments, likes=likes, liked=liked)
+
 # show specific photo
 @app.route('/photo/<int:photo_id>', methods=['Get', 'POST'])
 def photo(photo_id):
     if request.method == 'GET':
-        query = "SELECT CAPTION, DATA FROM PHOTO WHERE PID = %s"
-        cursor.execute(query, photo_id)
-        photo = cursor.fetchone()
-        return render_template('photo.html', photo=photo)
+        return get_photo_info(photo_id)
     else:
-        return render_template('photo.html')
+        uid = getUserIdFromEmail(flask_login.current_user.id)
+        if request.form.get('photoBtn') == 'comment':
+            text = request.form.get('commentText')
+            query = "INSERT INTO COMMENT (CONTENT, DOC, UID, PID) VALUES (%s, CURRENT_TIMESTAMP, %s, %s)"
+            cursor.execute(query, (text, uid, photo_id))
+            conn.commit()
+
+        if request.form.get('photoBtn') == 'like':
+            query = "INSERT INTO FAVORITE (UID, PID, DOC) VALUES (%s, %s, CURRENT_TIMESTAMP)"
+            cursor.execute(query, (uid, photo_id))
+            conn.commit()
+
+        if request.form.get('photoBtn') == 'unlike':
+            query = "DELETE FROM FAVORITE WHERE UID = %s AND PID = %s"
+            cursor.execute(query, (uid, photo_id))
+            conn.commit()
+
+        return get_photo_info(photo_id)
 
 @app.route('/search_friends', methods=['GET', 'POST'])
 def search_friends():
