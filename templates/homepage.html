@@ -27,6 +27,28 @@
         {% endif %}
     </ul>
 
+    <div id="topUsers">
+        <ul class="contributors">
+            <li><span class="topUser"><b>Top Contributors:</b></span><span class="points"><b>Points:</b></span></li>
+            {% if top_users %}
+                {% for user in top_users %}
+                    <li><div class="topUser">{{ user[0] }}</div> <div class="points">{{ user[1] }}></div></li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+
+    <div id="popularTags">
+        <ul class="topTags">
+            <li><span class="topTag"><b>Most Popular Tags:</b></span></li>
+            {% if top_tags %}
+                {% for tag in top_tags %}
+                    <li><a href="/search" name="topTag" value="{{ tag }}">{{ tag }}</a></li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+
     <div id="topPhotos">
         <h2>Check out these top photos</h2>
         {% if photos %}
@@ -52,27 +74,28 @@
         {% endif %}
     </div>
 
-    <div id="topUsers">
-        <ul class="contributors">
-            <li><span class="topUser"><b>Top Contributors:</b></span><span class="points"><b>Points:</b></span></li>
-            {% if top_users %}
-                {% for user in top_users %}
-                    <li><div class="topUser">{{ user[0] }}</div> <div class="points">{{ user[1] }}></div></li>
+    {% if mayLikePhotos %}
+        <div id="mayLikePhotos">
+            <h2>You may also like these photos</h2>
+            <table>
+                {% for photo_batch in mayLikePhotos|batch(3) %}
+                    <tr>
+                        {% for photo in photo_batch %}
+                            <td>
+                                <a href="/photo/{{ photo[0] }}">
+                                    <img id="mayLike{{ photo[0] }}"
+                                     class="tablePhoto"
+                                     name="photo"
+                                     src="{{ url_for('get_photo', filename=photo[1]) }}"
+                                     alt="{{ photo[0] }}">
+                                </a>
+                            </td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
-            {% endif %}
-        </ul>
-    </div>
-
-    <div id="popularTags">
-        <ul class="topTags">
-            <li><span class="topTag"><b>Most Popular Tags:</b></span></li>
-            {% if top_tags %}
-                {% for tag in top_tags %}
-                    <li><a href="/search" name="topTag" value="{{ tag }}">{{ tag }}</a></li>
-                {% endfor %}
-            {% endif %}
-        </ul>
-    </div>
+            </table>
+        </div>
+    {% endif %}
 
     <ul>
         <li><a href='/upload'>Upload a photo</a> </li>

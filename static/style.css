@@ -275,6 +275,38 @@ ul.contributors li points {
     float: left;
 }
 
+#topPhotos {
+    margin: 10px 20px;
+    padding: 10px 40px;
+    float: right;
+    width: 100%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    border-radius: 5px;
+}
+
+#topPhotos img {
+    width: 200px;
+    height: 100px;
+}
+
+#mayLikePhotos {
+    margin: 10px 20px;
+    padding: 10px 40px;
+    float: right;
+    width: 100%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;
+    border-radius: 5px;
+}
+
+#mayLikePhotos img {
+    width: 200px;
+    height: 100px;
+}
+
 #error {
     padding: 70px 0;
     text-align: center;
