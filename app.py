@@ -283,7 +283,7 @@ def homepage():
 
     return render_template('homepage.html') #, top_info=top_infos)
 
-@app.route('/albums', methods=['Get'])
+@app.route('/albums', methods=['Get', 'POST'])
 def albums():
     if request.method == 'GET':
         query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
@@ -291,34 +291,50 @@ def albums():
         albums = cursor.fetchall()
         return render_template("albums.html", albums=albums)
     else:
-        new_album = request.form.get('albumName')
-        cursor.execute("INSERT INTO ALBUM (NAME, UID) VALUES (%s, %s)", (new_album, getUserIdFromEmail(flask_login.current_user.id)))
-        conn.commit()
-        query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
-        cursor.execute(query, getUserIdFromEmail(flask_login.current_user.id))
-        albums = cursor.fetchall()
-        return render_template("albums.html", albums=albums)
+        album_id = request.form.get('album_id')
+        if album_id:
+            query = "SELECT PID, DATA FROM PHOTO WHERE AID = %s"
+            cursor.execute(query, album_id)
+            photos = cursor.fetchall()
+            return render_template("album.html", photos=photos)
+        else:
+            new_album = request.form.get('albumName')
+            cursor.execute("INSERT INTO ALBUM (NAME, UID) VALUES (%s, %s)", (new_album, getUserIdFromEmail(flask_login.current_user.id)))
+            conn.commit()
+            query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
+            cursor.execute(query, getUserIdFromEmail(flask_login.current_user.id))
+            albums = cursor.fetchall()
+            return render_template("albums.html", albums=albums)
 
-@app.route('/album', methods=['GET', 'POST'])
-def album():
+@app.route('/album/<int:album_id>', methods=['Get'])
+def album(album_id):
     if request.method == 'GET':
-
+        query = "SELECT PID, DATA FROM PHOTO WHERE AID = %s"
+        cursor.execute(query, album_id)
+        photos = cursor.fetchall()
         return render_template("album.html", photos=photos)
     else:
-        id = request.form.get('photo_id')
+        photo_id = request.form.get('photo_id')
+        query = "SELECT CAPTION, DATA FROM PHOTO WHERE PID = %s"
+        cursor.execute(query, photo_id)
+        photo = cursor.fetchone()
 
-        photo=(pid, filename, uid, likes, likedby, tags, comments)
-
-        return render_template('photo.html', photo=photo)
+        return render_template("photo.html", photo=photo)
 
 @app.route('/upload/<path:filename>')
 def get_photo(filename):
     return send_from_directory("upload/", filename, as_attachment=True)
 
-# shows specific photo
-@app.route('/photo', methods=['GET', 'POST'])
-def photo():
-    return render_template("photo.html", filename="0.png")
+# show specific photo
+@app.route('/photo/<int:photo_id>', methods=['Get', 'POST'])
+def photo(photo_id):
+    if request.method == 'GET':
+        query = "SELECT CAPTION, DATA FROM PHOTO WHERE PID = %s"
+        cursor.execute(query, photo_id)
+        photo = cursor.fetchone()
+        return render_template('photo.html', photo=photo)
+    else:
+        return render_template('photo.html')
 
 @app.route('/search_friends', methods=['GET', 'POST'])
 def search_friends():
