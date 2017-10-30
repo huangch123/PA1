@@ -40,6 +40,7 @@
                             {% for photo in photo_batch %}
                                 <td>
                                     <img id="{{ photo[0] }}"
+                                     class="tablePhoto"
                                      name="photo"
                                      src="{{url_for('get_photo', filename=photo[1])}}"
                                      alt="{{ photo[0] }}"
@@ -50,21 +51,13 @@
                     {% endfor %}
                 </table>
             {% else %}
-                <p>You currently do not have any albums. How about creating a new one.</p>
+                <p>You currently do not have any photos in this album. How about uploading some.</p>
             {% endif %}
         {% else %}
             <h2>Please <a href="/login">log in</a></h2>
         {% endif %}
         <input class="invisible" id="invAlbum" type="text" name="photo_id" value="" disabled="true" style="display: none;">
     </form>
-
-    <table>
-        <caption>Photos</caption>
-        <tr>
-            <td>Month</td>
-            <td>Savings</td>
-        </tr>
-    </table>
 
     <script src="static/script.js"></script>
 </body>

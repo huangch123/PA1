@@ -28,14 +28,26 @@
     </ul>
 
     <div id="topPhotos">
+        <h2>Check out these top photos</h2>
         {% if photos %}
-            <h2>Check out these top photos</h2>
-            <ul>
-            {% for photo in photos %}
-                <li>{{ photo[2] }}<br>
-                <img src='data:image/png;base64, {{photo[0]}}'/></li>
-            {% endfor %}
-            </ul>
+            <table>
+                {% for photo_batch in photos|batch(3) %}
+                    <tr>
+                        {% for photo in photo_batch %}
+                            <td>
+                                <img id="{{ photo[0] }}"
+                                 class="tablePhoto"
+                                 name="photo"
+                                 src="{{url_for('get_photo', filename=photo[1])}}"
+                                 alt="{{ photo[0] }}"
+                                 onclick="{{url_for('photo', photo_id=photo[0])}}">
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>There are currently no top photos. How about uploading some.</p>
         {% endif %}
     </div>
 
