@@ -54,7 +54,7 @@
 
     <div id="topUsers">
         <ul class="contributors">
-            <li><span class="topUser">Top Contributors:</span><span class="points">Points:</span></li>
+            <li><span class="topUser"><b>Top Contributors:</b></span><span class="points"><b>Points:</b></span></li>
             {% if top_users %}
                 {% for user in top_users %}
                     <li><div class="topUser">{{ user[0] }}</div> <div class="points">{{ user[1] }}></div></li>
@@ -65,7 +65,7 @@
 
     <div id="popularTags">
         <ul class="topTags">
-            <li><span>Most Popular Tags:</span></li>
+            <li><span class="topTag"><b>Most Popular Tags:</b></span></li>
             {% if top_tags %}
                 {% for tag in top_tags %}
                     <li><a href="/search" name="topTag" value="{{ tag }}">{{ tag }}</a></li>

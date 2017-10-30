@@ -28,6 +28,11 @@
     </ul>
 
     {% if current_user.is_authenticated %}
+        <form action="/search_friends">
+            <div id="goToFriendSearch">
+                <input id="goToFriendSearchBtn" type="submit" value="Search for friends">
+            </div>
+        </form>
         <h2>My Friends:</h2><br/>
         {% if friends %}
             <ul>
@@ -38,18 +43,6 @@
         {% else %}
             <p>You currently have no friends. How about <a href="/search_friends>">searching</a> for some.</p>
         {% endif %}
-
-        <div id="divAlbumCreate">
-                    <button id="btnOpenAlbumCreate" type="button" onclick="showAlbumCreate(this.id)">Create New Album</button>
-
-                    <div id="albumCreate">
-                        <input type="text" name="albumName" placeholder="Album name" required="true">
-                        <input type="submit" value="Create"/>
-                    </div>
-                </div>
-        <form action="/search_friends">
-            <input type="submit" value="Search for friends">
-        </form>
     {% else %}
         <h2>Please <a href="/login">login</a> or <a href="/register">register</a></h2>
     {% endif %}

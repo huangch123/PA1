@@ -29,18 +29,9 @@
     {% if current_user.is_authenticated %}
         <h2>Search for Friends:</h2>
         <form id="search_form" method="POST" action="/search_friends">
-            <div id="friendSearch">
-                First name: <input type="text" id="sfFName" name="fname" value=""><br/>
-                Last name: <input type="text" id="sfLName" name="lname" value=""><br/>
-                Email: <input type="email" id="sfEmail" name="email" value=""><br/>
-                Text: <input type="text" id="sfText" name="text" value=""><br/>
-                <input type="submit" value="Search">
-            </div>
-
-            <br>
             <div id="recommendedFriends">
                 <ul class="recFriends">
-                    <li><span class="recUser">Top Contributors:</span></li>
+                    <li><span class="recUser"><b>Recommended Friends:</b></span></li>
                     {% if rec %}
                         {% for user in rec %}
                             <li>{{ user[1] }} {{ user[2] }}
@@ -57,6 +48,16 @@
                     {% endif %}
                 </ul>
             </div>
+            <div id="friendSearch">
+                First name: <input type="text" id="sfFName" name="fname" value=""><br/>
+                Last name: <input type="text" id="sfLName" name="lname" value=""><br/>
+                Email: <input type="email" id="sfEmail" name="email" value=""><br/>
+                Text: <input type="text" id="sfText" name="text" value=""><br/>
+                <input type="submit" value="Search">
+            </div>
+
+            <br>
+
             {% if users %}
                 <ul>
                     {% for user in users %}
