@@ -41,7 +41,8 @@
             {% if albums %}
                 <ul>
                     {% for album in albums %}
-                        <li><label id="{{ album[0] }}" onclick="showAlbum(this.id)">{{ album[1] }}</label></li>
+                        <!--<li><a id="{{ album[0] }}" onclick="showAlbum(this.id)">{{ album[1] }}</a></li>-->
+                        <li><a href="/album/{{ album[0] }}">{{ album[1] }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}
