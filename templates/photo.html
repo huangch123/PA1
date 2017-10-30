@@ -28,10 +28,15 @@
     </ul>
 
     {% if photo %}
-        <img id="photo" src="{{url_for('get_photo', filename=photo[1])}}" alt="Can not display photo" onclick="window.open(this.src)">
+        <img id="photo" src="{{ url_for('get_photo', filename=photo[1]) }}" alt="Can not display photo" onclick="window.open(this.src)">
 
+        <br/>
 
-        <br>
+        <form method="POST" action="{{ url_for('delete_photo', photo_id=photo[0]), album_id=album }}">
+            <button id="btnDeletePhoto" name="photoBtn" type="button" onclick="confirmPhotoDelete()" value="delete">Delete Photo</button>
+        </form>
+
+        <br/>
 
         <form id="like_form" method="POST" action="/photo/{{ photo[0] }}">
             <p>Likes: {{ likesCount }}</p>
@@ -44,7 +49,7 @@
             {% endif %}
         </form>
 
-        <br>
+        <br/>
 
         <div id="divTags">
             <button id="btnTags" onclick="showDiv(this.id, 'photoTags')">Show Tags</button>
@@ -60,7 +65,7 @@
         </div>
 
 
-        <br>
+        <br/>
         <div id="divLikes">
             <button id="btnLikes" onclick="showDiv(this.id, 'photoLikes')">Show Likes</button>
             <div id="photoLikes" style="display:none;">
@@ -72,15 +77,15 @@
             </div>
         </div>
 
-        <br>
+        <br/>
 
         {% if current_user.name != photoOwner %}
             <form method="POST" action="/photo/{{ photo[0]) }}">
-                Characters left: <label id="counter">500</label><br>
+                Characters left: <label id="counter">500</label><br/>
 
                 <textarea id="comment" style="resize:none" onkeyup="changeCharCounter()" rows="5"
                           cols="100" maxlength="500" placeholder="Enter comment here..."></textarea>
-                <br>
+                <br/>
                 <button id="btnSubmitComment" name="photoBtn" type="submit" value="comment">Submit Comment</button>
             </form>
         {% endif %}

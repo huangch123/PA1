@@ -110,7 +110,12 @@ function validateSelection() {
 
 function confirmAlbumDelete() {
     if (confirm("Are you sure you want to delete this album?")) {
-        document.getElementById("invAlbum").value = "delete";
+        document.getElementById("albumPhotos").submit();
+    }
+}
+
+function confirmPhotoDelete() {
+    if (confirm("Are you sure you want to delete this photo?")) {
         document.getElementById("albumPhotos").submit();
     }
 }
