@@ -121,6 +121,7 @@ ul.contributors li points {
 }
 
 #albumCreate {
+    display: none;
     margin: 10px 0px 0px 0px;
     width: 215px;
     height: 60px;
