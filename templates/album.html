@@ -34,15 +34,21 @@
             </div>
             <h2>Here are your photos</h2>
             {% if photos %}
-                <ul>
-                    {% for photo in photos %}
-                        <img id="{{ photo[0] }}"
-                             name="photo"
-                             src="{{url_for('get_photo', filename=photo[1])}}"
-                             alt="{{ photo[0] }}"
-                             onclick="showPhoto(this.id)">
+                <table>
+                    {% for photo_batch in photos|batch(3) %}
+                        <tr>
+                            {% for photo in photo_batch %}
+                                <td>
+                                    <img id="{{ photo[0] }}"
+                                     name="photo"
+                                     src="{{url_for('get_photo', filename=photo[1])}}"
+                                     alt="{{ photo[0] }}"
+                                     onclick="{{url_for('photo', photo_id=photo[0])}}">
+                                </td>
+                            {% endfor %}
+                        </tr>
                     {% endfor %}
-                </ul>
+                </table>
             {% else %}
                 <p>You currently do not have any albums. How about creating a new one.</p>
             {% endif %}
