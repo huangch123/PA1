@@ -369,5 +369,11 @@ div.search_style {
     width: 200px;
     height: 200px;
 }
-
 /******** Search style css ends ********/
+#albumPhotos .tablePhoto {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    width: 200px;
+    height: 200px;
+}
