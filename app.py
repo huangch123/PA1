@@ -414,23 +414,22 @@ def photo(photo_id):
 
 @app.route('/search_friends', methods=['GET', 'POST'])
 def search_friends():
-    cursor = conn.cursor()
-    user_to_add = request.form.get('user_id')
-    if user_to_add:
-        uid1 = getUserIdFromEmail(flask_login.current_user.id)
-        uid2 = getUserIdFromEmail(user_to_add)
+    uid = getUserIdFromEmail(flask_login.current_user.id)
+    uid2 = request.form.get('addFriendBtn')
+    if uid2:
         query = "INSERT INTO FRIENDSHIP VALUES (%s, %s)"
-        cursor.execute(query, (uid1, uid2))
-        cursor.execute(query, (uid2, uid1))
+        cursor.execute(query, (uid, uid2))
+        cursor.execute(query, (uid2, uid))
         conn.commit()
 
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     email = request.form.get('email')
     inputs = [fname, lname, email]
+
     users = []
     if fname or lname or email:
-        query = "SELECT EMAIL, FNAME, LNAME FROM USER"
+        query = "SELECT UID, FNAME, LNAME FROM USER"
         tuple = ()
         query += " WHERE 1 = 1"
         if fname:
@@ -448,8 +447,7 @@ def search_friends():
         for i in range(len(data)):
             user = []
             user.append(str(data[i][0]))
-            user.append(str(data[i][1]))
-            user.append(str(data[i][2]))
+            user.append(str(data[i][1]) + ' ' + str(data[i][2]))
             if checkFriendship(flask_login.current_user.id, str(data[i][0])) or flask_login.current_user.id == str(data[i][0]):
                 user.append('1')
             else:
@@ -457,12 +455,18 @@ def search_friends():
             users.append(user)
         print(users)
 
-    return render_template('search_friends.html', users=users, search_info=inputs)
+    query = "SELECT DISTINCT U3.UID, U3.FNAME, U3.LNAME, COUNT(U3.UID) FROM USER U, FRIENDSHIP F, USER U2, FRIENDSHIP F2, USER U3 WHERE U.UID = F.UID1 AND F.UID2 = U2.UID AND U2.UID = F2.UID1 AND F2.UID2 = U3.UID AND U.UID <> U3.UID AND U.UID = %s GROUP BY U3.UID ORDER BY COUNT(U3.UID) DESC;"
+    cursor.execute(query, uid)
+    data = cursor.fetchall()
+    rec = []
+    for i in range(len(data)):
+        rec.append([data[i][0], data[i][1] + ' ' + data[i][2], data[i][3]])
+
+    return render_template('search_friends.html', users=users, search_info=inputs, rec=rec)
 
 @app.route('/my_friends', methods=['GET'])
 def my_friends():
     uid = getUserIdFromEmail(flask_login.current_user.id)
-    cursor = conn.cursor()
     query = "SELECT U.FNAME, U.LNAME FROM FRIENDSHIP F, USER U WHERE F.UID1 = %s AND F.UID2 = U.UID"
     cursor.execute(query, uid)
     data = cursor.fetchall()
@@ -472,22 +476,84 @@ def my_friends():
         friend.append(str(data[i][0]))
         friend.append(str(data[i][1]))
         friends.append(friend)
-    print(friends)
     return render_template('my_friends.html', friends=friends)
 
-@app.route('/search')
+@app.route('/search', methods=['GET', 'POST'])
 def search():
-    return render_template('search.html')
+    uid = getUserIdFromEmail(flask_login.current_user.id)
+    if request.method == 'GET':
+        query = "SELECT HASHTAG, COUNT(PID) FROM ASSOCIATE GROUP BY HASHTAG ORDER BY COUNT(PID) DESC LIMIT 10"
+        cursor.execute(query)
+        data = cursor.fetchall()
+        top_tags = []
+        for i in range(len(data)):
+            top_tags.append(str(data[i][0]))
+        print(top_tags)
+        return render_template('search.html', top_tags=top_tags)
 
-@app.route('/album', methods=['GET'])
-def delete_photo(photo_id, album_id):
-    # delete photo from database
-    return render_template('album.html/album_id')
+    else:
+        radio = request.form.get('radioAll')
+        tags = str(request.form.get('searchTags')).split(' ')
+        if len(tags) == 1:
+            tag = tags[0]
+            if radio == 'on':
+                query = "SELECT P.PID, P.DATA FROM PHOTO P, ASSOCIATE A WHERE P.PID = A.PID AND A. HASHTAG = %s"
+                cursor.execute(query, tag)
+            else:
+                query = "SELECT P.PID, P.DATA, Al.UID FROM PHOTO P, ASSOCIATE A, ALBUM AL WHERE AL.AID = P.AID AND P.PID = A.PID AND A. HASHTAG = %s AND AL.UID = %s"
+                cursor.execute(query, (tag, uid))
+            data = cursor.fetchall()
+            tag_photos = []
+            for i in range(len(data)):
+                tag_photos.append([str(data[i][0]), str(data[i][1])])
+            print(tag_photos)
+        else:
+            all_photos = set()
+            query = "SELECT PID FROM PHOTO"
+            cursor.execute(query)
+            data = cursor.fetchall()
+            for i in range(len(data)):
+                all_photos.add(str(data[i][0]))
 
-@app.route('/albums', methods=['Get'])
-def delete_album(album_id):
-    # delete album from database
-    return render_template('albums.html')
+            for tag in tags:
+                tag_photos = set()
+                if radio == 'on':
+                    query = "SELECT PID FROM ASSOCIATE A WHERE HASHTAG = %s"
+                    cursor.execute(query, tag)
+                else:
+                    query = "SELECT P.PID FROM PHOTO P, ASSOCIATE A, ALBUM AL WHERE AL.AID = P.AID AND P.PID = A.PID AND A. HASHTAG = %s AND AL.UID = %s"
+                    cursor.execute(query, (tag, uid))
+                data = cursor.fetchall()
+                for i in range(len(data)):
+                    tag_photos.add(str(data[i][0]))
+                all_photos = all_photos.intersection(tag_photos)
+
+            tag_photos = []
+            for tag_photo in all_photos:
+                query = "SELECT PID, DATA FROM PHOTO WHERE PID = %s"
+                cursor.execute(query, tag_photo)
+                data = cursor.fetchall()
+                tag_photos.append([data[0][0],data[0][1]])
+            print(tag_photos)
+
+        query = "SELECT HASHTAG, COUNT(PID) FROM ASSOCIATE GROUP BY HASHTAG ORDER BY COUNT(PID) DESC LIMIT 10"
+        cursor.execute(query)
+        data = cursor.fetchall()
+        top_tags = []
+        for i in range(len(data)):
+            top_tags.append(str(data[i][0]))
+        print(top_tags)
+        return render_template('search.html', top_tags=top_tags, photos=tag_photos)
+
+# @app.route('/album', methods=['GET'])
+# def delete_photo(photo_id, album_id):
+#     # delete photo from database
+#     return render_template('album.html/album_id')
+
+# @app.route('/albums', methods=['Get'])
+# def delete_album(album_id):
+#     # delete album from database
+#     return render_template('albums.html')
 
 @app.errorhandler(404)
 def page_not_found(e):

@@ -33,22 +33,20 @@
         <br/>
 
         {% if current_user == photoOwner %}
-            <form id="delete_photo_form" method="POST" action="{{ url_for('delete_photo', photo_id=photo[0], album_id=album) }}">
-                <button id="btnDeletePhoto" name="photoBtn" type="button" onclick="confirmPhotoDelete()" value="delete">Delete Photo</button>
-            </form>
+{#            <form id="delete_photo_form" method="POST" action="{{ url_for('delete_photo', photo_id=photo[0], album_id=album) }}">#}
+{#                <button id="btnDeletePhoto" name="photoBtn" type="button" onclick="confirmPhotoDelete()" value="delete">Delete Photo</button>#}
+{#            </form>#}
         {% endif %}
 
         <br/>
 
         <form id="like_form" method="POST" action="/photo/{{ photo[0] }}">
             <p>Likes: {{ likes|length }}</p>
-            {% if current_user.is_authenticated %}
-                {% if current_user.name != photoOwner %}
-                    {% if not liked %}
-                        <button id="btnLikePhoto" name="photoBtn" type="submit" value="like">Like</button>
-                    {% else %}
-                        <button id="btnUnLikePhoto" name="photoBtn" type="submit" value="unlike">Unlike</button>
-                    {% endif %}
+            {% if current_user.name != photoOwner %}
+                {% if not liked %}
+                    <button id="btnLikePhoto" name="photoBtn" type="submit" value="like">Like</button>
+                {% else %}
+                    <button id="btnUnLikePhoto" name="photoBtn" type="submit" value="unlike">Unlike</button>
                 {% endif %}
             {% endif %}
         </form>

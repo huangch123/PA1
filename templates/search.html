@@ -27,7 +27,7 @@
     </ul>
 
     <div class="search_style">
-        <form action="/results/" method = "POST">
+        <form action="/search" method = "POST">
             <div id="searchForPhotos">
                 <p>Search for Photos:</p>
                 <p>Tags: <input type="text" name="searchTags"/></p>
@@ -48,7 +48,7 @@
                 <ul class="topTags">
                     <li><div class="topTag"><b>Most Popular Tags:</b></div></li>
                     {% if top_tags %}
-                        {% for tag in top_users %}
+                        {% for tag in top_tags %}
                             <li><div class="topTag2"><a href="/search" name="topTag" value="{{ tag }}">{{ tag }}</a></div></li>
                         {% endfor %}
                     {% endif %}
@@ -63,7 +63,7 @@
                         <tr>
                             {% for photo in photo_batch %}
                                 <td>
-                                    <a href="/photo/{{ photo[0] }}">
+                                    <a href="/photo/{{ photo[1] }}">
                                         <img id="{{ photo[0] }}"
                                          class="tablePhoto"
                                          name="photo"
