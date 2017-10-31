@@ -26,40 +26,60 @@
         {% endif %}
     </ul>
 
-	<form action="/results/" method = "POST">
-        <div>
-            <p>Search for Photos:</p>
-            <p>Tags: <input type="text" name="searchTags"/></p>
-            <span class="radioBtn">
-                <label class="container">
-                    <input id="rbAll" type="radio" checked="checked" name="radioAll" onclick="validateSelection()">
-                    All
-                </label>
-            </span>
-            <span class="checkBoxes">
-                <label class="container">
-                    <input id="cbMy" type="checkbox" name="checkMy" onclick="validateSelection()">
-                    My Photos
-                </label>
-                <label class="container">
-                    <input id="cbFriends" type="checkbox" name="checkFriends" onclick="validateSelection()">
-                    Friends' Photos
-                </label>
-            </span>
-            <p><input type="submit" name="Search" value="Search"/></p>
-        </div>
+    <div class="search_style">
+        <form action="/results/" method = "POST">
+            <div id="searchForPhotos">
+                <p>Search for Photos:</p>
+                <p>Tags: <input type="text" name="searchTags"/></p>
+                <span class="radioBtn">
+                    <label class="container">
+                        <input id="rbAll" type="radio" checked="checked" name="radioAll" onclick="validateSelection(this.id)">
+                        All
+                    </label>
+                    <label class="container">
+                        <input id="cbMy" type="radio" name="checkMy" onclick="validateSelection(this.id)">
+                        My Photos
+                    </label>
+                </span>
+                <p><input type="submit" name="Search" value="Search"/></p>
+            </div>
 
-        <div id="popularTags">
-            <ul class="topTags">
-                <li><span>Most Popular Tags:</span></li>
-                {% if top_tags %}
-                    {% for tag in top_users %}
-                        <li><a href="/search" name="topTag" value="{{ tag }}">{{ tag }}</a></li>
+            <div id="popularTags">
+                <ul class="topTags">
+                    <li><div class="topTag"><b>Most Popular Tags:</b></div></li>
+                    {% if top_tags %}
+                        {% for tag in top_users %}
+                            <li><div class="topTag2"><a href="/search" name="topTag" value="{{ tag }}">{{ tag }}</a></div></li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </form>
+        <div id="searchResultPhotos">
+            <h2>Results</h2>
+            {% if photos %}
+                <table>
+                    {% for photo_batch in photos|batch(3) %}
+                        <tr>
+                            {% for photo in photo_batch %}
+                                <td>
+                                    <a href="/photo/{{ photo[0] }}">
+                                        <img id="{{ photo[0] }}"
+                                         class="tablePhoto"
+                                         name="photo"
+                                         src="{{ url_for('get_photo', filename=photo[1]) }}"
+                                         alt="{{ photo[0] }}">
+                                    </a>
+                                </td>
+                            {% endfor %}
+                        </tr>
                     {% endfor %}
-                {% endif %}
-            </ul>
+                </table>
+            {% else %}
+                <p>There are currently no photos for this search</p>
+            {% endif %}
         </div>
-	</form>
+    </div>
 
     <script src="static/script.js"></script>
 </body>

@@ -111,14 +111,6 @@ def new_page_function():
 def login():
     if flask.request.method == 'GET':
         return render_template('login.html')
-        # return '''
-			#    <form action='login' method='POST'>
-			# 	<input type='text' name='email' id='email' placeholder='email'></input>
-			# 	<input type='password' name='password' id='password' placeholder='password'></input>
-			# 	<input type='submit' name='submit'></input>
-			#    </form></br>
-		 #   <a href='/'>Home</a>
-			#    '''
 
     # The request method is POST (page is recieving data)
     email = flask.request.form['email']
@@ -136,12 +128,13 @@ def login():
             return flask.redirect(flask.url_for('protected'))  # protected is a function defined in this file
 
     # information did not match
-    return render_template('/login.html', message='Incorrect email or password')
+    return render_template('login.html', message='Incorrect email or password')
 
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
-    return render_template('homepage.html', message='Logged out')
+    # return render_template('homepage.html', message='Logged out')
+    return flask.redirect(flask.url_for('homepage'))
 
 
 @login_manager.unauthorized_handler

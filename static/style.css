@@ -332,3 +332,44 @@ div.homepage_style {
     color: black;
 }
 /******** Homepage style css ends ********/
+
+/******** Search style css ********/
+div.search_style {
+    width: 100%;
+    overflow: hidden;
+}
+
+#searchForPhotos {
+    float: left;
+    width: 65%;
+    margin: 0;
+    margin-left: 1em;
+    padding: 1em;
+    border-style: none;
+    border-bottom: 2px solid black;
+    border-radius: 0%;
+    clear: left;
+    overflow: hidden;
+}
+
+/** Reused popularTags **/
+
+#searchResultPhotos {
+    float: left;
+    width: 65%;
+    margin: 0;
+    margin-left: 1em;
+    padding: 1em;
+    border-style: none;
+    border-bottom: 2px solid black;
+    border-radius: 0%;
+    clear: left;
+    overflow: hidden;
+}
+
+#searchResultPhotos img {
+    width: 200px;
+    height: 200px;
+}
+
+/******** Search style css ends ********/

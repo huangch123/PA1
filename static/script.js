@@ -71,18 +71,18 @@ function showAlbumCreate(myBtn) {
     }
 }
 
-function validateSelection() {
+function validateSelection(id) {
     var all = document.getElementById("rbAll");
     var my = document.getElementById("cbMy");
-    var friends = document.getElementById("cbFriends");
-
-    if (all.checked == true) {
-        all.checked = false
-        my.checked = false;
-        friends.checked = false;
+    if (id == "rbAll") {
+        if (all.checked == true) {
+            my.checked = false;
+        }
     }
     else {
-        all.checked = false;
+        if (my.checked == true) {
+            all.checked = false;
+        }
     }
 }
 
