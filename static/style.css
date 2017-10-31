@@ -241,13 +241,11 @@ div.homepage_style {
     float: left;
     width: 65%;
     margin: 0;
+    margin-left: 1em;
     padding: 1em;
+    border-style: none;
     clear: left;
     overflow: hidden;
-    /*border-style: solid;*/
-    /*border-width: 2px;*/
-    /*border-color: #000000;*/
-    /*border-radius: 5px;*/
 }
 
 #mayLikePhotos img {

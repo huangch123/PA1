@@ -110,34 +110,6 @@
         <h1>No photo to display</h1>
     {% endif %}
 
-    <script>
-        function showDiv(myBtn, id) {
-            var btn = document.getElementById(myBtn);
-
-            var btnText = btn.innerHTML;
-
-            var indOfSpace = btnText.indexOf(" ");
-            var firstWord = "";
-            var theRest = "";
-
-            if (indOfSpace == -1) {
-                firstWord = btnText;
-            }
-            else {
-                firstWord = btnText.substr(0, indOfSpace);
-                theRest = btnText.substr(indOfSpace);
-            }
-
-            if (firstWord == "Show") {
-                firstWord = "Hide";
-                document.getElementById(id).style.display = "block";
-            }
-            else {
-                firstWord = "Show";
-                document.getElementById(id).style.display = "none";
-            }
-            btn.innerHTML = firstWord + theRest;
-        }
-    </script>
+    <script src="../static/script.js"></script>
 </body>
 </html>
