@@ -29,11 +29,11 @@
 
 
     {% if current_user.is_authenticated %}
-        <form id=delete_album_form" method="post" action="{{ url_for('delete_album', album_id=album) }}">
-            <div id="divAlbumDelete">
-                <button id="btnAlbumDelete" type="button" onclick="confirmAlbumDelete()">Delete This Album</button>
-            </div>
-        </form>
+{#        <form id=delete_album_form" method="post" action="{{ url_for('delete_album', album_id=album) }}">#}
+{#            <div id="divAlbumDelete">#}
+{#                <button id="btnAlbumDelete" type="button" onclick="confirmAlbumDelete()">Delete This Album</button>#}
+{#            </div>#}
+{#        </form>#}
         <form id="albumPhotos" method="post" action="/albums">
             <h2>Here are your photos</h2>
             {% if photos %}
