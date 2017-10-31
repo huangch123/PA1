@@ -244,10 +244,10 @@ div.homepage_style {
     padding: 1em;
     clear: left;
     overflow: hidden;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #000000;
-    border-radius: 5px;
+    /*border-style: solid;*/
+    /*border-width: 2px;*/
+    /*border-color: #000000;*/
+    /*border-radius: 5px;*/
 }
 
 #mayLikePhotos img {
