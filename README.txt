@@ -9,3 +9,10 @@ Zuoqi Zhang & Charles Huang
 6. On the photo page, you can like and write a comment on the photo. You need to press the button to see tags and people who like this photo, this information is initially hidden when you see this page.
 7. On the upload page, you can save the photo to an existed album or create a new one (this will link to a new page). Also, you can add several tags separating them by spaces. The select boxes show existed albums and tags.
 8. Go to the drop down menu of your name and select friends to see your friends. And on this page you can search and add new friends, recommended friends will appear on this page as well.
+
+Use cases:
+1. Register and login button is on the right top corner. After logging in, click the button named Friends under the drop down menu under your name, you can see your friends and add a new friend here. Top 10 users are listed on homepage.
+2. In our website, user has to login to browse photos and albums. You can click on a photo or check them out from albums.
+3. To search photos by tag name, click the search button in the top navigation bar.
+4. On the photo page, you can like a photo or write a comment.
+5. Friend recommendation is shown on search_friend page.
