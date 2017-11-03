@@ -36,10 +36,12 @@
                         <input id="rbAll" type="radio" checked="checked" name="radioAll" onclick="validateSelection(this.id)">
                         All
                     </label>
-                    <label class="container">
-                        <input id="cbMy" type="radio" name="checkMy" onclick="validateSelection(this.id)">
-                        My Photos
-                    </label>
+                    {% if current_user.is_authenticated %}
+                        <label class="container">
+                            <input id="cbMy" type="radio" name="checkMy" onclick="validateSelection(this.id)">
+                            My Photos
+                        </label>
+                    {% endif %}
                 </span>
                 <p><input type="submit" name="Search" value="Search"/></p>
             </div>

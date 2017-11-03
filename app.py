@@ -360,7 +360,8 @@ def get_photo(filename):
     return send_from_directory("upload/", filename, as_attachment=True)
 
 def get_photo_info(photo_id):
-    if flask_login.current_user.id:
+    liked = None
+    if flask_login.current_user.is_authenticated:
         uid = getUserIdFromEmail(flask_login.current_user.id)
 
         query = "SELECT * FROM FAVORITE WHERE PID = %s AND UID = %s"
@@ -395,7 +396,10 @@ def photo(photo_id):
     if request.method == 'GET':
         return get_photo_info(photo_id)
     else:
-        uid = getUserIdFromEmail(flask_login.current_user.id)
+        if flask_login.current_user.is_authenticated:
+            uid = getUserIdFromEmail(flask_login.current_user.id)
+        else:
+            uid = '0'
         if request.form.get('photoBtn') == 'comment':
             text = request.form.get('commentText')
             query = "INSERT INTO COMMENT (CONTENT, DOC, UID, PID) VALUES (%s, CURRENT_TIMESTAMP, %s, %s)"
@@ -482,7 +486,10 @@ def my_friends():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    uid = getUserIdFromEmail(flask_login.current_user.id)
+    if flask_login.current_user.is_authenticated:
+        uid = getUserIdFromEmail(flask_login.current_user.id)
+    else:
+        uid = '0'
     if request.method == 'GET':
         query = "SELECT HASHTAG, COUNT(PID) FROM ASSOCIATE GROUP BY HASHTAG ORDER BY COUNT(PID) DESC LIMIT 10"
         cursor.execute(query)
