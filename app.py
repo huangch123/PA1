@@ -360,7 +360,15 @@ def get_photo(filename):
     return send_from_directory("upload/", filename, as_attachment=True)
 
 def get_photo_info(photo_id):
-    uid = getUserIdFromEmail(flask_login.current_user.id)
+    if flask_login.current_user.id:
+        uid = getUserIdFromEmail(flask_login.current_user.id)
+
+        query = "SELECT * FROM FAVORITE WHERE PID = %s AND UID = %s"
+        cursor.execute(query, (photo_id, uid))
+        if cursor.fetchone():
+            liked = True
+        else:
+            liked = False
 
     query = "SELECT PID, CAPTION, DATA FROM PHOTO WHERE PID = %s"
     cursor.execute(query, photo_id)
@@ -377,13 +385,6 @@ def get_photo_info(photo_id):
     query = "SELECT U.FNAME, U.LNAME FROM FAVORITE F, USER U WHERE F.UID = U.UID AND PID = %s"
     cursor.execute(query, photo_id)
     likes = cursor.fetchall()
-
-    query = "SELECT * FROM FAVORITE WHERE PID = %s AND UID = %s"
-    cursor.execute(query, (photo_id, uid))
-    if cursor.fetchone():
-        liked = True
-    else:
-        liked = False
 
     print(photo, tags, comments, likes)
     return render_template('photo.html', photo=photo, tags=tags, comments=comments, likes=likes, liked=liked)
