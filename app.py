@@ -360,20 +360,13 @@ def get_photo(filename):
     return send_from_directory("upload/", filename, as_attachment=True)
 
 def get_photo_info(photo_id):
-    liked = None
-    if flask_login.current_user.is_authenticated:
-        uid = getUserIdFromEmail(flask_login.current_user.id)
+    uid = getUserIdFromEmail(flask_login.current_user.id)
 
-        query = "SELECT * FROM FAVORITE WHERE PID = %s AND UID = %s"
-        cursor.execute(query, (photo_id, uid))
-        if cursor.fetchone():
-            liked = True
-        else:
-            liked = False
-
-    query = "SELECT PID, CAPTION, DATA FROM PHOTO WHERE PID = %s"
+    query = "SELECT P.PID, P.CAPTION, P.DATA, A.UID, A.AID FROM PHOTO P, ALBUM A WHERE P.AID = A.AID AND P.PID = %s"
     cursor.execute(query, photo_id)
     photo = cursor.fetchone()
+    photoOwner = photo[3]
+    album = photo[4]
 
     query = "SELECT HASHTAG FROM ASSOCIATE WHERE PID = %s"
     cursor.execute(query, photo_id)
@@ -387,8 +380,15 @@ def get_photo_info(photo_id):
     cursor.execute(query, photo_id)
     likes = cursor.fetchall()
 
+    query = "SELECT * FROM FAVORITE WHERE PID = %s AND UID = %s"
+    cursor.execute(query, (photo_id, uid))
+    if cursor.fetchone():
+        liked = True
+    else:
+        liked = False
+
     print(photo, tags, comments, likes)
-    return render_template('photo.html', photo=photo, tags=tags, comments=comments, likes=likes, liked=liked)
+    return render_template('photo.html', photo=photo, tags=tags, comments=comments, likes=likes, liked=liked, photoOwner=photoOwner, album=album)
 
 # show specific photo
 @app.route('/photo/<int:photo_id>', methods=['Get', 'POST'])
@@ -557,15 +557,22 @@ def search():
         print(top_tags)
         return render_template('search.html', top_tags=top_tags, photos=tag_photos)
 
-# @app.route('/album', methods=['GET'])
-# def delete_photo(photo_id, album_id):
-#     # delete photo from database
-#     return render_template('album.html/album_id')
+@app.route('/album/<int:album_id>', methods=['GET', 'POST'])
+def delete_photo(photo_id, album_id):
+    # delete photo from database
+    query = "DELETE FROM PHOTO WHERE PID = %s"
+    cursor.execute(query, photo_id)
+    conn.commit()
 
-# @app.route('/albums', methods=['Get'])
-# def delete_album(album_id):
-#     # delete album from database
-#     return render_template('albums.html')
+    query = "SELECT PID, DATA FROM PHOTO WHERE AID = %s"
+    cursor.execute(query, album_id)
+    photos = cursor.fetchall()
+    return render_template('album.html', photos=photos)
+
+@app.route('/albums', methods=['Get', 'POST'])
+def delete_album(album_id):
+    # delete album from database
+    return render_template('albums.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
