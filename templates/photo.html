@@ -33,8 +33,8 @@
         <br/>
 
         {% if current_user.id == photoOwner %}
-            <form id="delete_photo_form" method="POST" action="{{ url_for('photo', photo_id=photo[0]) }}">
-                <button id="btnDeletePhoto" name="deletePhoto" type="button" onclick="confirmPhotoDelete()" value="delete">Delete Photo</button>
+            <form id="delete_photo_form" method="POST" action="/photo/{{ photo[0] }}">
+                <button id="btnDeletePhoto" name="photoBtn" type="submit" onclick="confirmPhotoDelete()" value="delete">Delete Photo</button>
             </form>
         {% endif %}
 
