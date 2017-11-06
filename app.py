@@ -365,8 +365,11 @@ def get_photo_info(photo_id):
     query = "SELECT P.PID, P.CAPTION, P.DATA, U.EMAIL, A.AID FROM PHOTO P, ALBUM A, USER U WHERE P.AID = A.AID AND A.UID = U.UID AND P.PID = %s"
     cursor.execute(query, photo_id)
     photo = cursor.fetchone()
-    photoOwner = photo[3]
-    album = photo[4]
+    if photo:
+        photoOwner = photo[3]
+        album = photo[4]
+    else:
+        photoOwner = album = None
 
     query = "SELECT HASHTAG FROM ASSOCIATE WHERE PID = %s"
     cursor.execute(query, photo_id)
@@ -396,24 +399,26 @@ def photo(photo_id):
     if request.method == 'GET':
         return get_photo_info(photo_id)
     else:
-        if flask_login.current_user.is_authenticated:
-            uid = getUserIdFromEmail(flask_login.current_user.id)
-        else:
-            uid = '1'
+        uid = getUserIdFromEmail(flask_login.current_user.id)
         if request.form.get('photoBtn') == 'comment':
             text = request.form.get('commentText')
             query = "INSERT INTO COMMENT (CONTENT, DOC, UID, PID) VALUES (%s, CURRENT_TIMESTAMP, %s, %s)"
             cursor.execute(query, (text, uid, photo_id))
             conn.commit()
 
-        if request.form.get('photoBtn') == 'like':
+        if request.form.get('photoBtn') == 'like' and uid != '1':
             query = "INSERT INTO FAVORITE (UID, PID, DOC) VALUES (%s, %s, CURRENT_TIMESTAMP)"
             cursor.execute(query, (uid, photo_id))
             conn.commit()
 
-        if request.form.get('photoBtn') == 'unlike':
+        if request.form.get('photoBtn') == 'unlike' and uid != '1':
             query = "DELETE FROM FAVORITE WHERE UID = %s AND PID = %s"
             cursor.execute(query, (uid, photo_id))
+            conn.commit()
+
+        if request.form.get('photoBtn') == 'delete' and uid != '1':
+            query = "DELETE FROM PHOTO WHERE PID = %s"
+            cursor.execute(query, photo_id)
             conn.commit()
 
         return get_photo_info(photo_id)
@@ -558,17 +563,17 @@ def search():
         print(top_tags)
         return render_template('search.html', top_tags=top_tags, photos=tag_photos)
 
-@app.route('/album/<int:album_id>', methods=['GET', 'POST'])
-def delete_photo(photo_id, album_id):
-    # delete photo from database
-    query = "DELETE FROM PHOTO WHERE PID = %s"
-    cursor.execute(query, photo_id)
-    conn.commit()
+# @app.route('/album/<int:album_id>', methods=['GET', 'POST'])
+# def delete_photo(photo_id, album_id):
+#     # delete photo from database
+#     query = "DELETE FROM PHOTO WHERE PID = %s"
+#     cursor.execute(query, photo_id)
+#     conn.commit()
 
-    query = "SELECT PID, DATA FROM PHOTO WHERE AID = %s"
-    cursor.execute(query, album_id)
-    photos = cursor.fetchall()
-    return render_template('album.html', photos=photos)
+#     query = "SELECT PID, DATA FROM PHOTO WHERE AID = %s"
+#     cursor.execute(query, album_id)
+#     photos = cursor.fetchall()
+#     return render_template('album.html', photos=photos)
 
 @app.route('/albums', methods=['Get', 'POST'])
 def delete_album(album_id):
