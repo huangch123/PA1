@@ -29,11 +29,11 @@
 
 
     {% if current_user.is_authenticated %}
-{#        <form id=delete_album_form" method="post" action="{{ url_for('delete_album', album_id=album) }}">#}
-{#            <div id="divAlbumDelete">#}
-{#                <button id="btnAlbumDelete" type="button" onclick="confirmAlbumDelete()">Delete This Album</button>#}
-{#            </div>#}
-{#        </form>#}
+        <form id=delete_album_form" method="post" action="/album/{{ album_id }}">
+            <div id="divAlbumDelete">
+                <button id="btnAlbumDelete" name="albumBtn" type="submit" onclick="confirmAlbumDelete()" value="delete">Delete This Album</button>
+            </div>
+        </form>
         <form id="albumPhotos" method="post" action="/albums">
             <h2>Here are your photos</h2>
             {% if photos %}
@@ -62,6 +62,6 @@
         <h2>Please <a href="/login">log in</a></h2>
     {% endif %}
 
-    <script src="../static/script.js"></script>
+    <script src="static/script.js"></script>
 </body>
 </html>
