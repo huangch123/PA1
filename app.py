@@ -572,7 +572,16 @@ def delete_photo(photo_id, album_id):
 @app.route('/albums', methods=['Get', 'POST'])
 def delete_album(album_id):
     # delete album from database
-    return render_template('albums.html')
+    query = "DELETE FROM ALBUM WHERE AID = %s"
+    cursor.execute(query, album_id)
+    conn.commit()
+
+    uid = getUserIdFromEmail(flask_login.current_user.id)
+
+    query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
+    cursor.execute(query, uid)
+    albums = cursor.fetchall()
+    return render_template("albums.html", albums=albums)
 
 @app.errorhandler(404)
 def page_not_found(e):
