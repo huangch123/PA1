@@ -440,7 +440,7 @@ def search_friends():
 
     users = []
     if fname or lname or email:
-        query = "SELECT UID, FNAME, LNAME FROM USER"
+        query = "SELECT UID, FNAME, LNAME, EMAIL FROM USER"
         tuple = ()
         query += " WHERE 1 = 1"
         if fname:
@@ -460,7 +460,7 @@ def search_friends():
             user = []
             user.append(str(data[i][0]))
             user.append(str(data[i][1]) + ' ' + str(data[i][2]))
-            if checkFriendship(flask_login.current_user.id, str(data[i][0])) or flask_login.current_user.id == str(data[i][0]):
+            if checkFriendship(flask_login.current_user.id, str(data[i][3])) or flask_login.current_user.id == str(data[i][3]):
                 user.append('1')
             else:
                 user.append('0')
