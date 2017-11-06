@@ -340,20 +340,23 @@ def albums():
             albums = cursor.fetchall()
             return render_template("albums.html", albums=albums)
 
-@app.route('/album/<int:album_id>', methods=['Get'])
+@app.route('/album/<int:album_id>', methods=['GET', 'POST'])
 def album(album_id):
     if request.method == 'GET':
         query = "SELECT PID, DATA FROM PHOTO WHERE AID = %s"
         cursor.execute(query, album_id)
         photos = cursor.fetchall()
-        return render_template("album.html", photos=photos)
+        return render_template("album.html", photos=photos, album_id=album_id)
     else:
-        photo_id = request.form.get('photo_id')
-        query = "SELECT CAPTION, DATA FROM PHOTO WHERE PID = %s"
-        cursor.execute(query, photo_id)
-        photo = cursor.fetchone()
+        if request.form.get('albumBtn') == 'delete':
+            query = "DELETE FROM ALBUM WHERE AID = %s"
+            cursor.execute(query, album_id)
+            conn.commit()
 
-        return render_template("photo.html", photo=photo)
+        query = "SELECT PID, DATA FROM PHOTO WHERE AID = %s"
+        cursor.execute(query, album_id)
+        photos = cursor.fetchall()
+        return render_template("album.html", photos=photos, album_id=album_id)
 
 @app.route('/upload/<path:filename>')
 def get_photo(filename):
