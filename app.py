@@ -447,23 +447,27 @@ def search_friends():
     fname = request.form.get('fname')
     lname = request.form.get('lname')
     email = request.form.get('email')
-    inputs = [fname, lname, email]
+    text = request.form.get('text')
+    inputs = [fname, lname, email, text]
 
     users = []
-    if fname or lname or email:
-        query = "SELECT UID, FNAME, LNAME, EMAIL FROM USER"
+    if fname or lname or email or text:
+        query = "SELECT U.UID, U.FNAME, U.LNAME, U.EMAIL FROM USER U, COMMENT C"
         tuple = ()
-        query += " WHERE 1 = 1"
+        query += " WHERE U.UID > 1"
         if fname:
-            query += " AND FNAME = %s"
+            query += " AND U.FNAME = %s"
             tuple += (fname,)
         if lname:
-            query += " AND LNAME = %s"
+            query += " AND U.LNAME = %s"
             tuple += (lname,)
         if email:
-            query += " AND EMAIL = %s"
+            query += " AND U.EMAIL = %s"
             tuple += (email,)
-        query += " AND UID > 1"
+        if text:
+            query += " AND U.UID = C.UID AND C.CONTENT LIKE %s GROUP BY U.UID ORDER BY COUNT(C.CONTENT) DESC;"
+            tuple += ("%" + text + "%",)
+        print(query)
         cursor.execute(query, tuple)
         data = cursor.fetchall()
 

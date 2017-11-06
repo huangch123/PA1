@@ -56,6 +56,9 @@ function setSearchFriendInputs(info) {
     if (info[2] != "None") {
         document.getElementById("sfEmail").value = info[2];
     }
+    if (info[3] != "None") {
+        document.getElementById("sfText").value = info[3];
+    }
 }
 
 function showAlbumCreate(myBtn) {
