@@ -310,7 +310,7 @@ def homepage():
     if flask_login.current_user.is_authenticated:
         query = "SELECT DISTINCT P3.PID, P3.CAPTION, P3.DATA FROM PHOTO P3, ALBUM AM2, ASSOCIATE AE3, (SELECT DISTINCT P2.PID P2ID, COUNT(AE2.HASHTAG) C2 FROM PHOTO P2, ASSOCIATE AE2, (SELECT DISTINCT AE.HASHTAG AEHT, COUNT(AE.HASHTAG) C FROM USER U, ALBUM AM, PHOTO P, ASSOCIATE AE WHERE U.UID = AM.UID AND AM.AID = P.AID AND P.PID = AE.PID AND U.UID = %s GROUP BY AEHT ORDER BY C DESC LIMIT 5) AS TOPFIVE WHERE P2.PID = AE2.PID AND AE2.HASHTAG = TOPFIVE.AEHT GROUP BY P2.PID ORDER BY C2 DESC) AS WITHTOP WHERE P3.PID = WITHTOP.P2ID AND P3.PID = AE3.PID AND P3.AID = AM2.AID AND AM2.UID <> %s GROUP BY P3.PID ORDER BY WITHTOP.C2 DESC, COUNT(DISTINCT AE3.HASHTAG) ASC;"
         id = getUserIdFromEmail(flask_login.current_user.id)
-        cursor.execute(query, ('3', id))
+        cursor.execute(query, (id, id))
         data = cursor.fetchall()
         for i in range(len(data)):
             may_like_photos.append([str(data[i][0]), str(data[i][1]), str(data[i][2])])
