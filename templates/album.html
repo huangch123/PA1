@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ album }}</title>
+    <title>Album</title>
     <link rel="stylesheet" type="text/css" href="../static/style.css">
 </head>
 <body>
@@ -27,8 +27,7 @@
         {% endif %}
     </ul>
 
-
-    {% if current_user.is_authenticated %}
+    {% if album %}
         <form id=delete_album_form" method="post" action="/album/{{ album_id }}">
             <div id="divAlbumDelete">
                 <button id="btnAlbumDelete" name="albumBtn" type="submit" onclick="confirmAlbumDelete()" value="delete">Delete This Album</button>
@@ -57,9 +56,9 @@
             {% else %}
                 <p>You currently do not have any photos in this album. How about uploading some.</p>
             {% endif %}
-            </form>
+        </form>
     {% else %}
-        <h2>Please <a href="/login">log in</a></h2>
+        <h2>This album does not exist</h2>
     {% endif %}
 
     <script src="static/script.js"></script>
