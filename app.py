@@ -472,7 +472,10 @@ def search_friends():
 
 @app.route('/my_friends', methods=['GET'])
 def my_friends():
-    uid = getUserIdFromEmail(flask_login.current_user.id)
+    if flask_login.current_user.is_authenticated:
+        uid = getUserIdFromEmail(flask_login.current_user.id)
+    else:
+        uid = '0'
     query = "SELECT U.FNAME, U.LNAME FROM FRIENDSHIP F, USER U WHERE F.UID1 = %s AND F.UID2 = U.UID"
     cursor.execute(query, uid)
     data = cursor.fetchall()
