@@ -362,7 +362,7 @@ def get_photo(filename):
 def get_photo_info(photo_id):
     uid = getUserIdFromEmail(flask_login.current_user.id)
 
-    query = "SELECT P.PID, P.CAPTION, P.DATA, A.UID, A.AID FROM PHOTO P, ALBUM A WHERE P.AID = A.AID AND P.PID = %s"
+    query = "SELECT P.PID, P.CAPTION, P.DATA, U.EMAIL, A.AID FROM PHOTO P, ALBUM A, USER U WHERE P.AID = A.AID AND A.UID = U.UID AND P.PID = %s"
     cursor.execute(query, photo_id)
     photo = cursor.fetchone()
     photoOwner = photo[3]
