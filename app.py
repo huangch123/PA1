@@ -399,7 +399,7 @@ def photo(photo_id):
         if flask_login.current_user.is_authenticated:
             uid = getUserIdFromEmail(flask_login.current_user.id)
         else:
-            uid = '0'
+            uid = '1'
         if request.form.get('photoBtn') == 'comment':
             text = request.form.get('commentText')
             query = "INSERT INTO COMMENT (CONTENT, DOC, UID, PID) VALUES (%s, CURRENT_TIMESTAMP, %s, %s)"
@@ -447,6 +447,7 @@ def search_friends():
         if email:
             query += " AND EMAIL = %s"
             tuple += (email,)
+        query += " AND UID > 1"
         cursor.execute(query, tuple)
         data = cursor.fetchall()
 
