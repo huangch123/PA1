@@ -61,7 +61,7 @@
                 <ul>
                     {% for user in users %}
                         <li>{{ user[1] }}
-                            {% if user[3] == '0' %}
+                            {% if user[2] == '0' %}
                                 <button name="addFriendBtn"
                                         class="addFriend"
                                         id="{{ user[0] }}"
