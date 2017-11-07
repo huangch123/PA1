@@ -489,8 +489,8 @@ def search_friends():
             users.append(user)
         print(users)
 
-    query = "SELECT DISTINCT U3.UID, U3.FNAME, U3.LNAME, COUNT(U3.UID) FROM USER U, FRIENDSHIP F, USER U2, FRIENDSHIP F2, USER U3 WHERE U.UID = F.UID1 AND F.UID2 = U2.UID AND U2.UID = F2.UID1 AND F2.UID2 = U3.UID AND U.UID <> U3.UID AND U.UID = %s GROUP BY U3.UID ORDER BY COUNT(U3.UID) DESC;"
-    cursor.execute(query, uid)
+    query = "SELECT DISTINCT U3.UID, U3.FNAME, U3.LNAME, COUNT(U3.UID) FROM USER U, FRIENDSHIP F, USER U2, FRIENDSHIP F2, USER U3 WHERE U.UID = F.UID1 AND F.UID2 = U2.UID AND U2.UID = F2.UID1 AND F2.UID2 = U3.UID AND U.UID <> U3.UID AND U.UID = %s AND U3.UID NOT IN (SELECT UID2 FROM FRIENDSHIP WHERE UID1 = %s) GROUP BY U3.UID ORDER BY COUNT(U3.UID) DESC;"
+    cursor.execute(query, (uid, uid,))
     data = cursor.fetchall()
     rec = []
     for i in range(len(data)):
