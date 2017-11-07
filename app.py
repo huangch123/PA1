@@ -320,40 +320,39 @@ def homepage():
 
     return render_template('homepage.html', top_users=top_users, top_tags=top_tags, top_photos=top_photos, mayLikePhotos=may_like_photos)
 
-@app.route('/albums', methods=['Get', 'POST'])
+@app.route('/albums', methods=['GET', 'POST'])
 def albums():
+    if flask_login.current_user.is_authenticated:
+        uid = getUserIdFromEmail(flask_login.current_user.id)
+    else:
+        uid = '1'
+
     if request.method == 'GET':
         query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
-        cursor.execute(query, getUserIdFromEmail(flask_login.current_user.id))
+        cursor.execute(query, uid)
         albums = cursor.fetchall()
         return render_template("albums.html", albums=albums)
     else:
-        album_id = request.form.get('album_id')
-        if album_id:
-            query = "SELECT PID, DATA FROM PHOTO WHERE AID = %s"
-            cursor.execute(query, album_id)
-            photos = cursor.fetchall()
-            return render_template("album.html", photos=photos)
-        else:
-            new_album = request.form.get('albumName')
-            cursor.execute("INSERT INTO ALBUM (NAME, UID) VALUES (%s, %s)", (new_album, getUserIdFromEmail(flask_login.current_user.id)))
-            conn.commit()
-            query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
-            cursor.execute(query, getUserIdFromEmail(flask_login.current_user.id))
-            albums = cursor.fetchall()
-            return render_template("albums.html", albums=albums)
+        new_album = request.form.get('albumName')
+        cursor.execute("INSERT INTO ALBUM (NAME, UID) VALUES (%s, %s)", (new_album, uid))
+        conn.commit()
+
+        query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
+        cursor.execute(query, uid)
+        albums = cursor.fetchall()
+        return render_template("albums.html", albums=albums)
 
 @app.route('/album/<int:album_id>', methods=['GET', 'POST'])
 def album(album_id):
     if request.method == 'GET':
         query = "SELECT AID FROM ALBUM WHERE AID = %s"
         cursor.execute(query, album_id)
-        album = cursor.fetchall()
+        album = cursor.fetchone()
 
         query = "SELECT PID, DATA FROM PHOTO WHERE AID = %s"
         cursor.execute(query, album_id)
         photos = cursor.fetchall()
-        return render_template("album.html", photos=photos, album_id=album_id, album=album)
+        return render_template("album.html", photos=photos, album=album)
     else:
         if request.form.get('albumBtn') == 'delete':
             query = "DELETE FROM ALBUM WHERE AID = %s"
@@ -362,12 +361,12 @@ def album(album_id):
 
         query = "SELECT AID FROM ALBUM WHERE AID = %s"
         cursor.execute(query, album_id)
-        album = cursor.fetchall()
+        album = cursor.fetchone()
 
         query = "SELECT PID, DATA FROM PHOTO WHERE AID = %s"
         cursor.execute(query, album_id)
         photos = cursor.fetchall()
-        return render_template("album.html", photos=photos, album_id=album_id, album=album)
+        return render_template("album.html", photos=photos, album=album)
 
 @app.route('/upload/<path:filename>')
 def get_photo(filename):
@@ -379,14 +378,9 @@ def get_photo_info(photo_id):
     else:
         uid = '1'
 
-    query = "SELECT P.PID, P.CAPTION, P.DATA, U.EMAIL, A.AID FROM PHOTO P, ALBUM A, USER U WHERE P.AID = A.AID AND A.UID = U.UID AND P.PID = %s"
+    query = "SELECT P.PID, P.CAPTION, P.DATA, A.AID, U.EMAIL FROM PHOTO P, ALBUM A, USER U WHERE P.AID = A.AID AND A.UID = U.UID AND P.PID = %s"
     cursor.execute(query, photo_id)
     photo = cursor.fetchone()
-    if photo:
-        photoOwner = photo[3]
-        album = photo[4]
-    else:
-        photoOwner = album = None
 
     query = "SELECT HASHTAG FROM ASSOCIATE WHERE PID = %s"
     cursor.execute(query, photo_id)
@@ -408,10 +402,10 @@ def get_photo_info(photo_id):
         liked = False
 
     print(photo, tags, comments, likes)
-    return render_template('photo.html', photo=photo, tags=tags, comments=comments, likes=likes, liked=liked, photoOwner=photoOwner, album=album)
+    return render_template('photo.html', photo=photo, tags=tags, comments=comments, likes=likes, liked=liked)
 
 # show specific photo
-@app.route('/photo/<int:photo_id>', methods=['Get', 'POST'])
+@app.route('/photo/<int:photo_id>', methods=['GET', 'POST'])
 def photo(photo_id):
     if request.method == 'GET':
         return get_photo_info(photo_id)
@@ -420,6 +414,7 @@ def photo(photo_id):
             uid = getUserIdFromEmail(flask_login.current_user.id)
         else:
             uid = '1'
+
         if request.form.get('photoBtn') == 'comment':
             text = request.form.get('commentText')
             query = "INSERT INTO COMMENT (CONTENT, DOC, UID, PID) VALUES (%s, CURRENT_TIMESTAMP, %s, %s)"
