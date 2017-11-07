@@ -29,14 +29,14 @@
 
     {% if album %}
         {% if current_user.is_authenticated %}
-            <form id=delete_album_form" method="post" action="/album/{{ album_id }}">
+            <form id=delete_album_form" method="post" action="/album/{{ album[0] }}">
                 <div id="divAlbumDelete">
                     <button id="btnAlbumDelete" name="albumBtn" type="submit" onclick="confirmAlbumDelete()" value="delete">Delete This Album</button>
                 </div>
             </form>
         {% endif %}
         <form id="albumPhotos" method="post" action="/albums">
-            <h2>Here are the photos</h2>
+            <h2>Here are the photos:</h2>
             {% if photos %}
                 <table>
                     {% for photo_batch in photos|batch(3) %}
@@ -60,9 +60,8 @@
             {% endif %}
         </form>
     {% else %}
-        <h2>This album does not exist</h2>
+        <h2>This album does not exist.</h2>
     {% endif %}
-
     <script src="static/script.js"></script>
 </body>
 </html>
