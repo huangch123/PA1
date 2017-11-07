@@ -28,13 +28,15 @@
     </ul>
 
     {% if album %}
-        <form id=delete_album_form" method="post" action="/album/{{ album_id }}">
-            <div id="divAlbumDelete">
-                <button id="btnAlbumDelete" name="albumBtn" type="submit" onclick="confirmAlbumDelete()" value="delete">Delete This Album</button>
-            </div>
-        </form>
+        {% if current_user.is_authenticated %}
+            <form id=delete_album_form" method="post" action="/album/{{ album_id }}">
+                <div id="divAlbumDelete">
+                    <button id="btnAlbumDelete" name="albumBtn" type="submit" onclick="confirmAlbumDelete()" value="delete">Delete This Album</button>
+                </div>
+            </form>
+        {% endif %}
         <form id="albumPhotos" method="post" action="/albums">
-            <h2>Here are your photos</h2>
+            <h2>Here are the photos</h2>
             {% if photos %}
                 <table>
                     {% for photo_batch in photos|batch(3) %}

@@ -238,7 +238,10 @@ def allowed_file(filename):
 @flask_login.login_required
 def upload_file():
     if request.method == 'POST':
-        uid = getUserIdFromEmail(flask_login.current_user.id)
+        if flask_login.current_user.is_authenticated:
+            uid = getUserIdFromEmail(flask_login.current_user.id)
+        else:
+            uid = '1'
         imgfile = request.files['photo']
         album_id = request.form.get('album')
         tags = request.form.get('tag')
@@ -371,7 +374,10 @@ def get_photo(filename):
     return send_from_directory("upload/", filename, as_attachment=True)
 
 def get_photo_info(photo_id):
-    uid = getUserIdFromEmail(flask_login.current_user.id)
+    if flask_login.current_user.is_authenticated:
+        uid = getUserIdFromEmail(flask_login.current_user.id)
+    else:
+        uid = '1'
 
     query = "SELECT P.PID, P.CAPTION, P.DATA, U.EMAIL, A.AID FROM PHOTO P, ALBUM A, USER U WHERE P.AID = A.AID AND A.UID = U.UID AND P.PID = %s"
     cursor.execute(query, photo_id)
@@ -410,7 +416,10 @@ def photo(photo_id):
     if request.method == 'GET':
         return get_photo_info(photo_id)
     else:
-        uid = getUserIdFromEmail(flask_login.current_user.id)
+        if flask_login.current_user.is_authenticated:
+            uid = getUserIdFromEmail(flask_login.current_user.id)
+        else:
+            uid = '1'
         if request.form.get('photoBtn') == 'comment':
             text = request.form.get('commentText')
             query = "INSERT INTO COMMENT (CONTENT, DOC, UID, PID) VALUES (%s, CURRENT_TIMESTAMP, %s, %s)"
@@ -436,7 +445,10 @@ def photo(photo_id):
 
 @app.route('/search_friends', methods=['GET', 'POST'])
 def search_friends():
-    uid = getUserIdFromEmail(flask_login.current_user.id)
+    if flask_login.current_user.is_authenticated:
+        uid = getUserIdFromEmail(flask_login.current_user.id)
+    else:
+        uid = '1'
     uid2 = request.form.get('addFriendBtn')
     if uid2:
         query = "INSERT INTO FRIENDSHIP VALUES (%s, %s)"
@@ -496,7 +508,7 @@ def my_friends():
     if flask_login.current_user.is_authenticated:
         uid = getUserIdFromEmail(flask_login.current_user.id)
     else:
-        uid = '0'
+        uid = '1'
     query = "SELECT U.FNAME, U.LNAME FROM FRIENDSHIP F, USER U WHERE F.UID1 = %s AND F.UID2 = U.UID"
     cursor.execute(query, uid)
     data = cursor.fetchall()
@@ -513,7 +525,7 @@ def search():
     if flask_login.current_user.is_authenticated:
         uid = getUserIdFromEmail(flask_login.current_user.id)
     else:
-        uid = '0'
+        uid = '1'
     if request.method == 'GET':
         query = "SELECT HASHTAG, COUNT(PID) FROM ASSOCIATE GROUP BY HASHTAG ORDER BY COUNT(PID) DESC LIMIT 10"
         cursor.execute(query)
@@ -597,7 +609,10 @@ def delete_album(album_id):
     cursor.execute(query, album_id)
     conn.commit()
 
-    uid = getUserIdFromEmail(flask_login.current_user.id)
+    if flask_login.current_user.is_authenticated:
+        uid = getUserIdFromEmail(flask_login.current_user.id)
+    else:
+        uid = '1'
 
     query = "SELECT AID, NAME FROM ALBUM WHERE UID = %s"
     cursor.execute(query, uid)
