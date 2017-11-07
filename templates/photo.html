@@ -32,7 +32,7 @@
 
         <br/>
 
-        {% if current_user.id == photoOwner %}
+        {% if current_user.id == photo[3] %}
             <form id="delete_photo_form" method="POST" action="/photo/{{ photo[0] }}">
                 <button id="btnDeletePhoto" name="photoBtn" type="submit" onclick="confirmPhotoDelete()" value="delete">Delete Photo</button>
             </form>
@@ -43,7 +43,7 @@
         <form id="like_form" method="POST" action="/photo/{{ photo[0] }}">
             <p>Likes: {{ likes|length }}</p>
             {% if current_user.is_authenticated %}
-                {% if current_user.id != photoOwner %}
+                {% if current_user.id != photo[3] %}
                     {% if not liked %}
                         <button id="btnLikePhoto" name="photoBtn" type="submit" value="like">Like</button>
                     {% else %}
@@ -86,7 +86,7 @@
 
         <br/>
 
-        {% if current_user.id != photoOwner %}
+        {% if current_user.id != photo[3] %}
             <form method="POST" action="/photo/{{ photo[0] }}">
                 Characters left: <label id="counter">500</label><br/>
 
