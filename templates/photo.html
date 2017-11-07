@@ -61,7 +61,7 @@
             <div id="photoTags" style="display:none;">
                 {% if tags %}
                     {% for tag in tags %}
-                        <span><a href="/search/{{ tag[0] }}">{{ tag[0] }}</a></span>
+                        <span><a href="/search" name="topTag" value="{{ tag[0] }}">{{ tag[0] }}</a></span>
                     {% endfor %}
                 {% else %}
                     <p>None</p>
